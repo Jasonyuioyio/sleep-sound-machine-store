@@ -1105,6 +1105,18 @@
       cursor: pointer;
     }
 
+    .lead-form__status {
+      min-height: 20px;
+      margin: 0;
+      color: var(--secondary);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .lead-form__status.is-error {
+      color: var(--primary);
+    }
+
     .lead-modal__fineprint {
       display: grid;
       gap: 6px;
@@ -1616,7 +1628,9 @@
         <p class="lead-modal__intro">
           Share your details so our care team can match your order and support you faster.
         </p>
-        <form class="lead-form" id="lead-form" novalidate>
+        <form class="lead-form" id="lead-form" action="https://formspree.io/f/meenrnro" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Chicway order support lead">
+          <input type="hidden" name="source" value="Chicway website lead modal">
           <label>
             Name
             <input name="name" type="text" autocomplete="name" placeholder="Your name" required>
@@ -1641,6 +1655,7 @@
             Message
             <textarea name="message" placeholder="Tell us how we can help" required></textarea>
           </label>
+          <p class="lead-form__status" data-lead-form-status role="status" aria-live="polite"></p>
           <button class="lead-form__submit" type="submit">Submit Details</button>
         </form>
         <div class="lead-modal__fineprint">
@@ -1657,6 +1672,9 @@
     const leadModal = document.querySelector("#lead-modal");
     const leadForm = document.querySelector("#lead-form");
     const leadFields = Array.from(leadForm.querySelectorAll("input, textarea"));
+    const leadFormStatus = document.querySelector("[data-lead-form-status]");
+    const leadSubmitButton = leadForm.querySelector(".lead-form__submit");
+    const leadFormEndpoint = "https://formspree.io/f/meenrnro";
     const leadSubmissionKey = "chicwayLeadFormSubmitted";
     const leadMaxAttempts = 3;
     const leadRetryDelay = 30000;
@@ -1719,17 +1737,43 @@
       }
     });
 
-    leadForm.addEventListener("submit", (event) => {
+    leadForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      leadFormStatus.textContent = "";
+      leadFormStatus.classList.remove("is-error");
 
       if (!isLeadFormComplete()) {
         leadForm.reportValidity();
         return;
       }
 
-      localStorage.setItem(leadSubmissionKey, "true");
-      clearTimeout(leadRetryTimer);
-      closeLeadModal();
+      leadSubmitButton.disabled = true;
+      leadSubmitButton.textContent = "Submitting...";
+
+      try {
+        const response = await fetch(leadFormEndpoint, {
+          method: "POST",
+          body: new FormData(leadForm),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Lead form submission failed.");
+        }
+
+        localStorage.setItem(leadSubmissionKey, "true");
+        clearTimeout(leadRetryTimer);
+        leadFormStatus.textContent = "Thanks. We received your details.";
+        closeLeadModal();
+      } catch (error) {
+        leadFormStatus.textContent = "We couldn't submit your details. Please try again.";
+        leadFormStatus.classList.add("is-error");
+      } finally {
+        leadSubmitButton.disabled = false;
+        leadSubmitButton.textContent = "Submit Details";
+      }
     });
 
     const updateCartCounts = () => {
