@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soothe | Responsive Rest for Every Stage</title>
+  <meta
+    name="description"
+    content="A premium editorial landing page for Soothe, designed to sell a modern portable sound machine for parents and babies."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #fcf9f4;
+      --surface: #ffffff;
+      --surface-soft: #f4eee7;
+      --surface-soft-2: #f1e2bf;
+      --surface-mint: #c7f0e4;
+      --surface-mint-2: #c7efe8;
+      --surface-brown: #88502b;
+      --primary: #730d30;
+      --primary-2: #922846;
+      --secondary: #39675b;
+      --tertiary: #61290e;
+      --text: #1c1c19;
+      --muted: #5e5853;
+      --line: rgba(137, 113, 116, 0.2);
+      --shadow: 0 24px 60px rgba(115, 13, 48, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --container: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Be Vietnam Pro", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page-shell {
+      overflow: clip;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 32px rgba(115, 13, 48, 0.05);
+    }
+
+    .topbar-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Epilogue", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #17110d;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: #6c6a66;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a,
+    .nav-links span {
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links a.active,
+    .nav-links span.active {
+      color: var(--primary);
+    }
+
+    .nav-links a.active::after,
+    .nav-links span.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-btn {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f1a18;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .pill-btn:hover {
+      background: var(--primary-2);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      padding: 34px 0 22px;
+      background: linear-gradient(180deg, #fbf7f1 0%, #f7f2ea 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(250, 246, 240, 0.97) 0%,
+          rgba(250, 246, 240, 0.95) 14%,
+          rgba(250, 246, 240, 0.86) 24%,
+          rgba(250, 246, 240, 0.56) 38%,
+          rgba(250, 246, 240, 0.16) 54%,
+          rgba(250, 246, 240, 0.02) 68%,
+          rgba(250, 246, 240, 0) 78%
+        ),
+        url("assets/hero-nursery.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%, cover;
+      background-position: left top, center center;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(146, 40, 70, 0.07) 0%, rgba(146, 40, 70, 0) 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.12));
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      min-height: 650px;
+    }
+
+    .hero-copy {
+      flex: 0 0 34%;
+      max-width: 34%;
+      min-width: 0;
+      padding: 34px 0 42px 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-panel {
+      max-width: 100%;
+      padding: 34px 28px 34px 0;
+      background: none;
+      backdrop-filter: none;
+      box-shadow: none;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #8d6770;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(146, 40, 70, 0.28);
+      box-shadow: 0 0 0 6px rgba(146, 40, 70, 0.08);
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 22px;
+      font-family: "Epilogue", sans-serif;
+      letter-spacing: -0.04em;
+      color: var(--primary);
+      max-width: none;
+    }
+
+    .hero-title-main,
+    .hero-title-sub {
+      display: block;
+    }
+
+    .hero-title-main {
+      font-size: clamp(3.2rem, 4.7vw, 5.3rem);
+      line-height: 0.9;
+    }
+
+    .hero-title-sub {
+      margin-top: 12px;
+      font-size: clamp(2rem, 2.85vw, 2.85rem);
+      line-height: 1.04;
+      font-style: italic;
+      font-weight: 600;
+      color: #8a2b4a;
+    }
+
+    .hero-copy p {
+      margin: 0 0 28px;
+      max-width: 350px;
+      color: #5f554e;
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .hero-copy .pill-btn {
+      min-height: 48px;
+      padding: 0 24px;
+      font-size: 1rem;
+    }
+
+    .hero-note {
+      max-width: 230px;
+      color: #86776f;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .section-image {
+      margin: 0 auto;
+      width: min(100%, 1540px);
+      object-fit: cover;
+    }
+
+    .trust {
+      padding: 34px 0 40px;
+      background: #f5f1ea;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 312px;
+      box-shadow: 0 22px 42px rgba(42, 30, 24, 0.05);
+    }
+
+    .trust-story {
+      background: linear-gradient(180deg, #fbf6ef 0%, #f2e9dd 100%);
+      padding: 34px 30px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .eyebrow {
+      font-size: 0.66rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #9d8d84;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .trust-story h2 {
+      margin: 0;
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #30231d;
+    }
+
+    .trust-story h2 span {
+      display: block;
+    }
+
+    .trust-story h2 .soft-accent {
+      margin-top: 8px;
+      color: var(--primary);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .trust-story p {
+      margin: 20px 0 0;
+      max-width: 330px;
+      color: #6a625d;
+      font-size: 0.98rem;
+      line-height: 1.74;
+    }
+
+    .panel-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      color: #8b746b;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .panel-note::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: rgba(115, 13, 48, 0.28);
+    }
+
+    .panel-medal {
+      position: relative;
+      background: #e8dfb7;
+      padding: 0;
+    }
+
+    .panel-medal::after {
+      display: none;
+    }
+
+    .award-panel-image {
+      width: 100%;
+      height: 100%;
+      min-height: 312px;
+      display: block;
+      object-fit: cover;
+      object-position: 43% center;
+    }
+
+    .seal {
+      position: relative;
+      z-index: 1;
+      width: 158px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #fff4b6 0 12%, transparent 13%),
+        radial-gradient(circle at 50% 50%, #ffdb58 0 44%, #b98a18 45% 48%, #e4be41 49% 63%, #94731b 64% 66%, #f3d76d 67% 100%);
+      box-shadow: inset 0 4px 12px rgba(255, 255, 255, 0.44), inset 0 -10px 16px rgba(126, 84, 0, 0.15);
+      display: grid;
+      place-items: center;
+    }
+
+    .seal::before {
+      content: "Mom's Choice Award";
+      position: absolute;
+      top: 19px;
+      left: 17px;
+      right: 17px;
+      text-align: center;
+      font-family: "Epilogue", sans-serif;
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: #846100;
+    }
+
+    .seal::after {
+      content: "C";
+      display: grid;
+      place-items: center;
+      width: 58px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #fff9d4, #efc11d);
+      box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.6);
+      font-family: "Epilogue", sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #9e7100;
+    }
+
+    .seal-text {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      text-align: center;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #6e5a20;
+    }
+
+    .panel-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mint-card {
+      border-radius: 24px;
+      padding: 26px 22px;
+      background: var(--surface-mint);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 147px;
+    }
+
+    .mint-card:last-child {
+      background: var(--surface-mint-2);
+    }
+
+    .mint-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      line-height: 1.34;
+      letter-spacing: -0.02em;
+    }
+
+    .mint-card p {
+      margin: 0;
+      color: rgba(33, 62, 56, 0.74);
+      font-size: 0.88rem;
+      line-height: 1.64;
+    }
+
+    .presence {
+      padding: 54px 0 66px;
+      background: linear-gradient(180deg, #f7f3ee 0%, #fdfbf7 100%);
+    }
+
+    .presence-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .portrait-card {
+      position: relative;
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), #fefbf6);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-card img {
+      width: 100%;
+      border-radius: 22px;
+      background: #fff;
+    }
+
+    .quote-card {
+      position: absolute;
+      right: 28px;
+      bottom: 28px;
+      width: min(318px, calc(100% - 72px));
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255, 250, 246, 0.94);
+      box-shadow: 0 18px 46px rgba(115, 13, 48, 0.16);
+      backdrop-filter: blur(10px);
+      color: var(--primary);
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.62;
+    }
+
+    .presence-copy h2,
+    .utility-copy h2,
+    .testimonial-copy h2,
+    .sound-header h2 {
+      margin: 0 0 16px;
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .presence-copy h2 span {
+      color: var(--primary);
+    }
+
+    .presence-copy p,
+    .utility-copy p,
+    .testimonial-copy p {
+      margin: 0 0 20px;
+      color: #655e58;
+      line-height: 1.72;
+      font-size: 0.98rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(137, 113, 116, 0.14);
+    }
+
+    .feature-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      flex: none;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(188, 237, 221, 0.92);
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .feature-title {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 700;
+      color: #22201d;
+    }
+
+    .feature-copy {
+      color: #7b736e;
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .sound-band {
+      padding: 72px 0 78px;
+      background: var(--surface-brown);
+      color: #f8ead9;
+    }
+
+    .sound-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 44px;
+    }
+
+    .sound-header h2 {
+      color: #f7e0cc;
+      margin-bottom: 12px;
+    }
+
+    .sound-header p {
+      margin: 0;
+      color: rgba(255, 233, 213, 0.82);
+      line-height: 1.65;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(2.35rem, 4vw, 3.8rem);
+      line-height: 1;
+      margin-bottom: 8px;
+      color: #fff4ea;
+    }
+
+    .stat-label {
+      margin-bottom: 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 235, 216, 0.8);
+    }
+
+    .stat-copy {
+      margin: 0 auto;
+      max-width: 270px;
+      color: rgba(255, 232, 210, 0.68);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .utility {
+      padding: 68px 0 74px;
+      background: #fcfaf7;
+    }
+
+    .utility-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 1.08fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .utility-copy h2 span {
+      color: var(--secondary);
+      font-style: italic;
+    }
+
+    .mini-benefits {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .mini-card {
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #fff9f2;
+      box-shadow: 0 10px 24px rgba(31, 23, 17, 0.04);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--primary);
+      font-size: 0.86rem;
+    }
+
+    .mini-card span {
+      color: #867a72;
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .utility-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .utility-gallery img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .utility-gallery img:first-child {
+      margin-top: 36px;
+    }
+
+    .testimonial {
+      padding: 34px 0 40px;
+      background: #f3efea;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.75fr) minmax(420px, 1.25fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    .medal-badge {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .medal-badge .circle {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffffff, #f4f1eb);
+      box-shadow: 0 14px 30px rgba(64, 52, 43, 0.06);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .medal-badge .circle img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .testimonial-copy h2 {
+      font-size: clamp(1.65rem, 3vw, 2.3rem);
+      margin-bottom: 6px;
+    }
+
+    .testimonial-copy .sub {
+      margin: 0;
+      color: #847d77;
+      font-size: 0.84rem;
+      font-style: italic;
+    }
+
+    .quote-shell {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 22px;
+      padding: 26px 28px;
+      box-shadow: 0 18px 44px rgba(115, 13, 48, 0.06);
+    }
+
+    .quote-shell p {
+      margin: 0 0 20px;
+      color: #6b645f;
+      line-height: 1.72;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #8c867f;
+      font-size: 0.78rem;
+    }
+
+    .quote-author .avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #bbf1e0;
+      flex: none;
+    }
+
+    .testimonial-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .ghost-btn {
+      min-height: 44px;
+      padding: 0 20px;
+      border: 1px solid rgba(115, 13, 48, 0.2);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(42, 30, 24, 0.04);
+    }
+
+    footer {
+      background: #073b2d;
+      color: rgba(235, 248, 241, 0.86);
+      padding: 36px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: "Epilogue", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      max-width: 330px;
+      color: rgba(228, 242, 236, 0.68);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .social-row a {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: grid;
+      place-items: center;
+      font-size: 0.74rem;
+      color: #fff;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 14px;
+      color: #fff;
+      font-size: 0.84rem;
+    }
+
+    .footer-col a,
+    .footer-col span {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(228, 242, 236, 0.72);
+      font-size: 0.76rem;
+    }
+
+    .footer-col a:last-child,
+    .footer-col span:last-child {
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 30px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(228, 242, 236, 0.5);
+      font-size: 0.68rem;
+    }
+
+    .floating-cart {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(115, 13, 48, 0.24);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -5px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--secondary);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.64rem;
+      font-weight: 800;
+      line-height: 1;
+      box-shadow: 0 0 0 2px #fff;
+    }
+
+    .cart-count[hidden] {
+      display: none;
+    }
+
+    .floating-cart .cart-count {
+      top: -2px;
+      right: -2px;
+      background: #0d8b72;
+    }
+
+    .floating-cart:hover {
+      background: var(--primary-2);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .lead-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(31, 24, 20, 0.42);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 180ms ease, visibility 180ms ease;
+    }
+
+    .lead-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lead-modal__dialog {
+      position: relative;
+      width: min(100%, 620px);
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      border-radius: 26px;
+      padding: 28px 34px 24px;
+      background: rgba(255, 252, 247, 0.96);
+      box-shadow: 0 36px 90px rgba(37, 27, 24, 0.24);
+      transform: translateY(12px) scale(0.98);
+      transition: transform 180ms ease;
+    }
+
+    .lead-modal.is-open .lead-modal__dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .lead-modal__close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: #f3e9de;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .lead-modal__eyebrow {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .lead-modal h2 {
+      margin: 0 44px 10px 0;
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(1.75rem, 3.2vw, 2.45rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #231914;
+    }
+
+    .lead-modal__intro {
+      margin: 0 0 18px;
+      max-width: 420px;
+      color: #675b54;
+      line-height: 1.52;
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .lead-form label {
+      display: grid;
+      gap: 7px;
+      color: #4f443e;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .lead-form input,
+    .lead-form textarea {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid rgba(115, 13, 48, 0.18);
+      border-radius: 14px;
+      padding: 0 14px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    .lead-form textarea {
+      min-height: 66px;
+      padding-top: 13px;
+      resize: vertical;
+    }
+
+    .lead-form input:focus,
+    .lead-form textarea:focus {
+      border-color: rgba(115, 13, 48, 0.55);
+      box-shadow: 0 0 0 4px rgba(115, 13, 48, 0.08);
+    }
+
+    .lead-form__submit {
+      min-height: 46px;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .lead-modal__fineprint {
+      display: grid;
+      gap: 6px;
+      margin: 14px 0 0;
+      color: #776c65;
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    .lead-modal__fineprint a,
+    .lead-modal__fineprint span {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 1100px) {
+      .presence-grid,
+      .utility-grid,
+      .testimonial-grid,
+      .trust-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        flex-basis: 42%;
+        max-width: 42%;
+      }
+
+      .utility-gallery img:first-child {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-grid {
+        min-height: auto;
+        gap: 0;
+      }
+
+      .hero-copy {
+        flex-basis: 100%;
+        max-width: 100%;
+        padding: 10px 0 280px;
+      }
+
+      .hero-panel {
+        padding: 24px 0 0;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(250, 246, 240, 0.95) 0%,
+            rgba(250, 246, 240, 0.9) 16%,
+            rgba(250, 246, 240, 0.58) 38%,
+            rgba(250, 246, 240, 0.14) 62%,
+            rgba(250, 246, 240, 0.02) 78%
+          ),
+          url("assets/hero-nursery.png");
+        background-size: 100% 100%, cover;
+        background-position: left top, 68% center;
+      }
+
+      .stats,
+      .mini-benefits,
+      .utility-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(calc(100% - 22px), var(--container));
+      }
+
+      .topbar-inner {
+        gap: 14px;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .top-actions {
+        gap: 6px;
+      }
+
+      .pill-btn {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 0.86rem;
+      }
+
+      .hero-copy h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-title-main {
+        font-size: 2.9rem;
+      }
+
+      .hero-title-sub {
+        font-size: 1.85rem;
+      }
+
+      .hero-copy p {
+        max-width: none;
+      }
+
+      .hero-note {
+        max-width: none;
+      }
+
+      .hero-copy {
+        padding-bottom: 236px;
+      }
+
+      .hero::before {
+        background-position: left top, 72% center;
+      }
+
+      .trust-story,
+      .mint-card,
+      .quote-shell {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .lead-modal {
+        padding: 14px;
+      }
+
+      .lead-modal__dialog {
+        max-height: calc(100vh - 28px);
+        overflow: auto;
+        padding: 28px 20px 22px;
+        border-radius: 22px;
+      }
+
+      .quote-card {
+        right: 18px;
+        bottom: 18px;
+        width: calc(100% - 36px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="nav-wrap">
+          <a class="brand" href="#top">CHICWAY&reg;</a>
+          <nav class="nav-links" aria-label="Primary">
+            <a class="active" href="#hero">Portable Sound Machine</a>
+            <a href="sleep-hub.html">5-in-1 Sleep Hub</a>
+            <span>Sleep Science</span>
+            <span>Community</span>
+            <span>Contact us</span>
+            <a href="products.html">All Products</a>
+          </nav>
+        </div>
+        <div class="top-actions">
+          <a class="icon-btn" href="#search" aria-label="Search">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+              <path d="M16 16L21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </a>
+          <a class="icon-btn cart-link" href="cart.html" aria-label="Shopping cart">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M3.5 5H5.4L7.7 15.2H18.2L20.2 8.1H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M8.2 18.5H18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              <circle cx="9" cy="20" r="1.2" fill="currentColor"></circle>
+              <circle cx="17" cy="20" r="1.2" fill="currentColor"></circle>
+            </svg>
+            <span class="cart-count" data-cart-count hidden>0</span>
+          </a>
+          <a class="pill-btn" href="products.html">Buy Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="hero-panel">
+              <div class="hero-kicker">Designed for gentler nights</div>
+              <h1>
+                <span class="hero-title-main">Responsive Rest</span>
+                <span class="hero-title-sub">for every stage.</span>
+              </h1>
+              <p>
+                Chicway reimagines the sound machine as an heirloom of wellness,
+                blending acoustic precision with the warmth of a mother's presence.
+              </p>
+              <div class="hero-cta-row">
+                <button class="pill-btn" type="button" data-add-to-cart="soothe-portable">Add to Cart</button>
+                <span class="hero-note">Portable comfort with premium acoustic calm.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Portable dreamy anywhere anytime banner">
+        <img
+          class="section-image"
+          src="assets/banners/portable-dreamy-4k.png"
+          alt="Portable dreamy anywhere anytime with mother and baby lifestyle scene"
+        >
+      </section>
+
+      <section class="trust" id="trust">
+        <div class="container trust-grid">
+          <article class="panel trust-story">
+            <div>
+              <div class="eyebrow">Premium Family Care</div>
+              <h2>
+                <span>The Gold Standard</span>
+                <span class="soft-accent">in Family Care.</span>
+              </h2>
+              <p>
+                Honored with the prestigious 2026 Mom's Choice Award, this
+                reliable noise machine is built with safety, serenity, and
+                nursery-ready quality in mind.
+              </p>
+            </div>
+            <div class="panel-note">Excellence for the modern matriarch.</div>
+          </article>
+
+          <article class="panel panel-medal">
+            <img
+              class="award-panel-image"
+              src="assets/trust/moms-choice-award.png"
+              alt="Mom's Choice Awards Gold Award Winner for Chicway white noise sound machine"
+            >
+          </article>
+
+          <div class="panel-stack">
+            <article class="mint-card">
+              <div>
+                <h3>Award-Winning Quality You Can Trust</h3>
+                <p>
+                  Recipient of multiple prestigious awards, providing the safest
+                  protection for your baby.
+                </p>
+              </div>
+            </article>
+            <article class="mint-card">
+              <div>
+                <h3>Trusted Quality for Millions of Mothers Worldwide</h3>
+                <p>
+                  Join a global community of parents who rely on Soothe for
+                  safety, quality, and peace of mind.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Smart cry detection banner">
+        <img
+          class="section-image"
+          src="assets/banners/smart-cry-4k.png"
+          alt="Smart cry detection banner"
+        >
+      </section>
+
+      <section class="presence" id="presence">
+        <div class="container presence-grid">
+          <div class="portrait-card">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuUS25NE9woyiSlM4yES5IQVcncB1CBKTlTTMsMsN7ZwnjUvK1-UnQk_k-hba6n2WOvaqkI_0G_Klu1Gt0Gg6Q6fG5wzX1PcjtSN-p0XXhiEKHGcQM1Gsix7VpCb5TGV4OgSKjH601xXcjH4eSSWJ7iOa_6qf_FrVbPa4bFTFVGTl0l1SpMnvndIj5MXEToj5fxWU-_86xWtAuyK9a7itd0AUN2xkbSELEEkzG7UEk1LiJBiogAL3lDa6KNf9NfnLko6IwExdC"
+              alt="Mother holding baby illustration"
+            >
+            <div class="quote-card">
+              "The AI recognized his cry before I even woke up, and my
+              pre-recorded lullaby settled him instantly."
+            </div>
+          </div>
+
+          <div class="presence-copy">
+            <h2>Always Present, <span>Even When You're Not.</span></h2>
+            <p>
+              Our proprietary AI Cry Detection doesn't just alert you; it acts as
+              a digital surrogate. Upon detecting distress, it gently plays back
+              pre-recorded parental whispers or custom lullabies, maintaining the
+              emotional tether between parent and child.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <div class="check">&#10003;</div>
+                <div>
+                  <span class="feature-title">Voice Mimicry Technology</span>
+                  <span class="feature-copy">
+                    Records and modulates your voice for acoustic familiarity.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div class="check">&#10003;</div>
+                <div>
+                  <span class="feature-title">Sub-Second Response</span>
+                  <span class="feature-copy">
+                    Detects specific cry frequencies within 400 milliseconds.
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="How to use AI cry detection">
+        <img
+          class="section-image"
+          src="assets/banners/how-to-cry-4k.png"
+          alt="How to use AI cry detection steps"
+        >
+      </section>
+
+      <section class="sound-band">
+        <div class="container">
+          <div class="sound-header">
+            <h2>Mastery of Sound.</h2>
+            <p>
+              Directional Sound Field Technology focuses the audio precisely where
+              it matters, isolating the sleep zone without flooding the entire room.
+            </p>
+          </div>
+
+          <div class="stats">
+            <article>
+              <div class="stat-value">37%</div>
+              <div class="stat-label">Efficiency</div>
+              <p class="stat-copy">
+                More effective noise-blocking than traditional omnidirectional machines.
+              </p>
+            </article>
+            <article>
+              <div class="stat-value">12-Bit</div>
+              <div class="stat-label">Fidelity</div>
+              <p class="stat-copy">
+                Studio-grade audio processing for natural, non-looping white noise.
+              </p>
+            </article>
+            <article>
+              <div class="stat-value">0</div>
+              <div class="stat-label">Static</div>
+              <p class="stat-copy">
+                Shielded internal components ensure zero electrical interference hum.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="utility">
+        <div class="container utility-grid">
+          <div class="utility-copy">
+            <h2>Built for them. <span>Perfect for you.</span></h2>
+            <p>
+              When sleep training ends, Soothe evolves. Its high-fidelity drivers
+              transform it into a premium Bluetooth speaker, ideal for office focus
+              sessions, bedside podcasts, or sophisticated travel audio.
+            </p>
+
+            <div class="mini-benefits">
+              <div class="mini-card">
+                <strong>Adult Focus</strong>
+                <span>Pink noise for deep concentration.</span>
+              </div>
+              <div class="mini-card">
+                <strong>Travel Ready</strong>
+                <span>Lightweight, premium aesthetic for hotels.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="utility-gallery">
+            <img
+              src="assets/utility/office-focus.png"
+              alt="Woman working peacefully while using the device as a speaker"
+            >
+            <img
+              src="assets/utility/travel-morning.png"
+              alt="Travel morning lifestyle illustration with compact speaker"
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonial" id="testimonial">
+        <div class="container testimonial-grid">
+          <div class="testimonial-copy">
+            <div class="medal-badge">
+              <div class="circle">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHIlMkzWzYgcWrhydaoceatkFtgLwgE9IoCVKfU6lgH333AyqMhnAUAv8btSwIVuKP4-Pj200qRUZPleyUJAsWF5D5HkRQ63Wl-bP3jaxLKIVJsCGi1eogVoaKJYeRa16qGzRZqGYnE5DIHzBMvWINCCCiQ1YVXtemyKEsXljr_cx1qZXIhrKbPapdH0MEgyz8kq0VFZGxX1FznD8Y6ZA5Gyj7NyQv-tH5NU5PLo7O5cor2WYN8bo4UaGNK_PPhoZAd40iR8cL"
+                  alt="Award seal"
+                >
+              </div>
+            </div>
+            <h2>The 2026 Choice of Modern Matriarchs.</h2>
+            <p class="sub">Winner: Best Innovation in Infant Wellness.</p>
+          </div>
+
+          <div class="quote-shell">
+            <p>
+              "The only piece of baby gear that doesn't feel like it. It looks
+              like high-end audio and works with a sophistication I didn't think
+              was possible for a sound machine. It's a sanctuary in a box."
+            </p>
+            <div class="quote-author">
+              <span class="avatar" aria-hidden="true"></span>
+              <span>Helena Vance, Lifestyle Weekly</span>
+            </div>
+          </div>
+          <div class="testimonial-actions">
+            <button class="pill-btn" type="button" data-add-to-cart="soothe-portable">Add to Cart</button>
+            <a class="ghost-btn" href="products.html">View All Products</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">CHICWAY&reg;</div>
+            <p class="footer-copy">
+              Elevating the ritual of rest through intentional design and acoustic
+              innovation. Crafted for the modern home and ready to evolve into
+              your product storefront.
+            </p>
+            <div class="social-row">
+              <a href="#share" aria-label="Share">S</a>
+              <a href="mailto:hello@soothewellness.com" aria-label="Email">M</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Discover</h4>
+            <a href="#presence">Our Science</a>
+            <a href="#trust">Expert Hub</a>
+            <span>Community Stories</span>
+          </div>
+
+          <div class="footer-col" id="contact">
+            <h4>Company</h4>
+            <a href="#sustainability">Sustainability</a>
+            <a id="privacy" href="#privacy">Privacy</a>
+            <span>Contact Us</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; 2026 Soothe Wellness. Crafted for the Modern Matriarch.</span>
+          <span>Designed in USA</span>
+        </div>
+      </div>
+    </footer>
+
+    <a class="floating-cart" href="cart.html" aria-label="Open shopping cart">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M3.5 5H5.4L7.7 15.2H18.2L20.2 8.1H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M8.2 18.5H18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        <circle cx="9" cy="20" r="1.2" fill="currentColor"></circle>
+        <circle cx="17" cy="20" r="1.2" fill="currentColor"></circle>
+      </svg>
+      <span class="cart-count" data-cart-count hidden>0</span>
+      <span class="sr-only">Open shopping cart</span>
+    </a>
+
+    <div class="lead-modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title" aria-hidden="true">
+      <div class="lead-modal__dialog">
+        <button class="lead-modal__close" type="button" aria-label="Close signup form" data-close-lead-modal>&times;</button>
+        <p class="lead-modal__eyebrow">Order Support</p>
+        <h2 id="lead-modal-title">Tell us about your order.</h2>
+        <p class="lead-modal__intro">
+          Share your details so our care team can match your order and support you faster.
+        </p>
+        <form class="lead-form" id="lead-form" novalidate>
+          <label>
+            Name
+            <input name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            Phone
+            <input name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" required>
+          </label>
+          <label>
+            Order ID
+            <input name="order-id" type="text" autocomplete="off" placeholder="Order ID" required>
+          </label>
+          <label>
+            Address and Postal Code
+            <input name="address-postal-code" type="text" autocomplete="street-address" placeholder="Address and postal code" required>
+          </label>
+          <label>
+            Message
+            <textarea name="message" placeholder="Tell us how we can help" required></textarea>
+          </label>
+          <button class="lead-form__submit" type="submit">Submit Details</button>
+        </form>
+        <div class="lead-modal__fineprint">
+          <p id="order-id-help"><a href="order-id-help.html">How to find your Order ID?</a></p>
+          <p>
+            We don't share your personal info with anyone. Check out our
+            <span>Privacy Policy</span> for more information.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const leadModal = document.querySelector("#lead-modal");
+    const leadForm = document.querySelector("#lead-form");
+    const leadFields = Array.from(leadForm.querySelectorAll("input, textarea"));
+    const leadSubmissionKey = "chicwayLeadFormSubmitted";
+    const leadMaxAttempts = 3;
+    const leadRetryDelay = 30000;
+    let leadOpenCount = 0;
+    let leadRetryTimer;
+
+    const hasSubmittedLeadForm = () => localStorage.getItem(leadSubmissionKey) === "true";
+    const isLeadFormComplete = () => leadFields.every((field) => field.value.trim() && field.checkValidity());
+
+    const closeLeadModal = () => {
+      leadModal.classList.remove("is-open");
+      leadModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    };
+
+    const openLeadModal = () => {
+      if (hasSubmittedLeadForm() || leadOpenCount >= leadMaxAttempts) {
+        return;
+      }
+
+      leadOpenCount += 1;
+      leadModal.classList.add("is-open");
+      leadModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      leadModal.querySelector("input").focus();
+    };
+
+    const scheduleLeadModalRetry = () => {
+      clearTimeout(leadRetryTimer);
+
+      if (hasSubmittedLeadForm() || leadOpenCount >= leadMaxAttempts) {
+        return;
+      }
+
+      leadRetryTimer = setTimeout(openLeadModal, leadRetryDelay);
+    };
+
+    const dismissLeadModal = () => {
+      closeLeadModal();
+      scheduleLeadModalRetry();
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      openLeadModal();
+    });
+
+    document.querySelectorAll("[data-close-lead-modal]").forEach((button) => {
+      button.addEventListener("click", dismissLeadModal);
+    });
+
+    leadModal.addEventListener("click", (event) => {
+      if (event.target === leadModal) {
+        dismissLeadModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && leadModal.classList.contains("is-open")) {
+        dismissLeadModal();
+      }
+    });
+
+    leadForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!isLeadFormComplete()) {
+        leadForm.reportValidity();
+        return;
+      }
+
+      localStorage.setItem(leadSubmissionKey, "true");
+      clearTimeout(leadRetryTimer);
+      closeLeadModal();
+    });
+
+    const updateCartCounts = () => {
+      const cart = JSON.parse(localStorage.getItem("chicwayCart") || "[]");
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+      document.querySelectorAll("[data-cart-count]").forEach((badge) => {
+        badge.textContent = count;
+        badge.hidden = count === 0;
+      });
+    };
+
+    const addProductToCart = (productId) => {
+      const cart = JSON.parse(localStorage.getItem("chicwayCart") || "[]");
+      const existingItem = cart.find((item) => item.id === productId);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ id: productId, quantity: 1 });
+      }
+
+      localStorage.setItem("chicwayCart", JSON.stringify(cart));
+      updateCartCounts();
+    };
+
+    document.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-add-to-cart]");
+
+      if (!addButton) {
+        return;
+      }
+
+      addProductToCart(addButton.dataset.addToCart);
+      addButton.textContent = "Added";
+
+      window.setTimeout(() => {
+        addButton.textContent = "Add to Cart";
+      }, 1100);
+    });
+
+    window.addEventListener("storage", updateCartCounts);
+    updateCartCounts();
+  </script>
+</body>
+</html>

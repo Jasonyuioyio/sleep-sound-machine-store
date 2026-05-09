@@ -1,0 +1,73 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sheet" x1="742" y1="283" x2="742" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEFEFD"/>
+      <stop offset="1" stop-color="#F3F1EE"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F0EEEA"/>
+    </linearGradient>
+    <linearGradient id="post" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECEAE6"/>
+    </linearGradient>
+    <filter id="shadow" x="90" y="120" width="1410" height="660" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="22"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.44 0 0 0 0 0.38 0 0 0 0 0.33 0 0 0 0.12 0"/>
+      <feBlend in="SourceGraphic" mode="normal"/>
+    </filter>
+    <filter id="linen" x="350" y="250" width="760" height="250" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="780" cy="720" rx="520" ry="48" fill="#E2DDD5" opacity="0.45"/>
+
+  <g filter="url(#shadow)">
+    <rect x="302" y="650" width="940" height="42" rx="21" fill="url(#frame)"/>
+    <rect x="328" y="614" width="888" height="36" rx="18" fill="#F9F8F5"/>
+
+    <rect x="314" y="268" width="894" height="306" rx="24" fill="url(#sheet)"/>
+    <rect x="344" y="300" width="834" height="244" rx="20" fill="#FBFAF8"/>
+
+    <g filter="url(#linen)" opacity="0.92">
+      <path d="M385 462C462 406 515 420 567 448C616 474 678 481 724 448C768 416 826 411 884 450C930 481 988 488 1049 447" stroke="#E7E2DB" stroke-width="42" stroke-linecap="round"/>
+      <path d="M392 410C449 369 515 368 564 392C610 416 677 430 728 402C786 370 856 370 914 403C960 428 1028 427 1080 396" stroke="#F1EEE9" stroke-width="36" stroke-linecap="round"/>
+      <path d="M404 354C451 324 498 322 546 338C596 354 667 358 716 338C776 313 857 316 922 346C972 368 1034 370 1086 344" stroke="#F4F2EF" stroke-width="32" stroke-linecap="round"/>
+    </g>
+
+    <path d="M391 319C444 286 521 286 574 320" stroke="#ECE7E1" stroke-width="18" stroke-linecap="round"/>
+    <path d="M963 324C1012 297 1077 296 1121 325" stroke="#EEEAE4" stroke-width="16" stroke-linecap="round"/>
+
+    <rect x="252" y="222" width="34" height="470" rx="17" fill="url(#post)"/>
+    <rect x="1216" y="172" width="42" height="520" rx="21" fill="url(#post)"/>
+    <path d="M1216 174C1216 132 1250 98 1291 98C1332 98 1365 132 1365 174V221H1216V174Z" fill="url(#post)"/>
+    <rect x="1306" y="196" width="38" height="14" rx="7" fill="#C9C5BF"/>
+    <circle cx="1351" cy="203" r="12" fill="#D4D0CA"/>
+
+    <rect x="280" y="258" width="948" height="30" rx="15" fill="url(#frame)"/>
+    <rect x="280" y="282" width="948" height="18" rx="9" fill="#F5F4F1"/>
+    <rect x="280" y="564" width="948" height="32" rx="16" fill="url(#frame)"/>
+
+    <g fill="#FCFCFA">
+      <rect x="322" y="286" width="26" height="290" rx="13"/>
+      <rect x="390" y="286" width="24" height="290" rx="12"/>
+      <rect x="454" y="286" width="24" height="290" rx="12"/>
+      <rect x="518" y="286" width="24" height="290" rx="12"/>
+      <rect x="582" y="286" width="24" height="290" rx="12"/>
+      <rect x="646" y="286" width="24" height="290" rx="12"/>
+      <rect x="710" y="286" width="24" height="290" rx="12"/>
+      <rect x="774" y="286" width="24" height="290" rx="12"/>
+      <rect x="838" y="286" width="24" height="290" rx="12"/>
+      <rect x="902" y="286" width="24" height="290" rx="12"/>
+      <rect x="966" y="286" width="24" height="290" rx="12"/>
+      <rect x="1030" y="286" width="24" height="290" rx="12"/>
+      <rect x="1094" y="286" width="24" height="290" rx="12"/>
+      <rect x="1158" y="286" width="24" height="290" rx="12"/>
+    </g>
+
+    <path d="M303 689H1242" stroke="#E5E1DB" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
