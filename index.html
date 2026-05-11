@@ -896,15 +896,24 @@
     }
 
     .footer-col a,
-    .footer-col span {
+    .footer-col span,
+    .footer-link-button {
       display: block;
       margin-bottom: 10px;
       color: rgba(228, 242, 236, 0.72);
       font-size: 0.76rem;
     }
 
-    .footer-col a:last-child,
-    .footer-col span:last-child {
+    .footer-link-button {
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .footer-col a:last-child {
       text-decoration: underline;
       text-underline-offset: 0.18em;
     }
@@ -1300,7 +1309,7 @@
             <a href="sleep-hub.html">5-in-1 Sleep Hub</a>
             <span>Sleep Science</span>
             <span>Community</span>
-            <span>Contact us</span>
+            <a href="#lead-modal" data-open-lead-modal>Contact Us</a>
             <a href="products.html">All Products</a>
           </nav>
         </div>
@@ -1581,10 +1590,6 @@
               innovation. Crafted for the modern home and ready to evolve into
               your product storefront.
             </p>
-            <div class="social-row">
-              <a href="#share" aria-label="Share">S</a>
-              <a href="mailto:hello@soothewellness.com" aria-label="Email">M</a>
-            </div>
           </div>
 
           <div class="footer-col">
@@ -1598,7 +1603,7 @@
             <h4>Company</h4>
             <a href="#sustainability">Sustainability</a>
             <a id="privacy" href="#privacy">Privacy</a>
-            <span>Contact Us</span>
+            <button class="footer-link-button" type="button" data-open-lead-modal>Contact Us</button>
           </div>
         </div>
 
@@ -1682,7 +1687,20 @@
     let leadRetryTimer;
 
     const hasSubmittedLeadForm = () => localStorage.getItem(leadSubmissionKey) === "true";
-    const isLeadFormComplete = () => leadFields.every((field) => field.value.trim() && field.checkValidity());
+
+    const validateLeadField = (field) => {
+      field.setCustomValidity("");
+
+      if (field.required && !field.value.trim()) {
+        field.setCustomValidity("Please fill out this field.");
+      } else if (field.type === "email" && field.validity.typeMismatch) {
+        field.setCustomValidity("Please enter a valid email address.");
+      }
+
+      return field.checkValidity();
+    };
+
+    const isLeadFormComplete = () => leadFields.every(validateLeadField);
 
     const closeLeadModal = () => {
       leadModal.classList.remove("is-open");
@@ -1696,6 +1714,14 @@
       }
 
       leadOpenCount += 1;
+      leadModal.classList.add("is-open");
+      leadModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      leadModal.querySelector("input").focus();
+    };
+
+    const openLeadModalManually = () => {
+      clearTimeout(leadRetryTimer);
       leadModal.classList.add("is-open");
       leadModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
@@ -1721,8 +1747,21 @@
       openLeadModal();
     });
 
+    document.querySelectorAll("[data-open-lead-modal]").forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        openLeadModalManually();
+      });
+    });
+
     document.querySelectorAll("[data-close-lead-modal]").forEach((button) => {
       button.addEventListener("click", dismissLeadModal);
+    });
+
+    leadFields.forEach((field) => {
+      field.addEventListener("input", () => {
+        validateLeadField(field);
+      });
     });
 
     leadModal.addEventListener("click", (event) => {
