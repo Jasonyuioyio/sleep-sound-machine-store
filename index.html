@@ -845,9 +845,89 @@
     }
 
     footer {
-      background: #073b2d;
-      color: rgba(235, 248, 241, 0.86);
-      padding: 36px 0 20px;
+      background: #f5f1ea;
+      padding: 44px 0 24px;
+    }
+
+    .footer-lead {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+    }
+
+    .footer-lead__dialog {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.22fr);
+      gap: 30px;
+      align-items: start;
+      border-radius: 26px;
+      padding: 34px;
+      background: rgba(255, 252, 247, 0.96);
+      box-shadow: 0 28px 80px rgba(37, 27, 24, 0.12);
+    }
+
+    .footer-lead__eyebrow {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .footer-lead h2 {
+      margin: 0 0 10px;
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: #231914;
+    }
+
+    .footer-lead__intro {
+      margin: 0 0 18px;
+      max-width: 500px;
+      color: #675b54;
+      line-height: 1.52;
+    }
+
+    .footer-lead .lead-form {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 14px;
+      row-gap: 12px;
+    }
+
+    .footer-lead .lead-form label:nth-of-type(5),
+    .footer-lead .lead-form label:nth-of-type(6),
+    .footer-lead .lead-form__status,
+    .footer-lead .lead-form__submit {
+      grid-column: 1 / -1;
+    }
+
+    .footer-lead .lead-form textarea {
+      min-height: 96px;
+    }
+
+    .footer-lead__fineprint {
+      display: grid;
+      gap: 6px;
+      margin: 14px 0 0;
+      color: #776c65;
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    .footer-lead__fineprint a,
+    .footer-lead__fineprint span {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-brand-area {
+      margin-top: 34px;
+      padding: 30px 0 0;
+      border-top: 1px solid rgba(115, 13, 48, 0.12);
     }
 
     .footer-grid {
@@ -861,37 +941,20 @@
       font-family: "Epilogue", sans-serif;
       font-size: 1.05rem;
       font-weight: 800;
-      color: #fff;
+      color: #231914;
       margin-bottom: 12px;
     }
 
     .footer-copy {
       max-width: 330px;
-      color: rgba(228, 242, 236, 0.68);
+      color: #776c65;
       font-size: 0.78rem;
       line-height: 1.6;
     }
 
-    .social-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .social-row a {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      display: grid;
-      place-items: center;
-      font-size: 0.74rem;
-      color: #fff;
-    }
-
     .footer-col h4 {
       margin: 0 0 14px;
-      color: #fff;
+      color: #231914;
       font-size: 0.84rem;
     }
 
@@ -900,7 +963,7 @@
     .footer-link-button {
       display: block;
       margin-bottom: 10px;
-      color: rgba(228, 242, 236, 0.72);
+      color: #776c65;
       font-size: 0.76rem;
     }
 
@@ -913,20 +976,15 @@
       font-family: inherit;
     }
 
-    .footer-col a:last-child {
-      text-decoration: underline;
-      text-underline-offset: 0.18em;
-    }
-
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 30px;
+      margin: 24px 0 0;
       padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(228, 242, 236, 0.5);
+      border-top: 1px solid rgba(115, 13, 48, 0.12);
+      color: #8c7d74;
       font-size: 0.68rem;
     }
 
@@ -1151,8 +1209,7 @@
       .presence-grid,
       .utility-grid,
       .testimonial-grid,
-      .trust-grid,
-      .footer-grid {
+      .trust-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1212,6 +1269,14 @@
       }
 
       .panel-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-lead__dialog {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-lead .lead-form {
         grid-template-columns: 1fr;
       }
 
@@ -1296,6 +1361,11 @@
         max-height: calc(100vh - 28px);
         overflow: auto;
         padding: 28px 20px 22px;
+        border-radius: 22px;
+      }
+
+      .footer-lead__dialog {
+        padding: 28px 20px 24px;
         border-radius: 22px;
       }
 
@@ -1616,28 +1686,79 @@
 
     <footer id="footer">
       <div class="container">
-        <div class="footer-grid">
-          <div>
-            <div class="footer-brand">CHICWAY&reg;</div>
-            <p class="footer-copy">
-              Elevating the ritual of rest through intentional design and acoustic
-              innovation. Crafted for the modern home and ready to evolve into
-              your product storefront.
-            </p>
+        <div class="footer-lead" id="contact">
+          <div class="footer-lead__dialog">
+            <div>
+              <p class="footer-lead__eyebrow">Order Support</p>
+              <h2>Tell us about your order.</h2>
+              <p class="footer-lead__intro">
+                Share your details so our care team can match your order and support you faster.
+              </p>
+              <div class="footer-lead__fineprint">
+                <p><a href="order-id-help.html">How to find your Order ID?</a></p>
+                <p>
+                  We don't share your personal info with anyone. Check out our
+                  <span id="privacy">Privacy Policy</span> for more information.
+                </p>
+              </div>
+            </div>
+            <form class="lead-form" action="https://formspree.io/f/meenrnro" method="POST" novalidate data-lead-form>
+              <input type="hidden" name="_subject" value="New Chicway footer order support lead">
+              <input type="hidden" name="source" value="Chicway website footer form">
+              <label>
+                Name
+                <input name="name" type="text" autocomplete="name" placeholder="Your name" required>
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                Phone
+                <input name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" required>
+              </label>
+              <label>
+                Order ID
+                <input name="order-id" type="text" autocomplete="off" placeholder="Order ID" required>
+              </label>
+              <label>
+                Address and Postal Code
+                <input name="address-postal-code" type="text" autocomplete="street-address" placeholder="Address and postal code" required>
+              </label>
+              <label>
+                Message
+                <textarea name="message" placeholder="Tell us how we can help" required></textarea>
+              </label>
+              <p class="lead-form__status" data-lead-form-status role="status" aria-live="polite"></p>
+              <button class="lead-form__submit" type="submit">Submit Details</button>
+            </form>
           </div>
+        </div>
 
-          <div class="footer-col">
-            <h4>Discover</h4>
-            <a href="#presence">Our Science</a>
-            <a href="#trust">Expert Hub</a>
-            <span>Community Stories</span>
-          </div>
+        <div class="footer-brand-area">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand">CHICWAY&reg;</div>
+              <p class="footer-copy">
+                Elevating the ritual of rest through intentional design and acoustic
+                innovation. Crafted for the modern home and ready to evolve into
+                your product storefront.
+              </p>
+            </div>
 
-          <div class="footer-col" id="contact">
-            <h4>Company</h4>
-            <a href="#sustainability">Sustainability</a>
-            <a id="privacy" href="#privacy">Privacy</a>
-            <button class="footer-link-button" type="button" data-open-lead-modal>Contact Us</button>
+            <div class="footer-col">
+              <h4>Discover</h4>
+              <span>Our Science</span>
+              <span>Expert Hub</span>
+              <span>Community Stories</span>
+            </div>
+
+            <div class="footer-col">
+              <h4>Company</h4>
+              <span>Sustainability</span>
+              <span>Privacy</span>
+              <button class="footer-link-button" type="button" data-open-lead-modal>Contact Us</button>
+            </div>
           </div>
         </div>
 
@@ -1667,7 +1788,7 @@
         <p class="lead-modal__intro">
           Share your details so our care team can match your order and support you faster.
         </p>
-        <form class="lead-form" id="lead-form" action="https://formspree.io/f/meenrnro" method="POST" novalidate>
+        <form class="lead-form" id="lead-form" action="https://formspree.io/f/meenrnro" method="POST" novalidate data-lead-form>
           <input type="hidden" name="_subject" value="New Chicway order support lead">
           <input type="hidden" name="source" value="Chicway website lead modal">
           <label>
@@ -1709,10 +1830,8 @@
   </div>
   <script>
     const leadModal = document.querySelector("#lead-modal");
-    const leadForm = document.querySelector("#lead-form");
-    const leadFields = Array.from(leadForm.querySelectorAll("input, textarea"));
-    const leadFormStatus = document.querySelector("[data-lead-form-status]");
-    const leadSubmitButton = leadForm.querySelector(".lead-form__submit");
+    const modalLeadForm = document.querySelector("#lead-form");
+    const leadForms = Array.from(document.querySelectorAll("[data-lead-form]"));
     const leadFormEndpoint = "https://formspree.io/f/meenrnro";
     const leadSubmissionKey = "chicwayLeadFormSubmitted";
     const leadMaxAttempts = 3;
@@ -1721,6 +1840,8 @@
     let leadRetryTimer;
 
     const hasSubmittedLeadForm = () => localStorage.getItem(leadSubmissionKey) === "true";
+
+    const getLeadFields = (form) => Array.from(form.querySelectorAll("input:not([type='hidden']), textarea"));
 
     const validateLeadField = (field) => {
       field.setCustomValidity("");
@@ -1734,7 +1855,7 @@
       return field.checkValidity();
     };
 
-    const isLeadFormComplete = () => leadFields.every(validateLeadField);
+    const isLeadFormComplete = (form) => getLeadFields(form).every(validateLeadField);
 
     const closeLeadModal = () => {
       leadModal.classList.remove("is-open");
@@ -1751,7 +1872,7 @@
       leadModal.classList.add("is-open");
       leadModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
-      leadModal.querySelector("input").focus();
+      getLeadFields(modalLeadForm)[0].focus();
     };
 
     const openLeadModalManually = () => {
@@ -1759,7 +1880,7 @@
       leadModal.classList.add("is-open");
       leadModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
-      leadModal.querySelector("input").focus();
+      getLeadFields(modalLeadForm)[0].focus();
     };
 
     const scheduleLeadModalRetry = () => {
@@ -1792,9 +1913,11 @@
       button.addEventListener("click", dismissLeadModal);
     });
 
-    leadFields.forEach((field) => {
-      field.addEventListener("input", () => {
-        validateLeadField(field);
+    leadForms.forEach((form) => {
+      getLeadFields(form).forEach((field) => {
+        field.addEventListener("input", () => {
+          validateLeadField(field);
+        });
       });
     });
 
@@ -1810,43 +1933,52 @@
       }
     });
 
-    leadForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      leadFormStatus.textContent = "";
-      leadFormStatus.classList.remove("is-error");
+    leadForms.forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-      if (!isLeadFormComplete()) {
-        leadForm.reportValidity();
-        return;
-      }
+        const formStatus = form.querySelector("[data-lead-form-status]");
+        const submitButton = form.querySelector(".lead-form__submit");
 
-      leadSubmitButton.disabled = true;
-      leadSubmitButton.textContent = "Submitting...";
+        formStatus.textContent = "";
+        formStatus.classList.remove("is-error");
 
-      try {
-        const response = await fetch(leadFormEndpoint, {
-          method: "POST",
-          body: new FormData(leadForm),
-          headers: {
-            Accept: "application/json"
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error("Lead form submission failed.");
+        if (!isLeadFormComplete(form)) {
+          form.reportValidity();
+          return;
         }
 
-        localStorage.setItem(leadSubmissionKey, "true");
-        clearTimeout(leadRetryTimer);
-        leadFormStatus.textContent = "Thanks. We received your details.";
-        closeLeadModal();
-      } catch (error) {
-        leadFormStatus.textContent = "We couldn't submit your details. Please try again.";
-        leadFormStatus.classList.add("is-error");
-      } finally {
-        leadSubmitButton.disabled = false;
-        leadSubmitButton.textContent = "Submit Details";
-      }
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        try {
+          const response = await fetch(leadFormEndpoint, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              Accept: "application/json"
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error("Lead form submission failed.");
+          }
+
+          localStorage.setItem(leadSubmissionKey, "true");
+          clearTimeout(leadRetryTimer);
+          formStatus.textContent = "Thanks. We received your details.";
+
+          if (form === modalLeadForm) {
+            closeLeadModal();
+          }
+        } catch (error) {
+          formStatus.textContent = "We couldn't submit your details. Please try again.";
+          formStatus.classList.add("is-error");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit Details";
+        }
+      });
     });
 
     const updateCartCounts = () => {
