@@ -49,11 +49,18 @@
 <body>
   <main class="help-page">
     <a class="back-link" href="index.html">Back to CHICWAY&reg;</a>
-    <img
-      class="guide-image"
-      src="assets/help/order-id-help.jpg"
-      alt="How to find your Amazon order ID guide"
-    >
+    <picture>
+      <source media="(max-width: 700px)" srcset="assets/help/order-id-help-mobile.webp" type="image/webp">
+      <img
+        class="guide-image"
+        src="assets/help/order-id-help.jpg"
+        width="2196"
+        height="5120"
+        alt="How to find your Amazon order ID guide"
+        decoding="async"
+        fetchpriority="high"
+      >
+    </picture>
   </main>
 </body>
 </html>
