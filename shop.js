@@ -4,31 +4,108 @@ const PRODUCTS = [
   {
     id: "soothe-portable",
     name: "Soothe Portable Sound Machine",
+    detailName: "Portable Sound Machine with AI Cry Detection White Noise Machine",
     price: 32.99,
     image: "assets/products/white-noise-sound-machine-1.jpg",
     buyUrl: "https://www.amazon.com/CHICWAY-Portable-Sound-Machine-Detection/dp/B0H8RZ65QK",
     short: "Responsive white noise, lullabies, and parental voice playback in one nursery-ready speaker.",
-    details: "A premium portable sound machine for families who want reliable rest at home, during naps, and while traveling.",
-    tags: ["AI cry detection", "Portable", "Voice playback"],
+    details: "Mom's Choice Awards 18 Soothing Sounds Bluetooth Speaker Night Light Timer White Noise for Baby Adult Home Travel Office Gray",
+    tags: [],
     features: [
-      "Directional sound field for focused sleep-zone audio.",
-      "Parent voice recording with gentle playback.",
-      "Rechargeable design for nursery, stroller, and travel use."
+      {
+        title: "MOM'S CHOICE AWARDS GOLD WINNER & PERFECT GIFT",
+        body: "Trust the experts and experienced parents. Honored with the prestigious Mom's Choice Awards, this reliable noise machine is built with safety and quality in mind. This white noise machine for sleeping is one of the top baby registry gifts and makes an unforgettable, practical baby shower gift for any new parent looking for a peaceful night."
+      },
+      {
+        title: "AI CRY DETECTION AND AUTO PLAYBACK",
+        body: "For parents who want a hands-free audio response to middle-of-the-night fussing, this baby sound machine detects a baby's cry within 3.28 ft / 1 m and automatically plays a recorded parental message or built-in lullaby; the feature provides a familiar sound while the parent checks on the child, without requiring repeated manual playback."
+      },
+      {
+        title: "RECORDABLE PARENT VOICE",
+        body: "For parents preparing a nursery or managing bedtime from another room, this sound machine for sleep lets them record comforting words for automatic playback after cry detection; a familiar voice message personalizes the audio routine when the parent is briefly away, while on-device recording keeps the feature ready without relying on a phone."
+      },
+      {
+        title: "BACKGROUND SOUND MASKING",
+        body: "For babies, children, and adults who notice barking dogs, neighbors, traffic, or household activity at bedtime, this white noise machine for sleeping provides steady sound options to help cover disruptive environmental noise; use it in a nursery, bedroom, or temporary sleeping space so the room has a more consistent audio setting across changing surroundings."
+      },
+      {
+        title: "18 BUILT-IN SOUNDS",
+        body: "For parents choosing audio for naps, bedtime, or quiet routines, this baby white noise machine offers 18 selections including pink noise, brown noise, hush, fan, womb heartbeat, ocean, water, stream birdsong, forest birdsong, night chirping, campfire, rain, thunderstorm, temple bell & wooden knocker, outer space, Brahms lullaby, Schubert lullaby, and Twinkle Twinkle Little Star; helping babies drift off to sleep faster. This white noise machine baby is an essential addition to every nursery."
+      },
+      {
+        title: "SWITCHABLE BLUETOOTH AUDIO",
+        body: "For parents who want built-in sounds for a baby and phone audio for themselves, this portable sound machine baby lets Bluetooth stay off during nursery use or turn on to stream music from a phone; the rechargeable design supports room-to-room listening and road trips without leaving a separate speaker or continuous power cord beside the bed."
+      },
+      {
+        title: "3 AUTO-OFF TIMERS",
+        body: "For caregivers setting a limited sound period at bedtime or during a nap, this white noise sound machine offers 30 minutes, 60 minutes, and 120 minutes settings; choose the preferred duration and the unit switches off at the selected time, reducing unnecessary battery use and avoiding a nighttime trip back to the device for manual shutdown."
+      },
+      {
+        title: "6-LEVEL NIGHT LIGHT",
+        body: "For new parents handling nighttime feeds or diaper changes and families needing low-level nursery light, this portable white noise machine provides six adjustable brightness levels with a soft glow; select enough visibility for bedside care while keeping the room lighting controlled, then pair the light with built-in sounds for a coordinated nighttime routine."
+      },
+      {
+        title: "TRAVEL AND OFFICE SOUND MASKING",
+        body: "For parents taking a baby between rooms or on trips, and adults working near distracting conversations, this travel sound machine also functions as a sound machine for office privacy; the rechargeable battery supports up to 5 days, helping cover background speech or household noise without keeping the unit connected to a wall outlet."
+      },
+      {
+        title: "COMPACT USB-C TRAVEL DESIGN",
+        body: "For families, business travelers, and nursing-room users packing limited space, this baby sound machine for sleeping has a palm-sized body listed at 2 x 2 x 3 inches; USB-C charging reaches a full charge in about 2 hours and supports up to 5 days between charges."
+      }
     ]
   },
   {
     id: "sleep-hub",
     name: "5-in-1 Sleep Hub",
+    detailName: "Galaxy Projector Night Light with Fragrance, White Noise Machine",
     price: 149.99,
-    image: "assets/products/nava-white.jpg",
+    image: "assets/products/sleep-hub/hero.jpg",
+    detailImage: "assets/products/sleep-hub/hero.jpg",
     buyUrl: "https://www.amazon.com/CHICWAY-Galaxy-Projector-Fragrance-Machine/dp/B0H8CFM745",
     short: "A fuller bedside hub with Fragrance Diffuser, White Noise, Galaxy Projector, Night Light, and Bluetooth audio.",
-    details: "Built for parents who want one quiet device to manage bedtime, wake windows, and room ambience.",
-    tags: ["Night light", "Bluetooth", "Bedside hub"],
+    details: "21 Sounds with Timer, RGB LED Star Projector for Adult, Baby, Kids, Bluetooth Speaker, Sound Machine for Travel Home",
+    tags: [],
     features: [
-      "Warm dimmable light for feeds and check-ins.",
-      "Expanded speaker chamber for richer room-filling audio.",
-      "Simple bedtime controls for repeatable sleep routines."
+      {
+        title: "5-IN-1 FAMILY BEDTIME HUB",
+        body: "Designed for stressed adults, new parents, light sleepers, and families establishing a consistent bedtime ritual, this galaxy light projector integrates 21 non-looping sounds, home fragrance, Saturn galaxy projector, warm and RGB night light, plus Bluetooth speaker; one compact bedside unit synchronizes sound masking, ambient illumination, soothing scents, and personalized audio preferences."
+      },
+      {
+        title: "GALAXY NIGHT LIGHT PROJECTOR",
+        body: "For overthinkers, couples, travelers, and families seeking a captivating visual anchor in bedrooms, hotel suites, or nurseries, this projector night light could be used as a galaxy projector for bedroom, casting a Saturn pattern and twinkling starlight across the ceiling; selectable modes synchronize illumination with built-in audio for bedtime reading, family story time, meditation, or evening ambiance."
+      },
+      {
+        title: "BUILT-IN HOME FRAGRANCE DEVICE",
+        body: "For adults and new parents curating a serene personal bedroom, meditation, or yoga sanctuary, this projector light with fragrance device features lavender, sweet orange, or agarwood essence; select a signature scent to harmonize your adult relaxation space without crowding the nightstand with a separate home fragrance unit."
+      },
+      {
+        title: "21 NON-LOOPING SOOTHING SOUNDS",
+        body: "For parents reinforcing steady bedtime routines for babies, toddlers, or children, and adults bothered by evening noise, this space projector and white noise sound machine features white, brown, and pink noise plus fan, rain, ocean, heartbeat, lullaby, and immersive nature effects; pick a customized mode to mask intrusive sounds without repetitive playback."
+      },
+      {
+        title: "Bluetooth Speaker for Meditation",
+        body: "For adults indulging in guided meditations, custom playlists, audiobooks, or podcasts, and parents entertaining children with lullabies or storytime sessions, this light projector for bedroom syncs to a phone or tablet via its onboard Bluetooth speaker; enjoy personal streaming by day or deploy the kids night light projector unit for gentle music, then transition smoothly to the preloaded sound library at bedtime."
+      },
+      {
+        title: "ADJUSTABLE NIGHT LIGHT PROJECTOR",
+        body: "For new parents navigating midnight feeds or diaper changes, families settling children at bedtime, and adults requiring subtle illumination, this kids night light offers six warm-yellow brightness levels, a breathing-fade mode, and dynamic RGB cycling; engage the gentle amber glow for discreet bedside visibility or select from the color spectrum for reading, playtime, meditation, yoga, and refined room ambiance."
+      },
+      {
+        title: "3 AUTO-OFF TIMERS",
+        body: "For hotel guests, parents, and caregivers aiming to limit scheduled sound or light exposure, this star projector for bedroom features 30, 60, and 120-minute timers; select an ideal duration for an adult or child's bedtime ritual, allowing the unit to power down automatically to conserve battery life and eliminate the need for late-night manual adjustments."
+      },
+      {
+        title: "COMPACT OFFICE SOUND MASKING",
+        body: "For office professionals, remote workers, and shift workers mitigating nearby conversations or intrusive daytime household noise, this romantic light for bedroom measures 3.5 x 3.1 x 4.3 in and weighs just 0.65 lb; deploy this desktop privacy tool to help mask distracting background speech while maintaining a footprint small enough to transition seamlessly between a desk, bedside table, and travel carry-on."
+      },
+      {
+        title: "DIRECT CONTROLS AND MEMORY",
+        body: "For parents, grandparents, babysitters, caregivers, and older children operating the device without app dependency or Wi-Fi connectivity, this baby night light automatically recalls the last-selected sound, volume, and lighting mode upon restart; intuitive tactile buttons keep all adjustments onboard, minimizing repetitive setup as family routines shift between daytime listening, bedtime rituals, and different rooms."
+      },
+      {
+        title: "CORD-FREE FAMILY TRAVEL POWER",
+        body: "For frequent travelers and parents transitioning between bedrooms, hotels, and family visits, this night light for kids doubles as a travel sound machine featuring a robust 5000 mAh rechargeable battery; enjoy up to five days of uninterrupted use per charge via a convenient USB-C port, ensuring consistent family sleep routines remain powered without tethering to a wall outlet."
+      }
     ]
   },
   {
@@ -153,18 +230,21 @@ const renderProductDetail = () => {
 
   const params = new URLSearchParams(window.location.search);
   const product = findProduct(params.get("id"));
-  document.title = `${product.name} | Chicway`;
+  const detailName = product.detailName || product.name;
+  document.title = `${detailName} | Chicway`;
 
   detail.innerHTML = `
     <div class="detail-media">
-      <img src="${product.image}" alt="${product.name}">
+      <img src="${product.detailImage || product.image}" alt="${product.name}">
     </div>
     <div class="detail-copy">
-      <h1>${product.name}</h1>
+      <h1>${detailName}</h1>
       <p>${product.details}</p>
-      <div class="detail-meta">
-        ${product.tags.map((tag) => `<span>${tag}</span>`).join("")}
-      </div>
+      ${product.tags.length
+        ? `<div class="detail-meta">
+            ${product.tags.map((tag) => `<span>${tag}</span>`).join("")}
+          </div>`
+        : ""}
       <div class="price">${formatMoney(product.price)}</div>
       ${product.buyUrl
         ? `<div class="detail-actions">
@@ -172,7 +252,9 @@ const renderProductDetail = () => {
           </div>`
         : ""}
       <ul class="feature-list">
-        ${product.features.map((feature) => `<li>${feature}</li>`).join("")}
+        ${product.features.map((feature) => typeof feature === "string"
+          ? `<li>${feature}</li>`
+          : `<li><strong>${feature.title}</strong><span>${feature.body}</span></li>`).join("")}
       </ul>
     </div>
   `;
