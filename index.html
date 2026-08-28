@@ -319,10 +319,19 @@
       line-height: 1.55;
     }
 
-    .section-image {
-      margin: 0 auto;
+    .section-picture {
+      display: block;
       width: min(100%, 1540px);
-      object-fit: cover;
+      margin: 0 auto;
+    }
+
+    .section-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2560 / 1050;
+      object-fit: contain;
+      object-position: center;
     }
 
     .trust {
@@ -731,18 +740,24 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
+      align-content: start;
       align-items: start;
     }
 
     .utility-gallery img {
+      display: block;
       width: 100%;
-      border-radius: 18px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      align-self: start;
+      object-fit: contain;
+      border-radius: 8px;
       box-shadow: var(--shadow);
       background: #fff;
     }
 
     .utility-gallery img:first-child {
-      margin-top: 36px;
+      margin-top: 0;
     }
 
     .testimonial {
@@ -1312,6 +1327,8 @@
         width: 100%;
         max-width: 100%;
         height: auto;
+        aspect-ratio: 2560 / 1050;
+        object-fit: contain;
         margin-left: 0;
         transform: none;
       }
@@ -1401,7 +1418,7 @@
       </section>
 
       <section aria-label="Portable dreamy anywhere anytime banner">
-        <picture>
+        <picture class="section-picture">
           <source media="(max-width: 860px)" srcset="assets/mobile/portable-dreamy-mobile.webp" type="image/webp">
           <img
             class="section-image"
@@ -1469,7 +1486,7 @@
       </section>
 
       <section aria-label="Smart cry detection banner">
-        <picture>
+        <picture class="section-picture">
           <source media="(max-width: 860px)" srcset="assets/mobile/smart-cry-mobile.webp" type="image/webp">
           <img
             class="section-image"
@@ -1533,7 +1550,7 @@
       </section>
 
       <section aria-label="How to use AI cry detection">
-        <picture>
+        <picture class="section-picture">
           <source media="(max-width: 860px)" srcset="assets/mobile/how-to-cry-mobile.webp" type="image/webp">
           <img
             class="section-image"

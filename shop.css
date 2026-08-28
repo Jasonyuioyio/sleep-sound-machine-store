@@ -827,6 +827,11 @@ button {
   object-fit: contain;
 }
 
+.hub-story-fragrance img {
+  width: min(100%, 900px);
+  margin-inline: auto;
+}
+
 .hub-story-dark.hub-story-wide img {
   order: -1;
 }
@@ -971,13 +976,26 @@ button {
 }
 
 .hub-howto-grid {
-  grid-template-columns: minmax(320px, 0.78fr) minmax(460px, 1.22fr);
+  grid-template-columns: 1fr;
+  gap: 34px;
+  align-items: start;
 }
 
 .hub-howto img {
-  aspect-ratio: 2.4 / 1;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.hub-howto-copy {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(420px, 1.28fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.hub-howto-details .hub-control-list {
+  margin-top: 0;
 }
 
 .hub-control-list {
@@ -1042,7 +1060,8 @@ button {
   .hub-story-grid.reverse,
   .hub-visual-grid,
   .hub-use-grid,
-  .hub-howto-grid {
+  .hub-howto-grid,
+  .hub-howto-copy {
     grid-template-columns: 1fr;
   }
 
@@ -1151,7 +1170,8 @@ button {
     padding: 24px 20px;
   }
 
-  .hub-howto img {
-    aspect-ratio: 1.65 / 1;
+  .hub-howto-grid,
+  .hub-howto-copy {
+    gap: 26px;
   }
 }
