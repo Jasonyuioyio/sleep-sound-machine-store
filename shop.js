@@ -6,7 +6,7 @@ const PRODUCTS = [
     name: "Soothe Portable Sound Machine",
     detailName: "Portable Sound Machine with AI Cry Detection White Noise Machine",
     price: 32.99,
-    image: "assets/products/white-noise-sound-machine-1.jpg",
+    image: "assets/products/white-noise-sound-machine-1.webp",
     buyUrl: "https://www.amazon.com/CHICWAY-Portable-Sound-Machine-Detection/dp/B0H8RZ65QK",
     short: "Responsive white noise, lullabies, and parental voice playback in one nursery-ready speaker.",
     details: "Mom's Choice Awards 18 Soothing Sounds Bluetooth Speaker Night Light Timer White Noise for Baby Adult Home Travel Office Gray",
@@ -59,8 +59,8 @@ const PRODUCTS = [
     name: "5-in-1 Sleep Hub",
     detailName: "Galaxy Projector Night Light with Fragrance, White Noise Machine",
     price: 149.99,
-    image: "assets/products/sleep-hub/hero.jpg",
-    detailImage: "assets/products/sleep-hub/hero.jpg",
+    image: "assets/products/sleep-hub/hero.webp",
+    detailImage: "assets/products/sleep-hub/hero.webp",
     buyUrl: "https://www.amazon.com/CHICWAY-Galaxy-Projector-Fragrance-Machine/dp/B0H8CFM745",
     short: "A fuller bedside hub with Fragrance Diffuser, White Noise, Galaxy Projector, Night Light, and Bluetooth audio.",
     details: "21 Sounds with Timer, RGB LED Star Projector for Adult, Baby, Kids, Bluetooth Speaker, Sound Machine for Travel Home",
@@ -113,7 +113,7 @@ const PRODUCTS = [
     showInCatalog: false,
     name: "Soothe Travel Mini",
     price: 79,
-    image: "assets/utility/travel-morning.png",
+    image: "assets/utility/travel-morning.webp",
     short: "A compact sound companion for hotels, grandparents' homes, and stroller naps.",
     details: "Small enough for the diaper bag, tuned for consistent sleep cues wherever the day takes you.",
     tags: ["Travel", "Compact", "USB-C"],
@@ -128,7 +128,7 @@ const PRODUCTS = [
     showInCatalog: false,
     name: "Soothe Focus Speaker",
     price: 99,
-    image: "assets/utility/office-focus.png",
+    image: "assets/utility/office-focus.webp",
     short: "A grown-up companion mode for focus, podcasts, and pink-noise work sessions.",
     details: "Designed for the stage after sleep training, with refined audio that fits the desk or bedside.",
     tags: ["Pink noise", "Desk-ready", "Speaker mode"],
@@ -193,7 +193,7 @@ const updateCartCounts = () => {
 const productCard = (product) => `
   <article class="product-card">
     <a href="product-detail.html?id=${product.id}" aria-label="View ${product.name}">
-      <img src="${product.image}" alt="${product.name}">
+      <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async">
     </a>
     <div class="product-body">
       <h3>${product.name}</h3>
@@ -235,7 +235,7 @@ const renderProductDetail = () => {
 
   detail.innerHTML = `
     <div class="detail-media">
-      <img src="${product.detailImage || product.image}" alt="${product.name}">
+      <img src="${product.detailImage || product.image}" alt="${product.name}" decoding="async" fetchpriority="high">
     </div>
     <div class="detail-copy">
       <h1>${detailName}</h1>
@@ -294,7 +294,7 @@ const renderCart = () => {
   list.innerHTML = detailedItems.map((item) => `
     <article class="cart-item">
       <a href="product-detail.html?id=${item.id}">
-        <img src="${item.image}" alt="${item.name}">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async">
       </a>
       <div>
         <h3>${item.name}</h3>
