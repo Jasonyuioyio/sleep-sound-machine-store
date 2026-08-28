@@ -988,68 +988,6 @@
       font-size: 0.68rem;
     }
 
-    .floating-cart {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 60;
-      width: 48px;
-      height: 48px;
-      border: 0;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 16px 40px rgba(115, 13, 48, 0.24);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -4px;
-      right: -5px;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 999px;
-      background: var(--secondary);
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.64rem;
-      font-weight: 800;
-      line-height: 1;
-      box-shadow: 0 0 0 2px #fff;
-    }
-
-    .cart-count[hidden] {
-      display: none;
-    }
-
-    .floating-cart .cart-count {
-      top: -2px;
-      right: -2px;
-      background: #0d8b72;
-    }
-
-    .floating-cart:hover {
-      background: var(--primary-2);
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
     .lead-modal {
       position: fixed;
       inset: 0;
@@ -1399,15 +1337,6 @@
               <path d="M16 16L21 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
             </svg>
           </a>
-          <a class="icon-btn cart-link" href="cart.html" aria-label="Shopping cart">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path d="M3.5 5H5.4L7.7 15.2H18.2L20.2 8.1H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M8.2 18.5H18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-              <circle cx="9" cy="20" r="1.2" fill="currentColor"></circle>
-              <circle cx="17" cy="20" r="1.2" fill="currentColor"></circle>
-            </svg>
-            <span class="cart-count" data-cart-count hidden>0</span>
-          </a>
           <a class="pill-btn" href="products.html">Buy Now</a>
         </div>
       </div>
@@ -1428,7 +1357,6 @@
                 blending acoustic precision with the warmth of a mother's presence.
               </p>
               <div class="hero-cta-row">
-                <button class="pill-btn" type="button" data-add-to-cart="soothe-portable">Add to Cart</button>
                 <span class="hero-note">Portable comfort with premium acoustic calm.</span>
               </div>
             </div>
@@ -1677,7 +1605,12 @@
             </div>
           </div>
           <div class="testimonial-actions">
-            <button class="pill-btn" type="button" data-add-to-cart="soothe-portable">Add to Cart</button>
+            <a
+              class="pill-btn"
+              href="https://www.amazon.com/CHICWAY-Portable-Sound-Machine-Detection/dp/B0H8RZ65QK"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Buy Now</a>
             <a class="ghost-btn" href="products.html">View All Products</a>
           </div>
         </div>
@@ -1768,17 +1701,6 @@
         </div>
       </div>
     </footer>
-
-    <a class="floating-cart" href="cart.html" aria-label="Open shopping cart">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <path d="M3.5 5H5.4L7.7 15.2H18.2L20.2 8.1H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M8.2 18.5H18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-        <circle cx="9" cy="20" r="1.2" fill="currentColor"></circle>
-        <circle cx="17" cy="20" r="1.2" fill="currentColor"></circle>
-      </svg>
-      <span class="cart-count" data-cart-count hidden>0</span>
-      <span class="sr-only">Open shopping cart</span>
-    </a>
 
     <div class="lead-modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title" aria-hidden="true">
       <div class="lead-modal__dialog">
@@ -1981,47 +1903,6 @@
       });
     });
 
-    const updateCartCounts = () => {
-      const cart = JSON.parse(localStorage.getItem("chicwayCart") || "[]");
-      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-      document.querySelectorAll("[data-cart-count]").forEach((badge) => {
-        badge.textContent = count;
-        badge.hidden = count === 0;
-      });
-    };
-
-    const addProductToCart = (productId) => {
-      const cart = JSON.parse(localStorage.getItem("chicwayCart") || "[]");
-      const existingItem = cart.find((item) => item.id === productId);
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({ id: productId, quantity: 1 });
-      }
-
-      localStorage.setItem("chicwayCart", JSON.stringify(cart));
-      updateCartCounts();
-    };
-
-    document.addEventListener("click", (event) => {
-      const addButton = event.target.closest("[data-add-to-cart]");
-
-      if (!addButton) {
-        return;
-      }
-
-      addProductToCart(addButton.dataset.addToCart);
-      addButton.textContent = "Added";
-
-      window.setTimeout(() => {
-        addButton.textContent = "Add to Cart";
-      }, 1100);
-    });
-
-    window.addEventListener("storage", updateCartCounts);
-    updateCartCounts();
   </script>
 </body>
 </html>

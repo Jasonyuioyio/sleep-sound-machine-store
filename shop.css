@@ -272,7 +272,7 @@ button {
   overflow: hidden;
 }
 
-.product-card a {
+.product-card > a {
   display: block;
 }
 
@@ -316,7 +316,12 @@ button {
 }
 
 .small-btn {
-  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 84px;
+  height: 38px;
   padding: 0 13px;
   border: 0;
   border-radius: 999px;
@@ -325,6 +330,10 @@ button {
   cursor: pointer;
   font-weight: 700;
   font-size: 0.78rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
 }
 
 .detail-grid {
@@ -660,6 +669,333 @@ button {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.sleep-hub-hero {
+  background:
+    linear-gradient(90deg, rgba(252, 249, 244, 0.98) 0%, rgba(252, 249, 244, 0.82) 48%, rgba(252, 249, 244, 0.58) 100%),
+    radial-gradient(circle at 80% 16%, rgba(24, 132, 86, 0.14), transparent 34%);
+}
+
+.sleep-hub-hero-media {
+  min-height: 560px;
+  background: #0f1c17;
+}
+
+.sleep-hub-hero-media img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.hub-overview,
+.hub-use-cases,
+.hub-howto {
+  padding: 72px 0;
+  background: #fcf9f4;
+}
+
+.hub-section-head {
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+
+.hub-section-head h2,
+.hub-story-copy h2,
+.hub-visual-copy h2,
+.hub-howto h2 {
+  margin: 0 0 16px;
+  font-family: "Epilogue", sans-serif;
+  font-size: clamp(2.1rem, 4vw, 4.1rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.hub-section-head p,
+.hub-story-copy p,
+.hub-visual-copy p,
+.hub-howto p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.74;
+}
+
+.hub-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hub-feature-grid article,
+.hub-use-grid article {
+  min-height: 100%;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 48px rgba(42, 30, 24, 0.06);
+}
+
+.hub-feature-grid span {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.hub-feature-grid h3,
+.hub-use-grid h3 {
+  margin: 0 0 10px;
+  font-family: "Epilogue", sans-serif;
+  font-size: 1.18rem;
+  line-height: 1.2;
+}
+
+.hub-feature-grid p,
+.hub-use-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.hub-story {
+  padding: 78px 0;
+}
+
+.hub-story-light {
+  background: #f5efe7;
+}
+
+.hub-story-dark {
+  background: #16392f;
+  color: #fff;
+}
+
+.hub-story-grid,
+.hub-howto-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(420px, 1.08fr);
+  gap: 42px;
+  align-items: center;
+}
+
+.hub-story-grid.reverse {
+  grid-template-columns: minmax(420px, 1.08fr) minmax(320px, 0.92fr);
+}
+
+.hub-story img,
+.hub-howto img,
+.hub-use-grid img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(42, 30, 24, 0.12);
+}
+
+.hub-story img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.hub-story-wide .hub-story-grid,
+.hub-story-wide .hub-story-grid.reverse {
+  grid-template-columns: 1fr;
+  gap: 34px;
+}
+
+.hub-story-wide .hub-story-copy {
+  max-width: 860px;
+}
+
+.hub-story-wide img {
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.hub-story-dark.hub-story-wide img {
+  order: -1;
+}
+
+.hub-story-dark .hub-story-copy p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hub-chip-list,
+.hub-package-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hub-chip-list li,
+.hub-package-list li {
+  padding: 10px 14px;
+  border: 1px solid rgba(127, 14, 55, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.hub-story-dark .hub-chip-list li {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.hub-package-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hub-package-list li {
+  border-radius: 8px;
+}
+
+.hub-visual-section {
+  padding: 78px 0;
+  color: #fff;
+  background: #102d27;
+}
+
+.hub-visual-grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.06fr) minmax(340px, 0.94fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.hub-visual-grid > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 24px 70px rgba(2, 11, 9, 0.34);
+}
+
+.hub-visual-copy {
+  max-width: 520px;
+}
+
+.hub-visual-copy p {
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.hub-mode-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hub-mode-row span {
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 800;
+}
+
+.hub-use-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.hub-use-grid article {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hub-use-grid img {
+  aspect-ratio: auto;
+  height: auto;
+  border-radius: 0;
+  object-fit: contain;
+  box-shadow: none;
+}
+
+.hub-use-grid article.reverse {
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+}
+
+.hub-use-grid article.reverse img {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.hub-use-grid article.reverse .hub-use-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.hub-use-copy {
+  padding: 34px;
+}
+
+.hub-use-copy h3,
+.hub-use-copy p {
+  padding: 0;
+}
+
+.hub-use-copy h3 {
+  margin-top: 0;
+}
+
+.hub-howto {
+  background: #fff;
+}
+
+.hub-howto-grid {
+  grid-template-columns: minmax(320px, 0.78fr) minmax(460px, 1.22fr);
+}
+
+.hub-howto img {
+  aspect-ratio: 2.4 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hub-control-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.hub-control-list li {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fcf9f4;
+}
+
+.hub-control-list strong {
+  color: var(--primary);
+  font-size: 0.92rem;
+}
+
+.hub-control-list span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -688,12 +1024,37 @@ button {
   .cart-grid,
   .landing-hero-grid,
   .landing-banner-panel,
-  .landing-section-grid {
+  .landing-section-grid,
+  .hub-feature-grid,
+  .hub-story-grid,
+  .hub-story-grid.reverse,
+  .hub-visual-grid,
+  .hub-use-grid,
+  .hub-howto-grid {
     grid-template-columns: 1fr;
   }
 
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sleep-hub-hero-media {
+    min-height: 420px;
+  }
+
+  .hub-use-grid article,
+  .hub-use-grid article.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-use-grid article.reverse img,
+  .hub-use-grid article.reverse .hub-use-copy {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .hub-use-grid article.reverse img {
+    order: -1;
   }
 }
 
@@ -725,5 +1086,60 @@ button {
   .section-head {
     align-items: start;
     flex-direction: column;
+  }
+
+  .landing-hero,
+  .hub-overview,
+  .hub-story,
+  .hub-use-cases,
+  .hub-howto {
+    padding-top: 42px;
+    padding-bottom: 46px;
+  }
+
+  .sleep-hub-hero-media {
+    min-height: 340px;
+    border-radius: 8px;
+  }
+
+  .sleep-hub-hero-media img {
+    object-position: 42% center;
+  }
+
+  .hub-feature-grid article,
+  .hub-use-grid article {
+    padding: 18px;
+  }
+
+  .hub-use-grid article {
+    padding: 0;
+  }
+
+  .hub-story img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hub-story-wide img {
+    aspect-ratio: auto;
+  }
+
+  .hub-package-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-visual-section {
+    padding: 48px 0;
+  }
+
+  .hub-visual-grid {
+    gap: 28px;
+  }
+
+  .hub-use-copy {
+    padding: 24px 20px;
+  }
+
+  .hub-howto img {
+    aspect-ratio: 1.65 / 1;
   }
 }

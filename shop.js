@@ -6,6 +6,7 @@ const PRODUCTS = [
     name: "Soothe Portable Sound Machine",
     price: 32.99,
     image: "assets/products/white-noise-sound-machine-1.jpg",
+    buyUrl: "https://www.amazon.com/CHICWAY-Portable-Sound-Machine-Detection/dp/B0H8RZ65QK",
     short: "Responsive white noise, lullabies, and parental voice playback in one nursery-ready speaker.",
     details: "A premium portable sound machine for families who want reliable rest at home, during naps, and while traveling.",
     tags: ["AI cry detection", "Portable", "Voice playback"],
@@ -18,8 +19,9 @@ const PRODUCTS = [
   {
     id: "sleep-hub",
     name: "5-in-1 Sleep Hub",
-    price: 189,
+    price: 149.99,
     image: "assets/products/nava-white.jpg",
+    buyUrl: "https://www.amazon.com/CHICWAY-Galaxy-Projector-Fragrance-Machine/dp/B0H8CFM745",
     short: "A fuller bedside hub with Fragrance Diffuser, White Noise, Galaxy Projector, Night Light, and Bluetooth audio.",
     details: "Built for parents who want one quiet device to manage bedtime, wake windows, and room ambience.",
     tags: ["Night light", "Bluetooth", "Bedside hub"],
@@ -31,6 +33,7 @@ const PRODUCTS = [
   },
   {
     id: "travel-mini",
+    showInCatalog: false,
     name: "Soothe Travel Mini",
     price: 79,
     image: "assets/utility/travel-morning.png",
@@ -45,6 +48,7 @@ const PRODUCTS = [
   },
   {
     id: "focus-speaker",
+    showInCatalog: false,
     name: "Soothe Focus Speaker",
     price: 99,
     image: "assets/utility/office-focus.png",
@@ -119,7 +123,9 @@ const productCard = (product) => `
       <p>${product.short}</p>
       <div class="price-row">
         <span class="price">${formatMoney(product.price)}</span>
-        <button class="small-btn" type="button" data-add-to-cart="${product.id}">Add to Cart</button>
+        ${product.buyUrl
+          ? `<a class="small-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>`
+          : ""}
       </div>
     </div>
   </article>
@@ -132,7 +138,10 @@ const renderProducts = () => {
     return;
   }
 
-  grid.innerHTML = PRODUCTS.map(productCard).join("");
+  grid.innerHTML = PRODUCTS
+    .filter((product) => product.showInCatalog !== false)
+    .map(productCard)
+    .join("");
 };
 
 const renderProductDetail = () => {
@@ -157,10 +166,11 @@ const renderProductDetail = () => {
         ${product.tags.map((tag) => `<span>${tag}</span>`).join("")}
       </div>
       <div class="price">${formatMoney(product.price)}</div>
-      <div class="detail-actions">
-        <button class="pill-btn" type="button" data-add-to-cart="${product.id}">Add to Cart</button>
-        <a class="ghost-btn" href="cart.html">Go to Cart</a>
-      </div>
+      ${product.buyUrl
+        ? `<div class="detail-actions">
+            <a class="pill-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>
+          </div>`
+        : ""}
       <ul class="feature-list">
         ${product.features.map((feature) => `<li>${feature}</li>`).join("")}
       </ul>
@@ -230,17 +240,8 @@ const renderCart = () => {
 };
 
 document.addEventListener("click", (event) => {
-  const addButton = event.target.closest("[data-add-to-cart]");
   const quantityButton = event.target.closest("[data-qty]");
   const checkoutButton = event.target.closest("[data-checkout]");
-
-  if (addButton) {
-    addToCart(addButton.dataset.addToCart);
-    addButton.textContent = "Added";
-    window.setTimeout(() => {
-      addButton.textContent = "Add to Cart";
-    }, 1100);
-  }
 
   if (quantityButton) {
     updateQuantity(quantityButton.dataset.qty, Number(quantityButton.dataset.delta));
