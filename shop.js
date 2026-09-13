@@ -112,6 +112,7 @@ const PRODUCTS = [
     id: "fragrance-cartridge",
     name: "Fragrance Replacement Cartridge",
     detailName: "Fragrance Replacement Cartridge",
+    price: 19.99,
     image: "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
     buyUrl: "https://www.amazon.com/dp/B0HJNSJY4C",
     short: "A fragrance replacement cartridge designed for the Chicway 5-in-1 Sleep Hub.",
