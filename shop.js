@@ -109,6 +109,26 @@ const PRODUCTS = [
     ]
   },
   {
+    id: "fragrance-cartridge",
+    name: "Fragrance Replacement Cartridge",
+    detailName: "Fragrance Replacement Cartridge",
+    image: "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
+    buyUrl: "https://www.amazon.com/dp/B0HJNSJY4C",
+    short: "A fragrance replacement cartridge designed for the Chicway 5-in-1 Sleep Hub.",
+    details: "A dedicated fragrance replacement cartridge for the Chicway 5-in-1 Sleep Hub.",
+    tags: [],
+    features: [
+      {
+        title: "MADE FOR THE 5-IN-1 SLEEP HUB",
+        body: "Designed as a replacement cartridge for the fragrance function of the Chicway 5-in-1 Sleep Hub."
+      },
+      {
+        title: "REFRESH THE FRAGRANCE EXPERIENCE",
+        body: "Replace the cartridge when you are ready to refresh the fragrance used with your Sleep Hub."
+      }
+    ]
+  },
+  {
     id: "travel-mini",
     showInCatalog: false,
     name: "Soothe Travel Mini",
@@ -190,23 +210,27 @@ const updateCartCounts = () => {
   });
 };
 
-const productCard = (product) => `
-  <article class="product-card">
-    <a href="product-detail.html?id=${product.id}" aria-label="View ${product.name}">
-      <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async">
-    </a>
-    <div class="product-body">
-      <h3>${product.name}</h3>
-      <p>${product.short}</p>
-      <div class="price-row">
-        <span class="price">${formatMoney(product.price)}</span>
-        ${product.buyUrl
-          ? `<a class="small-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>`
-          : ""}
+const productCard = (product) => {
+  const hasPrice = Number.isFinite(product.price);
+
+  return `
+    <article class="product-card">
+      <a href="product-detail.html?id=${product.id}" aria-label="View ${product.name}">
+        <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async">
+      </a>
+      <div class="product-body">
+        <h3>${product.name}</h3>
+        <p>${product.short}</p>
+        <div class="price-row${hasPrice ? "" : " no-price"}">
+          ${hasPrice ? `<span class="price">${formatMoney(product.price)}</span>` : ""}
+          ${product.buyUrl
+            ? `<a class="small-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>`
+            : `<a class="small-btn details-btn" href="product-detail.html?id=${product.id}">View Details</a>`}
+        </div>
       </div>
-    </div>
-  </article>
-`;
+    </article>
+  `;
+};
 
 const renderProducts = () => {
   const grid = document.querySelector("[data-products-grid]");
@@ -240,12 +264,14 @@ const renderProductDetail = () => {
     <div class="detail-copy">
       <h1>${detailName}</h1>
       <p>${product.details}</p>
-      ${product.tags.length
+      ${(product.tags || []).length
         ? `<div class="detail-meta">
             ${product.tags.map((tag) => `<span>${tag}</span>`).join("")}
           </div>`
         : ""}
-      <div class="price">${formatMoney(product.price)}</div>
+      ${Number.isFinite(product.price)
+        ? `<div class="price">${formatMoney(product.price)}</div>`
+        : ""}
       ${product.buyUrl
         ? `<div class="detail-actions">
             <a class="pill-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>
