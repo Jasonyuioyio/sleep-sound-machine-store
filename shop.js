@@ -115,13 +115,19 @@ const PRODUCTS = [
     price: 19.99,
     image: "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
     buyUrl: "https://www.amazon.com/dp/B0HJNSJY4C",
+    detailActionText: "Buy Now",
+    detailBuyOptions: [
+      { label: "Agarwood x3", buyUrl: "https://www.amazon.com/CHICWAY-Fragrance-Replacement-Cartridge-Agarwood/dp/B0HJNX4NKX" },
+      { label: "Lavender x3", buyUrl: "https://www.amazon.com/CHICWAY-Fragrance-Replacement-Cartridge-Agarwood/dp/B0HJNSJY4C" },
+      { label: "Sweet Orange x3", buyUrl: "https://www.amazon.com/CHICWAY-Fragrance-Replacement-Cartridge-Agarwood/dp/B0HJP1297M" }
+    ],
     short: "A fragrance replacement cartridge designed for the Chicway 5-in-1 Sleep Hub.",
-    details: "A dedicated fragrance replacement cartridge for the Chicway 5-in-1 Sleep Hub.",
+    details: "A dedicated fragrance replacement cartridge for the Chicway 5-in-1 Sleep Hub. 1 package with 3 replacement cartridges.",
     tags: [],
     features: [
       {
         title: "MADE FOR THE 5-IN-1 SLEEP HUB",
-        body: "Designed as a replacement cartridge for the fragrance function of the Chicway 5-in-1 Sleep Hub."
+        body: "Designed as replacement cartridges for the fragrance function of the Chicway 5-in-1 Sleep Hub."
       },
       {
         title: "REFRESH THE FRAGRANCE EXPERIENCE",
@@ -257,6 +263,12 @@ const renderProductDetail = () => {
   const product = findProduct(params.get("id"));
   const detailName = product.detailName || product.name;
   document.title = `${detailName} | Chicway`;
+  const activeNavLink = document.querySelector(`.nav-links [data-product-id="${product.id}"]`);
+
+  if (activeNavLink) {
+    activeNavLink.classList.add("active");
+    activeNavLink.setAttribute("aria-current", "page");
+  }
 
   detail.innerHTML = `
     <div class="detail-media">
@@ -273,9 +285,18 @@ const renderProductDetail = () => {
       ${Number.isFinite(product.price)
         ? `<div class="price">${formatMoney(product.price)}</div>`
         : ""}
-      ${product.buyUrl
+      ${product.detailActionText || product.buyUrl
         ? `<div class="detail-actions">
-            <a class="pill-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>
+            ${product.detailActionText
+              ? `<span>${product.detailActionText}</span>`
+              : `<a class="pill-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>`}
+            ${(product.detailBuyOptions || []).length
+              ? `<div class="detail-buy-options" role="group" aria-label="Fragrance replacement cartridge packs">
+                  ${product.detailBuyOptions.map((option) => option.buyUrl
+                    ? `<a class="pill-btn" href="${option.buyUrl}" target="_blank" rel="noopener noreferrer">${option.label}</a>`
+                    : `<button class="pill-btn" type="button" disabled>${option.label}</button>`).join("")}
+                </div>`
+              : ""}
           </div>`
         : ""}
       <ul class="feature-list">

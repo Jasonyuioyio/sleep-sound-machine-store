@@ -47,42 +47,88 @@ button {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 30;
-  background: rgba(255, 255, 255, 0.88);
+  z-index: 40;
+  font-family: "Be Vietnam Pro", sans-serif;
+  background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(18px);
   box-shadow: 0 10px 32px rgba(115, 13, 48, 0.05);
 }
 
 .topbar-inner {
+  width: min(calc(100% - 32px), 1240px);
   min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
+  gap: 24px;
 }
 
 .brand {
+  flex-shrink: 0;
   font-family: "Epilogue", sans-serif;
   font-size: 1.2rem;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: #17110d;
 }
 
-.nav-links,
-.top-actions {
+.nav-wrap {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
+  min-width: 0;
 }
 
 .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
   color: #6c6a66;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+}
+
+.nav-links a,
+.nav-links span {
+  position: relative;
+  flex-shrink: 0;
+  padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-links a.active {
   color: var(--primary);
-  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.topbar .pill-btn {
+  min-height: 42px;
+  padding: 0 18px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.topbar a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .icon-btn {
@@ -374,6 +420,27 @@ button {
   flex-wrap: wrap;
   gap: 12px;
   margin: 24px 0;
+}
+
+.detail-buy-options {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.detail-buy-options .pill-btn {
+  max-width: 100%;
+  padding: 12px 18px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.detail-buy-options .pill-btn:disabled {
+  background: var(--primary);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .feature-list {
@@ -1069,17 +1136,44 @@ button {
   border: 0;
 }
 
-@media (max-width: 920px) {
-  .topbar-inner,
-  .nav-links,
+@media (max-width: 1279px) {
+  .topbar-inner {
+    flex-wrap: wrap;
+    column-gap: 14px;
+    row-gap: 6px;
+    padding: 8px 0;
+  }
+
+  .nav-wrap {
+    display: contents;
+  }
+
+  .brand {
+    order: 1;
+  }
+
   .top-actions {
-    gap: 10px;
+    order: 2;
+    margin-left: auto;
   }
 
   .nav-links {
-    display: none;
+    order: 3;
+    flex: 0 0 100%;
+    width: 100%;
+    gap: 18px;
+    padding: 3px 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
   }
 
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
   .shop-hero-grid,
   .detail-grid,
   .cart-grid,
@@ -1123,6 +1217,16 @@ button {
 @media (max-width: 620px) {
   .topbar-inner {
     min-height: 64px;
+  }
+
+  .topbar .brand {
+    font-size: 1rem;
+  }
+
+  .topbar .pill-btn {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.86rem;
   }
 
   .shop-hero {
