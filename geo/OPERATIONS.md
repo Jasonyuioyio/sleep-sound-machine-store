@@ -27,6 +27,8 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
    - Search Console 已通过 GSC Wizard 接入 https://chicway.app/。每轮先调用 list_sites 核验该资源仍为 readable=true、activated=true，再读取 get_site_summary 和所需查询/页面报告；保留实际来源、日期范围及数据成熟度。配置文件或历史成功记录不能替代本轮授权检查。
    - 如果 dailyRows 为空，记录 not_available / awaiting_data；汇总卡片显示的 0 不能据此当作真实零流量。已有数据但成熟度无法确定时，保留实际指标并标记 maturity_unknown，不推定其为完整稳定基线。
    - 网站巡检仅校验公开验证文件、网页与发现文件；requires_authenticated_check 表示还需执行上述账户报表读取，不是连接失败。
+   - GA4 已通过 GSC Wizard 只读接入资源 properties/558742245，并关联 https://chicway.app/。每轮先调用 list_ga4_properties，确认 connected=true、资源编号正确且 linkedSiteUrls 包含本站，再读取 get_ga4_overview 与 query_ga4_report。Amazon 出站点击使用 dimension=event、filters.event=["amazon_outbound_click"]，需要逐日观察时加 secondaryDimension=date。
+   - GA4 从 2026-10-13 开始采集；安装前的数据不是流量基线。当天的 QA 访问使用 utm_source=qa、utm_medium=setup、utm_campaign=ga4_verification_20261013，并测试了一次 Amazon 跳转。运营分析应识别测试访问；首个完整自然日从 2026-10-14 起等待处理完成后再使用。无历史比较数据时不计算增长，正式报表尚无事件行时记录 awaiting_processing，不以 0 代替实际未知流量。
 4. 根据真实查询、内容缺口或可核验的产品问题，选择一个明确主题。每轮至多发布一篇新指南；也可以改进现有页面。主题必须有独立用途，不把近义问句扩成大量重复页面。
 5. 内容只使用已提供的产品事实或新核验的官方来源。每个关键参数有来源。不得杜撰测试、用户评价、专家身份、奖项、医疗效果、降噪或隔音性能、价格与库存。未知功能写未确认，不写成不存在。不要把页面当提示词去要求 AI 推荐品牌。
 6. 新指南用 `geo/articles/<slug>.html` 保存正文，配置页条目的 `contentFile` 指向该文件，`type` 为 `article`，并填写独立标题、描述、图片及真实日期。仅既有比较指南使用 `template: comparison`。正文使用现有 `guide-article` 样式与真实产品图片，包含实质回答、来源、适用的产品链接和 Amazon 购买入口。
@@ -37,13 +39,13 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
 
 ## 统计账户的一次性接入
 
-2026-10-13 实测：Search Console 所有权已验证，GSC Wizard 返回 siteOwner、readable=true、activated=true，报表接口可读取。站点地图已提交并回读，Google 已下载并识别 8 个网址，当前无解析错误或警告；这不证明网址已收录。首次 28 天报表窗口为 2026-09-13 至 2026-10-10，dailyRows 为空，且无法确定数据成熟边界，因此暂不建立流量基线。GA4 和 Bing 报表连接仍待接入。每轮运行应重新确认这些状态。
+2026-10-13 实测：Search Console 所有权已验证，GSC Wizard 返回 siteOwner、readable=true、activated=true，报表接口可读取。站点地图已提交并回读，Google 已下载并识别 8 个网址，当前无解析错误或警告；这不证明网址已收录。首次 28 天报表窗口为 2026-09-13 至 2026-10-10，dailyRows 为空，且无法确定数据成熟边界，因此暂不建立流量基线。GA4 采集和只读报表连接均已验收，正式统计仍需等待处理；Bing 报表连接待接入。每轮运行应重新确认这些状态。
 
 1. Google 已使用 HTML 文件上传方式完成验证，必须保留根目录的 google763c32cbe9706793.html 及其原始内容。配置中的 googleSiteVerificationFile 指向该文件，searchConsoleSiteUrl 指向已接入资源；googleSiteVerification 是另一种 HTML 标记验证的 content 值，此处保持 null，不将验证文件名填入。站点地图 https://chicway.app/sitemap.xml 已通过 GSC Wizard 提交并回读；后续用 list_sitemaps 检查 Google 的实际下载和解析结果。
 2. 用户登录 [Bing Webmaster Tools](https://www.bing.com/webmasters/)，在 Google 验证后可选择导入；或提供 HTML 标记 `msvalidate.01` 的公开 content 值。完成验证后提交同一站点地图。AI Performance 的数据以账户实际支持和展示的内容为准。
-3. GA4 资源 CHICWAY 官网及网站数据流 CHICWAY 官网 Web 已创建，报告时区为 America/Los_Angeles，币种为 USD，行业为购物，企业规模由用户确认为 1–10 名员工。数据流网址为 https://chicway.app，数据流 ID 为 16120935134，衡量编号为 G-J3MCCDN0LH。编号写入 ga4MeasurementId 后由构建生成各页统计代码；巡检检查代码是否正确且仅安装一次。代码存在不能替代采集验收，应在实时或调试报告中核验 page_view 和 amazon_outbound_click，并记录测试访问。Amazon 出站点击不得命名为 purchase 或当作已归因订单。
+3. GA4 资源 CHICWAY 官网（558742245）及网站数据流 CHICWAY 官网 Web 已创建，报告时区为 America/Los_Angeles，币种为 USD，行业为购物，企业规模由用户确认为 1–10 名员工。数据流网址为 https://chicway.app，数据流 ID 为 16120935134，衡量编号为 G-J3MCCDN0LH。编号写入 ga4MeasurementId 后由构建生成各页统计代码；巡检检查代码是否正确且仅安装一次。2026-10-13 实时报告已核验 QA 产品页的 page_view 与一次 amazon_outbound_click，并在该点击的 asin 参数中确认 B0H8RZ65QK。本地 11 页及线上 8 个索引页的统计代码检查通过。Amazon 出站点击不得命名为 purchase 或当作已归因订单。
 4. 需要自动读取账户报表时，使用用户授权的连接或受限凭据配置。账号密码、OAuth 令牌、服务账号私钥不能写入仓库、网页或本文件。
-   - GSC Wizard 的 Search Console 连接已实测通过。GA4 还需在 GSC Wizard 中单独连接 Google Analytics 并关联本站的 GA4 资源；只有 G- 编号不能授予后台报表读取权限。
+   - GSC Wizard 的 Search Console 连接已实测通过。用户已当次确认 Google Analytics 只读授权，资源列表回读确认 properties/558742245 的 linkedSiteUrls 包含 https://chicway.app/，概览及事件报告接口均正常返回 ga4-api。当天事件报告 rows=[]，标记 awaiting_processing；默认历史窗口结束于安装前，不能据其零值评价运营效果。只读连接成功与实时采集成功已分别验证。
    - Bing 自动报表还需在 GSC Wizard 的账户设置中配置 Bing Webmaster API Key。该 Key 只存入服务的安全设置，不写入仓库或聊天。
    - 当前插件接口返回的试用截止时间为北京时间 2026-10-20 20:49，且未返回订阅信息。到期后的读取能力需实际核验，不自动升级或购买付费方案；报表不可用时仍可执行已有技术巡检与事实充分的内容维护。
 5. Amazon 真实订单归因需接入账户支持的 Amazon Attribution 等实际归因工具，并使用其生成的链接；普通站外点击和任意 UTM 参数不等于已归因订单。
