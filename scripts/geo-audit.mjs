@@ -28,6 +28,15 @@ function inspect(page, html) {
   const robots = document.querySelector('meta[name="robots"]')?.content || "";
   check(page.indexable === false ? robots.includes("noindex") : !robots.includes("noindex"), `${prefix}: unexpected robots directive`);
   if (page.indexable !== false) check(document.querySelectorAll("h1").length === 1, `${prefix}: expected one static H1`);
+  const measurementId = config.integrations.ga4MeasurementId;
+  if (measurementId) {
+    const expectedTag = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
+    const googleTags = [...document.querySelectorAll("script[src]")].filter((script) => script.getAttribute("src") === expectedTag);
+    const googleInitializers = [...document.querySelectorAll("script:not([src])")].filter((script) => script.textContent.includes("gtag('config','" + measurementId + "')"));
+    check(googleTags.length === 1, prefix + ": expected exactly one configured Google tag.");
+    check(googleInitializers.length === 1, prefix + ": expected exactly one GA4 initializer.");
+    check(document.querySelectorAll('script[src="assets/site-events.js"]').length === 1, prefix + ": missing or duplicate Amazon outbound event script.");
+  }
   const schemas = [];
   for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
     try {
@@ -126,6 +135,7 @@ const report = {
   failures, warnings, checks,
   measurements: {
     searchTraffic: config.integrations.searchConsoleSiteUrl ? "requires_authenticated_check" : "not_connected",
+    websiteAnalytics: config.integrations.ga4MeasurementId ? "requires_realtime_or_authenticated_check" : "not_connected",
     aiCitations: "not_connected",
     amazonOrders: "not_connected"
   }

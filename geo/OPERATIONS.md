@@ -17,6 +17,8 @@
 
 GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任务使用本地项目，执行时需要电脑开机并保持桌面应用运行。
 
+用户于 2026-10-13 进一步授权创建本站的 GA4 资源、网站数据流，并完成官网统计接入与验证。
+
 ## 每周执行流程
 
 1. 读取本文件、产品事实、`geo/content-plan.json`、最近的 Git 记录和审计结果。先检查脏工作区；忽略无关文件，包括未跟踪的 `site-qr-code.png`。禁止覆盖用户未提交的工作。
@@ -39,7 +41,7 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
 
 1. Google 已使用 HTML 文件上传方式完成验证，必须保留根目录的 google763c32cbe9706793.html 及其原始内容。配置中的 googleSiteVerificationFile 指向该文件，searchConsoleSiteUrl 指向已接入资源；googleSiteVerification 是另一种 HTML 标记验证的 content 值，此处保持 null，不将验证文件名填入。站点地图 https://chicway.app/sitemap.xml 已通过 GSC Wizard 提交并回读；后续用 list_sitemaps 检查 Google 的实际下载和解析结果。
 2. 用户登录 [Bing Webmaster Tools](https://www.bing.com/webmasters/)，在 Google 验证后可选择导入；或提供 HTML 标记 `msvalidate.01` 的公开 content 值。完成验证后提交同一站点地图。AI Performance 的数据以账户实际支持和展示的内容为准。
-3. 用户在 [Google Analytics](https://analytics.google.com/) 建立网站数据流，网址填 `https://chicway.app/`，提供 `G-` 开头的公开衡量编号。填入 `ga4MeasurementId` 后构建发布，再用实时或调试报告验证 `amazon_outbound_click`。不要把该事件命名为 purchase。
+3. GA4 资源 CHICWAY 官网及网站数据流 CHICWAY 官网 Web 已创建，报告时区为 America/Los_Angeles，币种为 USD，行业为购物，企业规模由用户确认为 1–10 名员工。数据流网址为 https://chicway.app，数据流 ID 为 16120935134，衡量编号为 G-J3MCCDN0LH。编号写入 ga4MeasurementId 后由构建生成各页统计代码；巡检检查代码是否正确且仅安装一次。代码存在不能替代采集验收，应在实时或调试报告中核验 page_view 和 amazon_outbound_click，并记录测试访问。Amazon 出站点击不得命名为 purchase 或当作已归因订单。
 4. 需要自动读取账户报表时，使用用户授权的连接或受限凭据配置。账号密码、OAuth 令牌、服务账号私钥不能写入仓库、网页或本文件。
    - GSC Wizard 的 Search Console 连接已实测通过。GA4 还需在 GSC Wizard 中单独连接 Google Analytics 并关联本站的 GA4 资源；只有 G- 编号不能授予后台报表读取权限。
    - Bing 自动报表还需在 GSC Wizard 的账户设置中配置 Bing Webmaster API Key。该 Key 只存入服务的安全设置，不写入仓库或聊天。
