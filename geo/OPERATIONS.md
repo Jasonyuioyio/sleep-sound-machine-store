@@ -23,7 +23,7 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
 2. 读取 GitHub 上的 Search Health 运行结果，确认线上核心页面、robots、sitemap、canonical 和 Amazon 链接。发现可复现的技术问题先修复。
 3. 账号接入后读取真实 Search Console 查询与页面数据、GA4 的 `amazon_outbound_click`、Bing AI Performance 中实际可访问的引用数据。没有权限或数据就记录 `not_connected` / `not_available`，不写成 0，不通过几次手工提问推算 AI 排名。
    - Search Console 已通过 GSC Wizard 接入 https://chicway.app/。每轮先调用 list_sites 核验该资源仍为 readable=true、activated=true，再读取 get_site_summary 和所需查询/页面报告；保留实际来源、日期范围及数据成熟度。配置文件或历史成功记录不能替代本轮授权检查。
-   - 如果 dailyRows 为空或数据成熟度无法确定，记录 not_available / awaiting_data。即使汇总卡片显示 0，也不能据此宣称真实流量为零或已有稳定基线。
+   - 如果 dailyRows 为空，记录 not_available / awaiting_data；汇总卡片显示的 0 不能据此当作真实零流量。已有数据但成熟度无法确定时，保留实际指标并标记 maturity_unknown，不推定其为完整稳定基线。
    - 网站巡检仅校验公开验证文件、网页与发现文件；requires_authenticated_check 表示还需执行上述账户报表读取，不是连接失败。
 4. 根据真实查询、内容缺口或可核验的产品问题，选择一个明确主题。每轮至多发布一篇新指南；也可以改进现有页面。主题必须有独立用途，不把近义问句扩成大量重复页面。
 5. 内容只使用已提供的产品事实或新核验的官方来源。每个关键参数有来源。不得杜撰测试、用户评价、专家身份、奖项、医疗效果、降噪或隔音性能、价格与库存。未知功能写未确认，不写成不存在。不要把页面当提示词去要求 AI 推荐品牌。
