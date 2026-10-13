@@ -28,6 +28,10 @@ function inspect(page, html) {
   const robots = document.querySelector('meta[name="robots"]')?.content || "";
   check(page.indexable === false ? robots.includes("noindex") : !robots.includes("noindex"), `${prefix}: unexpected robots directive`);
   if (page.indexable !== false) check(document.querySelectorAll("h1").length === 1, `${prefix}: expected one static H1`);
+  if (config.integrations.bingSiteVerification) {
+    const bingTags = document.querySelectorAll('head meta[name="msvalidate.01"]');
+    check(bingTags.length === 1 && bingTags[0].content === config.integrations.bingSiteVerification, `${prefix}: missing, duplicate or stale Bing verification tag`);
+  }
   const measurementId = config.integrations.ga4MeasurementId;
   if (measurementId) {
     const expectedTag = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
@@ -128,7 +132,7 @@ if (googleVerificationFile) {
 
 if (!config.integrations.ga4MeasurementId) warnings.push("GA4 is not connected. Amazon click event hooks are prepared; no traffic or conversion counts are being collected by this setup.");
 if (!config.integrations.googleSiteVerification && !googleVerificationFile) warnings.push("Search Console website verification is not configured. Authenticated reporting access must be checked separately.");
-if (!config.integrations.bingSiteVerification) warnings.push("Bing Webmaster Tools verification and AI citation reporting access are pending.");
+if (!config.integrations.bingSiteVerification) warnings.push("Bing website verification metadata is not configured. Authenticated search and AI reporting must be checked separately.");
 const report = {
   checkedAt: new Date().toISOString(), mode: live ? "live" : "local", origin: config.origin,
   status: failures.length ? "failed" : "passed", pagesChecked: checks.length,
@@ -136,7 +140,8 @@ const report = {
   measurements: {
     searchTraffic: config.integrations.searchConsoleSiteUrl ? "requires_authenticated_check" : "not_connected",
     websiteAnalytics: config.integrations.ga4MeasurementId ? "requires_realtime_or_authenticated_check" : "not_connected",
-    aiCitations: "not_connected",
+    bingSearchTraffic: config.integrations.bingSiteVerification ? "requires_authenticated_check" : "not_connected",
+    aiCitations: config.integrations.bingSiteVerification ? "requires_authenticated_ui_or_export" : "not_connected",
     amazonOrders: "not_connected"
   }
 };
