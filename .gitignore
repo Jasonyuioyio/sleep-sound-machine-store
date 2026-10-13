@@ -2,3 +2,5 @@
 gh-install.log
 gh_2.92.0_windows_amd64.msi
 gh_2.92.0_windows_amd64.zip
+node_modules/
+geo/reports/*.json

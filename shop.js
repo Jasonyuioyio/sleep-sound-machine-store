@@ -3,6 +3,7 @@ const CHICWAY_CART_KEY = "chicwayCart";
 const PRODUCTS = [
   {
     id: "soothe-portable",
+    detailPath: "portable-sound-machine.html",
     name: "Soothe Portable Sound Machine",
     detailName: "Portable Sound Machine with AI Cry Detection White Noise Machine",
     price: 32.99,
@@ -56,6 +57,7 @@ const PRODUCTS = [
   },
   {
     id: "sleep-hub",
+    detailPath: "galaxy-projector-sound-machine.html",
     name: "5-in-1 Sleep Hub",
     detailName: "Galaxy Projector Night Light with Fragrance, White Noise Machine",
     price: 149.99,
@@ -110,6 +112,7 @@ const PRODUCTS = [
   },
   {
     id: "fragrance-cartridge",
+    detailPath: "fragrance-replacement-cartridges.html",
     name: "Fragrance Replacement Cartridge",
     detailName: "Fragrance Replacement Cartridge",
     price: 19.99,
@@ -222,7 +225,7 @@ const productCard = (product) => {
 
   return `
     <article class="product-card">
-      <a href="product-detail.html?id=${product.id}" aria-label="View ${product.name}">
+      <a href="${product.detailPath || `product-detail.html?id=${product.id}`}" aria-label="View ${product.name}">
         <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async">
       </a>
       <div class="product-body">
@@ -232,7 +235,7 @@ const productCard = (product) => {
           ${hasPrice ? `<span class="price">${formatMoney(product.price)}</span>` : ""}
           ${product.buyUrl
             ? `<a class="small-btn" href="${product.buyUrl}" target="_blank" rel="noopener noreferrer">Buy Now</a>`
-            : `<a class="small-btn details-btn" href="product-detail.html?id=${product.id}">View Details</a>`}
+            : `<a class="small-btn details-btn" href="${product.detailPath || `product-detail.html?id=${product.id}`}">View Details</a>`}
         </div>
       </div>
     </article>
@@ -242,7 +245,7 @@ const productCard = (product) => {
 const renderProducts = () => {
   const grid = document.querySelector("[data-products-grid]");
 
-  if (!grid) {
+  if (!grid || grid.dataset.prerendered === "true") {
     return;
   }
 
@@ -252,25 +255,9 @@ const renderProducts = () => {
     .join("");
 };
 
-const renderProductDetail = () => {
-  const detail = document.querySelector("[data-product-detail]");
-
-  if (!detail) {
-    return;
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const product = findProduct(params.get("id"));
+const productDetailMarkup = (product) => {
   const detailName = product.detailName || product.name;
-  document.title = `${detailName} | Chicway`;
-  const activeNavLink = document.querySelector(`.nav-links [data-product-id="${product.id}"]`);
-
-  if (activeNavLink) {
-    activeNavLink.classList.add("active");
-    activeNavLink.setAttribute("aria-current", "page");
-  }
-
-  detail.innerHTML = `
+  return `
     <div class="detail-media">
       <img src="${product.detailImage || product.image}" alt="${product.name}" decoding="async" fetchpriority="high">
     </div>
@@ -308,6 +295,27 @@ const renderProductDetail = () => {
   `;
 };
 
+const renderProductDetail = () => {
+  const detail = document.querySelector("[data-product-detail]");
+
+  if (!detail || detail.dataset.prerendered === "true") {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const product = findProduct(params.get("id"));
+
+  if (product.detailPath) {
+    const destination = new URL(product.detailPath, window.location.href);
+    destination.hash = window.location.hash;
+    window.location.replace(destination.href);
+    return;
+  }
+
+  document.title = `${product.detailName || product.name} | Chicway`;
+  detail.innerHTML = productDetailMarkup(product);
+};
+
 const renderCart = () => {
   const list = document.querySelector("[data-cart-items]");
   const summary = document.querySelector("[data-cart-summary]");
@@ -341,7 +349,7 @@ const renderCart = () => {
 
   list.innerHTML = detailedItems.map((item) => `
     <article class="cart-item">
-      <a href="product-detail.html?id=${item.id}">
+      <a href="${item.detailPath || `product-detail.html?id=${item.id}`}">
         <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async">
       </a>
       <div>

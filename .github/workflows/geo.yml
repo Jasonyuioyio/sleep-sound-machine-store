@@ -1,0 +1,33 @@
+name: CHICWAY Search Health
+
+on:
+  push:
+    branches: [main]
+    paths: ["*.html", "shop.js", "shop.css", "assets/site-events.js", "geo/**", "scripts/**", "package*.json", ".github/workflows/geo.yml"]
+  schedule:
+    - cron: "15 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build:geo
+      - run: npm run check:geo
+      - name: Verify generated files are committed
+        run: git diff --exit-code
+      - name: Check live site
+        if: github.event_name != 'push'
+        run: npm run check:geo:live

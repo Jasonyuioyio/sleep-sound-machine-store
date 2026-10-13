@@ -1,0 +1,14 @@
+{
+  "name": "chicway-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:geo": "node scripts/geo-build.mjs",
+    "check:geo": "node scripts/geo-audit.mjs",
+    "check:geo:live": "node --use-env-proxy scripts/geo-audit.mjs --live",
+    "notify:search": "node --use-env-proxy scripts/geo-indexnow.mjs"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.13"
+  }
+}

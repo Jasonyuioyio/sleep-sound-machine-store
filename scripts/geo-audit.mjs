@@ -1,0 +1,120 @@
+import { access, appendFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { DOMParser, parseHTML } from "linkedom";
+import { loadSite, read, write, root, pageUrl } from "./geo-lib.mjs";
+
+const { config, products } = await loadSite();
+const live = process.argv.includes("--live");
+const failures = [];
+const warnings = [];
+const checks = [];
+const check = (passed, message) => { if (!passed) failures.push(message); };
+const clean = (text) => text.replace(/\s+/g, " ").trim();
+const indexable = config.pages.filter((page) => page.indexable !== false);
+
+async function exists(file) {
+  try { await access(resolve(root, file)); return true; } catch { return false; }
+}
+
+function inspect(page, html) {
+  const { document } = parseHTML(html);
+  const prefix = `${live ? "live" : "local"}:${page.file}`;
+  check(document.querySelectorAll("title").length === 1, `${prefix}: expected exactly one title`);
+  check(document.title === page.title, `${prefix}: title differs from configured title`);
+  const descriptions = document.querySelectorAll('meta[name="description"]');
+  check(descriptions.length === 1 && descriptions[0].content === page.description, `${prefix}: missing, duplicate or stale description`);
+  const canonicals = document.querySelectorAll('link[rel="canonical"]');
+  check(canonicals.length === 1 && canonicals[0].getAttribute("href") === pageUrl(config, page.file), `${prefix}: canonical mismatch`);
+  const robots = document.querySelector('meta[name="robots"]')?.content || "";
+  check(page.indexable === false ? robots.includes("noindex") : !robots.includes("noindex"), `${prefix}: unexpected robots directive`);
+  if (page.indexable !== false) check(document.querySelectorAll("h1").length === 1, `${prefix}: expected one static H1`);
+  const schemas = [];
+  for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
+    try {
+      const parsed = JSON.parse(script.textContent);
+      schemas.push(...(parsed["@graph"] || [parsed]));
+    } catch { failures.push(`${prefix}: invalid JSON-LD`); }
+  }
+  check(schemas.length > 0, `${prefix}: missing structured data`);
+  if (page.productId) {
+    const product = products.find((p) => p.id === page.productId);
+    const schema = schemas.find((entry) => entry["@type"] === "Product");
+    check(schema?.name === clean(document.querySelector("h1")?.textContent || ""), `${prefix}: product schema name differs from visible heading`);
+    check(schema?.offers?.price === product.price && schema?.offers?.priceCurrency === "USD", `${prefix}: product schema price mismatch`);
+    check(clean(document.querySelector(".price")?.textContent || "") === `$${product.price.toFixed(2)}`, `${prefix}: visible price mismatch`);
+    check(!schema?.aggregateRating && !schema?.review, `${prefix}: review markup needs verified review evidence`);
+    const links = [...document.querySelectorAll("main a[href]")].map((a) => a.getAttribute("href"));
+    for (const option of product.detailBuyOptions || [{ buyUrl: product.buyUrl }]) {
+      check(links.includes(option.buyUrl), `${prefix}: missing approved Amazon buying link`);
+    }
+  }
+  if (page.type === "catalog") check(document.querySelectorAll(".product-card").length === products.length, `${prefix}: catalog not fully prerendered`);
+  checks.push({ page: page.file, staticH1: document.querySelectorAll("h1").length, schemas: schemas.map((s) => s["@type"]) });
+  return document;
+}
+
+async function inspectLocalLinks(page, document) {
+  for (const element of document.querySelectorAll("a[href], img[src], script[src], link[rel=stylesheet]")) {
+    const raw = element.getAttribute(element.localName === "a" || element.localName === "link" ? "href" : "src");
+    if (!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:")) continue;
+    let url;
+    try { url = new URL(raw, pageUrl(config, page.file)); } catch { failures.push(`${page.file}: invalid resource URL`); continue; }
+    if (url.origin !== config.origin) continue;
+    const file = decodeURIComponent(url.pathname.slice(1)) || "index.html";
+    check(await exists(file), `${page.file}: missing local target ${file}`);
+  }
+}
+
+async function get(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(25000), headers: { "User-Agent": "CHICWAY-Site-Audit/1.0", "Cache-Control": "no-cache" } });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.text();
+}
+
+if (live) {
+  // Bound concurrency so a small daily audit does not overwhelm the site.
+  const pending = [...indexable];
+  await Promise.all(Array.from({ length: 3 }, async () => {
+    while (pending.length) {
+      const page = pending.shift();
+      try { inspect(page, await get(pageUrl(config, page.file))); }
+      catch (error) { failures.push(`live:${page.file}: ${error.message}`); }
+    }
+  }));
+} else {
+  for (const page of config.pages) {
+    const document = inspect(page, await read(page.file));
+    await inspectLocalLinks(page, document);
+  }
+}
+
+try {
+  const xml = live ? await get(config.origin + "/sitemap.xml") : await read("sitemap.xml");
+  const sitemap = new DOMParser().parseFromString(xml, "text/xml");
+  const locations = [...sitemap.querySelectorAll("url > loc")].map((node) => node.textContent);
+  check(locations.length === indexable.length && new Set(locations).size === locations.length, "Sitemap URL count or uniqueness mismatch");
+  for (const page of indexable) check(locations.includes(pageUrl(config, page.file)), `Sitemap missing ${page.file}`);
+  for (const lastmod of sitemap.querySelectorAll("lastmod")) check(/^\d{4}-\d{2}-\d{2}$/.test(lastmod.textContent), "Invalid sitemap lastmod");
+  const robots = live ? await get(config.origin + "/robots.txt") : await read("robots.txt");
+  check(robots.includes(`Sitemap: ${config.origin}/sitemap.xml`), "robots.txt missing sitemap declaration");
+  check(!/^Disallow:\s*\/\s*$/m.test(robots), "robots.txt blocks the whole site");
+  const keyFile = config.indexNowKey + ".txt";
+  const key = live ? await get(config.origin + "/" + keyFile) : await read(keyFile);
+  check(key.trim() === config.indexNowKey, "IndexNow verification file mismatch");
+} catch (error) { failures.push(`Discovery files: ${error.message}`); }
+
+if (!config.integrations.ga4MeasurementId) warnings.push("GA4 is not connected. Amazon click event hooks are prepared; no traffic or conversion counts are being collected by this setup.");
+if (!config.integrations.googleSiteVerification) warnings.push("Search Console verification and search reporting access are pending.");
+if (!config.integrations.bingSiteVerification) warnings.push("Bing Webmaster Tools verification and AI citation reporting access are pending.");
+const report = {
+  checkedAt: new Date().toISOString(), mode: live ? "live" : "local", origin: config.origin,
+  status: failures.length ? "failed" : "passed", pagesChecked: checks.length,
+  failures, warnings, checks,
+  measurements: { searchTraffic: "not_connected", aiCitations: "not_connected", amazonOrders: "not_connected" }
+};
+await write(`geo/reports/${live ? "live" : "local"}-latest.json`, JSON.stringify(report, null, 2) + "\n");
+console.log(JSON.stringify({ ...report, checks: undefined }, null, 2));
+if (process.env.GITHUB_STEP_SUMMARY) {
+  await appendFile(process.env.GITHUB_STEP_SUMMARY, `## CHICWAY ${report.mode} audit: ${report.status}\n\n${checks.length} pages checked.\n\n${[...failures, ...warnings].map((item) => `- ${item}\n`).join("")}\n`);
+}
+if (failures.length) process.exitCode = 1;

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /geo/
+Disallow: /scripts/
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /package-lock.json
+
+Sitemap: https://chicway.app/sitemap.xml

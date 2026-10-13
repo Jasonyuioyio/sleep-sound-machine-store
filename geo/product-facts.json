@@ -1,0 +1,17 @@
+{
+  "reviewedOn": "2026-10-13",
+  "status": "user_supplied_product_information",
+  "sources": ["shop.js: PRODUCTS", "sleep-hub.html: hub-control-list", "User-provided scent-specific Amazon URLs"],
+  "limits": "Manufacturer website facts supplied by the site owner, not independent testing, verified Amazon stock, medical evidence or customer reviews.",
+  "comparison": [
+    { "feature": "Built-in sounds", "portable": "18 sounds", "hub": "21 sounds" },
+    { "feature": "Cry detection", "portable": "AI cry detection and automatic audio playback", "hub": "Not listed in the Sleep Hub product information" },
+    { "feature": "Parent voice recording", "portable": "Recordable parent voice", "hub": "Not listed in the Sleep Hub product information" },
+    { "feature": "Fragrance", "portable": "Not listed in the portable model's product information", "hub": "Fragrance function with replacement cartridges" },
+    { "feature": "Galaxy projection", "portable": "Not listed in the portable model's product information", "hub": "Saturn pattern and starlight projection" },
+    { "feature": "Lighting", "portable": "Six-level night light", "hub": "Warm-yellow brightness settings and RGB lighting" },
+    { "feature": "Bluetooth audio", "portable": "Bluetooth speaker", "hub": "Bluetooth speaker" },
+    { "feature": "Auto-off timers", "portable": "30, 60 and 120 minutes", "hub": "30, 60 and 120 minutes" }
+  ],
+  "cartridgePack": { "quantity": 3, "variants": ["Agarwood x3", "Lavender x3", "Sweet Orange x3"], "compatibility": "CHICWAY 5-in-1 Sleep Hub" }
+}
