@@ -3,7 +3,13 @@
   "language": "en-US",
   "organization": "CHICWAY",
   "indexNowKey": "6762cb95b7eb6fe021e4c5864a5f7d00c38e4fbdf6358a3f",
-  "integrations": { "googleSiteVerification": null, "bingSiteVerification": null, "ga4MeasurementId": null },
+  "integrations": {
+    "googleSiteVerification": null,
+    "googleSiteVerificationFile": "google763c32cbe9706793.html",
+    "searchConsoleSiteUrl": "https://chicway.app/",
+    "bingSiteVerification": null,
+    "ga4MeasurementId": null
+  },
   "pages": [
     {
       "file": "index.html",

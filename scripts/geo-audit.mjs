@@ -103,14 +103,32 @@ try {
   check(key.trim() === config.indexNowKey, "IndexNow verification file mismatch");
 } catch (error) { failures.push(`Discovery files: ${error.message}`); }
 
+const googleVerificationFile = config.integrations.googleSiteVerificationFile;
+if (googleVerificationFile) {
+  if (!/^google[A-Za-z0-9]+\.html$/.test(googleVerificationFile)) {
+    failures.push("Invalid Google verification filename.");
+  } else {
+    try {
+      const verification = live ? await get(config.origin + "/" + googleVerificationFile) : await read(googleVerificationFile);
+      check(verification.trim() === "google-site-verification: " + googleVerificationFile, "Google verification file content mismatch.");
+    } catch (error) {
+      failures.push("Google verification file: " + error.message);
+    }
+  }
+}
+
 if (!config.integrations.ga4MeasurementId) warnings.push("GA4 is not connected. Amazon click event hooks are prepared; no traffic or conversion counts are being collected by this setup.");
-if (!config.integrations.googleSiteVerification) warnings.push("Search Console verification and search reporting access are pending.");
+if (!config.integrations.googleSiteVerification && !googleVerificationFile) warnings.push("Search Console website verification is not configured. Authenticated reporting access must be checked separately.");
 if (!config.integrations.bingSiteVerification) warnings.push("Bing Webmaster Tools verification and AI citation reporting access are pending.");
 const report = {
   checkedAt: new Date().toISOString(), mode: live ? "live" : "local", origin: config.origin,
   status: failures.length ? "failed" : "passed", pagesChecked: checks.length,
   failures, warnings, checks,
-  measurements: { searchTraffic: "not_connected", aiCitations: "not_connected", amazonOrders: "not_connected" }
+  measurements: {
+    searchTraffic: config.integrations.searchConsoleSiteUrl ? "requires_authenticated_check" : "not_connected",
+    aiCitations: "not_connected",
+    amazonOrders: "not_connected"
+  }
 };
 await write(`geo/reports/${live ? "live" : "local"}-latest.json`, JSON.stringify(report, null, 2) + "\n");
 console.log(JSON.stringify({ ...report, checks: undefined }, null, 2));
