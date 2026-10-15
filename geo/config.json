@@ -17,58 +17,98 @@
       "file": "index.html",
       "title": "CHICWAY | Portable Sound Machines & 5-in-1 Sleep Hub",
       "description": "Explore CHICWAY portable sound machines, the 5-in-1 Sleep Hub and fragrance replacement cartridges. Compare products and shop on Amazon.",
-      "image": "assets/hero-nursery.webp", "type": "website", "modified": "2026-10-13"
+      "image": "assets/hero-nursery.webp",
+      "type": "website",
+      "modified": "2026-10-15"
     },
     {
       "file": "products.html",
       "title": "CHICWAY Sound Machines, Sleep Hub & Fragrance Cartridges",
       "description": "Compare CHICWAY's portable sound machine, 5-in-1 galaxy projector Sleep Hub and three-pack fragrance replacement cartridges. View Amazon buying options.",
-      "image": "assets/banners/portable-preview.webp", "type": "catalog", "modified": "2026-10-13"
+      "image": "assets/products/white-noise-sound-machine-1.webp",
+      "type": "catalog",
+      "modified": "2026-10-15"
     },
     {
       "file": "sleep-hub.html",
       "title": "5-in-1 Sleep Hub: Galaxy Projector & Sound Machine | CHICWAY",
-      "description": "Discover the CHICWAY 5-in-1 Sleep Hub with fragrance, 21 sounds, a Saturn galaxy projector, night light and Bluetooth. Explore controls and Amazon buying options.",
-      "image": "assets/products/sleep-hub/hero.webp", "type": "website", "modified": "2026-10-13"
+      "description": "Explore the CHICWAY 5-in-1 Sleep Hub: fragrance cartridges, sound, galaxy projection, night light, Bluetooth and on-device controls.",
+      "image": "assets/products/sleep-hub/hero.webp",
+      "type": "website",
+      "modified": "2026-10-15"
     },
     {
-      "file": "portable-sound-machine.html", "productId": "soothe-portable",
+      "file": "portable-sound-machine.html",
+      "productId": "soothe-portable",
       "title": "Portable Sound Machine with AI Cry Detection | CHICWAY",
       "description": "Explore the CHICWAY portable sound machine with AI cry detection, parent voice recording, 18 sounds, Bluetooth and a night light. Buy on Amazon.",
-      "type": "product", "modified": "2026-10-13"
+      "type": "product",
+      "modified": "2026-10-15"
     },
     {
-      "file": "galaxy-projector-sound-machine.html", "productId": "sleep-hub",
+      "file": "galaxy-projector-sound-machine.html",
+      "productId": "sleep-hub",
       "title": "Galaxy Projector, Fragrance & White Noise Machine | CHICWAY",
-      "description": "CHICWAY's 5-in-1 Sleep Hub combines a galaxy projector, fragrance diffuser, 21 sounds, night light and Bluetooth speaker. View details and shop on Amazon.",
-      "type": "product", "modified": "2026-10-13"
+      "description": "CHICWAY 5-in-1 Sleep Hub combines fragrance, built-in sounds, galaxy projection, night light and Bluetooth. Read controls and shop on Amazon.",
+      "type": "product",
+      "modified": "2026-10-15"
     },
     {
-      "file": "fragrance-replacement-cartridges.html", "productId": "fragrance-cartridge",
+      "file": "fragrance-replacement-cartridges.html",
+      "productId": "fragrance-cartridge",
       "title": "Fragrance Replacement Cartridges, 3-Pack | CHICWAY",
       "description": "Replacement fragrance cartridges for the CHICWAY 5-in-1 Sleep Hub. Choose Agarwood x3, Lavender x3 or Sweet Orange x3 and shop on Amazon.",
-      "type": "product", "modified": "2026-10-13"
+      "type": "product",
+      "modified": "2026-10-15"
     },
     {
-      "file": "guides.html", "title": "Sound Machine & Sleep Hub Buying Guides | CHICWAY",
+      "file": "guides.html",
+      "title": "Sound Machine & Sleep Hub Buying Guides | CHICWAY",
       "description": "Compare CHICWAY sound machines and the 5-in-1 Sleep Hub using product features, control information and Amazon buying options.",
-      "image": "assets/products/sleep-hub/hero.webp", "type": "guides", "modified": "2026-10-13"
+      "image": "assets/products/sleep-hub/hero.webp",
+      "type": "guides",
+      "modified": "2026-10-15"
     },
     {
-      "file": "portable-sound-machine-vs-sleep-hub.html", "title": "CHICWAY Portable Sound Machine vs 5-in-1 Sleep Hub",
+      "file": "portable-sound-machine-vs-sleep-hub.html",
+      "title": "CHICWAY Portable Sound Machine vs 5-in-1 Sleep Hub",
       "description": "Compare CHICWAY's portable sound machine and 5-in-1 Sleep Hub: cry detection, built-in sounds, parent voice recording, fragrance, lighting and buying options.",
-      "image": "assets/products/sleep-hub/hero.webp", "type": "article", "template": "comparison", "published": "2026-10-13", "modified": "2026-10-13"
+      "image": "assets/products/sleep-hub/hero.webp",
+      "type": "article",
+      "template": "comparison",
+      "published": "2026-10-13",
+      "modified": "2026-10-15"
     },
     {
-      "file": "cart.html", "title": "Cart | CHICWAY", "description": "Review your CHICWAY cart.", "type": "utility", "indexable": false
+      "file": "sleep-hub-controls-and-fragrance-guide.html",
+      "title": "CHICWAY Sleep Hub Controls & Fragrance Cartridge Instructions",
+      "description": "Learn CHICWAY Sleep Hub button actions, Bluetooth name, timer settings, fragrance intervals, cartridge replacement and indicator lights from the supplied user instructions.",
+      "image": "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
+      "type": "article",
+      "contentFile": "geo/articles/sleep-hub-controls-and-fragrance-guide.html",
+      "published": "2026-10-15",
+      "modified": "2026-10-15"
     },
     {
-      "file": "order-id-help.html", "title": "How to Find Your Amazon Order ID | CHICWAY",
-      "description": "Find your Amazon order ID when contacting CHICWAY order support.", "type": "utility", "indexable": false
+      "file": "cart.html",
+      "title": "Cart | CHICWAY",
+      "description": "Review your CHICWAY cart.",
+      "type": "utility",
+      "indexable": false
     },
     {
-      "file": "product-detail.html", "title": "CHICWAY Product Details",
-      "description": "Find the CHICWAY portable sound machine, 5-in-1 Sleep Hub and fragrance replacement cartridges.", "type": "legacy", "indexable": false
+      "file": "order-id-help.html",
+      "title": "How to Find Your Amazon Order ID | CHICWAY",
+      "description": "Find your Amazon order ID when contacting CHICWAY order support.",
+      "type": "utility",
+      "indexable": false
+    },
+    {
+      "file": "product-detail.html",
+      "title": "CHICWAY Product Details",
+      "description": "Find the CHICWAY portable sound machine, 5-in-1 Sleep Hub and fragrance replacement cartridges.",
+      "type": "legacy",
+      "indexable": false
     }
   ]
 }

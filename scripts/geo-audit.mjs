@@ -67,8 +67,9 @@ function inspect(page, html) {
 }
 
 async function inspectLocalLinks(page, document) {
-  for (const element of document.querySelectorAll("a[href], img[src], script[src], link[rel=stylesheet]")) {
-    const raw = element.getAttribute(element.localName === "a" || element.localName === "link" ? "href" : "src");
+  for (const element of document.querySelectorAll("a[href], img[src], script[src], link[rel=stylesheet], source[src], video[poster]")) {
+    const attribute = element.localName === "video" ? "poster" : element.localName === "a" || element.localName === "link" ? "href" : "src";
+    const raw = element.getAttribute(attribute);
     if (!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:")) continue;
     let url;
     try { url = new URL(raw, pageUrl(config, page.file)); } catch { failures.push(`${page.file}: invalid resource URL`); continue; }

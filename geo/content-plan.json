@@ -4,10 +4,54 @@
   "maxNewArticlesPerWeeklyRun": 1,
   "selectionRule": "Use verified user questions and connected search data when available. Improve an existing page instead of publishing a duplicate topic.",
   "topics": [
-    { "topic": "CHICWAY Portable Sound Machine vs 5-in-1 Sleep Hub", "intent": "product comparison", "status": "published_in_initial_build", "page": "portable-sound-machine-vs-sleep-hub.html", "sources": ["shop.js", "geo/product-facts.json"] },
-    { "topic": "CHICWAY Sleep Hub button controls and timers", "intent": "product-specific how-to", "status": "ready_to_research", "sources": ["sleep-hub.html: control diagram", "sleep-hub.html: hub-control-list"], "limits": "Verify the text against the visible diagram and supplied instructions before publishing." },
-    { "topic": "Choosing Agarwood x3, Lavender x3 or Sweet Orange x3 cartridges", "intent": "compatible replacement purchase", "status": "ready_to_research", "sources": ["shop.js: fragrance-cartridge", "geo/product-facts.json"], "limits": "Do not invent scent strength, longevity, ingredients, health effects or compatibility with other brands." },
-    { "topic": "Recording parent voice on the CHICWAY portable model", "intent": "product-specific how-to", "status": "needs_instruction_verification", "sources": ["shop.js: soothe-portable", "index.html: how-to image"], "limits": "Confirm exact recording and playback steps from the instruction image or manual." },
-    { "topic": "CHICWAY rechargeable battery and charging questions", "intent": "pre-purchase specification", "status": "needs_instruction_verification", "sources": ["shop.js"], "limits": "Verify test conditions, charger requirements and model-specific battery specifications before making runtime claims." }
+    {
+      "topic": "CHICWAY Portable Sound Machine vs 5-in-1 Sleep Hub",
+      "intent": "product comparison",
+      "status": "published_in_initial_build",
+      "page": "portable-sound-machine-vs-sleep-hub.html",
+      "sources": [
+        "shop.js",
+        "geo/product-facts.json"
+      ]
+    },
+    {
+      "topic": "CHICWAY Sleep Hub button controls and timers",
+      "intent": "product-specific how-to",
+      "status": "published_2026-10-15",
+      "sources": [
+        "Current Sleep Hub user instructions confirmed by owner on 2026-10-15"
+      ],
+      "limits": "Preserve interval wording; timer scope and sound count remain unspecified.",
+      "page": "sleep-hub-controls-and-fragrance-guide.html"
+    },
+    {
+      "topic": "Choosing Agarwood x3, Lavender x3 or Sweet Orange x3 cartridges",
+      "intent": "compatible replacement purchase",
+      "status": "ready_to_research",
+      "sources": [
+        "shop.js: fragrance-cartridge",
+        "geo/product-facts.json"
+      ],
+      "limits": "Do not invent scent strength, longevity, ingredients, health effects or compatibility with other brands."
+    },
+    {
+      "topic": "Recording parent voice on the CHICWAY portable model",
+      "intent": "product-specific how-to",
+      "status": "implemented_on_product_page_2026-10-15",
+      "sources": [
+        "USER MANUAL.pdf, page 1 recording and AUTO instructions"
+      ],
+      "limits": "No standalone duplicate article; exact playback order, recording limit and overwrite behavior remain unverified.",
+      "page": "portable-sound-machine.html#setup"
+    },
+    {
+      "topic": "CHICWAY rechargeable battery and charging questions",
+      "intent": "pre-purchase specification",
+      "status": "needs_instruction_verification",
+      "sources": [
+        "shop.js"
+      ],
+      "limits": "Current manual does not specify charge time or runtime. Obtain charger specifications and test conditions before publishing numerical claims."
+    }
   ]
 }

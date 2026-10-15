@@ -1,17 +1,138 @@
 {
-  "reviewedOn": "2026-10-13",
-  "status": "user_supplied_product_information",
-  "sources": ["shop.js: PRODUCTS", "sleep-hub.html: hub-control-list", "User-provided scent-specific Amazon URLs"],
-  "limits": "Manufacturer website facts supplied by the site owner, not independent testing, verified Amazon stock, medical evidence or customer reviews.",
-  "comparison": [
-    { "feature": "Built-in sounds", "portable": "18 sounds", "hub": "21 sounds" },
-    { "feature": "Cry detection", "portable": "AI cry detection and automatic audio playback", "hub": "Not listed in the Sleep Hub product information" },
-    { "feature": "Parent voice recording", "portable": "Recordable parent voice", "hub": "Not listed in the Sleep Hub product information" },
-    { "feature": "Fragrance", "portable": "Not listed in the portable model's product information", "hub": "Fragrance function with replacement cartridges" },
-    { "feature": "Galaxy projection", "portable": "Not listed in the portable model's product information", "hub": "Saturn pattern and starlight projection" },
-    { "feature": "Lighting", "portable": "Six-level night light", "hub": "Warm-yellow brightness settings and RGB lighting" },
-    { "feature": "Bluetooth audio", "portable": "Bluetooth speaker", "hub": "Bluetooth speaker" },
-    { "feature": "Auto-off timers", "portable": "30, 60 and 120 minutes", "hub": "30, 60 and 120 minutes" }
+  "reviewedOn": "2026-10-15",
+  "status": "manufacturer_manual_and_owner_confirmed",
+  "sources": [
+    "USER MANUAL.pdf, page 1: sounds, controls, recording and safety panels",
+    "说明书--260525定稿_01.jpg: front and top panel controls",
+    "说明书--260525定稿_02.jpg: cartridge installation and indicator lights",
+    "https://store.momschoiceawards.com/product/15360",
+    "Owner confirmation on 2026-10-15: manuals apply to current products; B0DDX2DZW1 and B0H8RZ65QK use the same hardware",
+    "Owner-provided scent-specific Amazon URLs"
   ],
-  "cartridgePack": { "quantity": 3, "variants": ["Agarwood x3", "Lavender x3", "Sweet Orange x3"], "compatibility": "CHICWAY 5-in-1 Sleep Hub" }
+  "limits": "Manual statements and owner-supplied product information are not independent performance tests, medical evidence, current Amazon stock or customer reviews. Use the supplied current manuals when older website copy conflicts. The award verifies Gold recognition for the portable model only; no award year is established by this source.",
+  "manualEvidence": [
+    {
+      "file": "USER MANUAL.pdf",
+      "sha256": "5616c3c862e278972d12cacbe806d7bd6f435390ecc446d48f7c5a3fa32fbf7b",
+      "pages": 1
+    },
+    {
+      "file": "说明书--260525定稿_01.jpg",
+      "sha256": "1CB0584007EE6761F6352D95E01AAEC453BB29500E1C70FA5EA303A8F36B8C95"
+    },
+    {
+      "file": "说明书--260525定稿_02.jpg",
+      "sha256": "88D8468A2844D7BCA44EFE950FEE3D640EFEC789905FADA2542B850090334C7E"
+    }
+  ],
+  "comparison": [
+    {
+      "feature": "Built-in sounds",
+      "portable": "18 sounds listed in the supplied manual",
+      "hub": "Built-in white noise and audio; sound count not specified in the supplied manual"
+    },
+    {
+      "feature": "Cry detection",
+      "portable": "Double-press AUTO; white enabled indicator; recorded messages along with lullabies after cry detection",
+      "hub": "Not listed in the Sleep Hub instructions"
+    },
+    {
+      "feature": "Parent voice recording",
+      "portable": "Microphone-button recording with spoken start and finish prompts",
+      "hub": "Not listed in the Sleep Hub instructions"
+    },
+    {
+      "feature": "Fragrance",
+      "portable": "Not listed in the portable instructions",
+      "hub": "Replacement cartridge system with 30-second interval, 50-second interval and off"
+    },
+    {
+      "feature": "Galaxy projection",
+      "portable": "Not listed in the portable instructions",
+      "hub": "Modes labelled Stars, Nebula Cloud, or Stars + Nebula Cloud in the manual"
+    },
+    {
+      "feature": "Lighting",
+      "portable": "Night light; short-press light control",
+      "hub": "Warm-light brightness, breathing light and RGB running light"
+    },
+    {
+      "feature": "Bluetooth audio",
+      "portable": "Double-tap Bluetooth/audio control to toggle",
+      "hub": "Hold Bluetooth/fragrance button; device name 5-in-1 Sleep Hub"
+    },
+    {
+      "feature": "Off timer",
+      "portable": "Hold the off-timer control; durations not specified in the supplied manual",
+      "hub": "30 minutes, 1 hour, 2 hours or cancellation"
+    }
+  ],
+  "portableSoundNames": [
+    "Hush",
+    "White Noise",
+    "Fan",
+    "Heartbeat",
+    "Ocean",
+    "Deep Ocean",
+    "Water",
+    "Stream Birdsong",
+    "Forest Birdsong",
+    "Night Chirping",
+    "Campfire",
+    "Moderate Rain",
+    "Thunderstorm",
+    "Temple Bell & Wooden Knocker",
+    "Outer Space",
+    "Brahms Lullaby",
+    "Schubert Lullaby",
+    "Twinkle Twinkle Little Star"
+  ],
+  "cartridgePack": {
+    "quantity": 3,
+    "variants": [
+      "Agarwood x3",
+      "Lavender x3",
+      "Sweet Orange x3"
+    ],
+    "compatibility": "CHICWAY 5-in-1 Sleep Hub"
+  },
+  "award": {
+    "name": "Mom's Choice Awards",
+    "level": "Gold",
+    "source": "https://store.momschoiceawards.com/product/15360",
+    "sourceAsin": "B0DDX2DZW1",
+    "currentAsin": "B0H8RZ65QK",
+    "ownerConfirmedSameHardwareOn": "2026-10-15",
+    "year": null,
+    "appliesTo": "soothe-portable"
+  },
+  "videoEvidence": {
+    "reviewScope": "Metadata and 9 or 12 sampled frames for each of 18 owner-supplied videos; original audio and complete timelines not reviewed",
+    "clips": [
+      {
+        "sourceFile": "a7695f21ac5a7ac1fbda89d5365a1bd2.mp4",
+        "publicFile": "assets/videos/portable-controls-closeup.mp4",
+        "sourceRangeSeconds": [0, 28],
+        "audioRemoved": true,
+        "shows": "Portable product controls and light in a handheld close-up"
+      },
+      {
+        "sourceFile": "1486791791.mp4",
+        "publicFile": "assets/videos/sleep-hub-controls-closeup.mp4",
+        "sourceRangeSeconds": [0, 28],
+        "audioRemoved": true,
+        "shows": "Sleep Hub front controls in a handheld close-up"
+      }
+    ],
+    "limitations": "Clips illustrate product appearance and control location; written operating sequences come from the manuals, not inferred button actions in the clips"
+  },
+  "needsVerification": [
+    "Measured cry response time and range",
+    "Charging input, full-charge time and tested battery runtime",
+    "Sleep Hub sound count, memory behavior and exact lighting-level count",
+    "Portable timer-duration selection and exact cry-playback sequence",
+    "Fragrance ingredients, lifespan and mist-on duration",
+    "Current complete warranty, return and privacy terms",
+    "Design-origin and FSC claims on retired promotional banners"
+  ]
 }

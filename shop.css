@@ -252,6 +252,7 @@ button {
 
 .hero-image img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
@@ -396,6 +397,75 @@ button {
 
 .detail-copy {
   padding-top: 12px;
+}
+
+.product-instructions {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  line-height: 1.75;
+  scroll-margin-top: 130px;
+}
+
+.product-instructions h2 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.product-instructions ol,
+.guide-article ol {
+  padding-left: 1.5rem;
+}
+
+.product-instructions li,
+.guide-article ol li {
+  margin-bottom: 10px;
+}
+
+.instruction-video {
+  margin: 24px 0;
+}
+
+.instruction-video video {
+  display: block;
+  width: min(100%, 272px);
+  height: auto;
+  aspect-ratio: 17 / 30;
+  border-radius: 16px;
+  background: #201d1b;
+}
+
+.instruction-video figcaption {
+  max-width: 560px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.product-source {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.product-source a,
+.guide-topics a {
+  color: #285d53;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  margin: 26px 0;
+}
+
+.guide-article h2[id] {
+  scroll-margin-top: 130px;
 }
 
 .detail-meta {

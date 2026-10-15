@@ -1,8 +1,12 @@
 import { parseHTML } from "linkedom";
+import { createHash } from "node:crypto";
 import { loadSite, read, write, escape, pageUrl, replaceBlock } from "./geo-lib.mjs";
 
 const { config, products, productCard, productDetailMarkup } = await loadSite();
 const facts = JSON.parse(await read("geo/product-facts.json"));
+const assetVersions = new Map(await Promise.all(["shop.css", "shop.js"].map(async file =>
+  [file, createHash("sha256").update(await read(file)).digest("hex").slice(0, 12)]
+)));
 const organizationId = config.origin + "/#organization";
 const websiteId = config.origin + "/#website";
 const productFor = (page) => products.find((product) => product.id === page.productId);
@@ -120,7 +124,7 @@ ${head(page)}
 `.replace(/[ \t]+$/gm, "");
 }
 
-function comparisonGuide() {
+function comparisonGuide(page) {
   const portable = products.find((p) => p.id === "soothe-portable");
   const hub = products.find((p) => p.id === "sleep-hub");
   const productSummary = (p, intro) => `<article class="guide-product">
@@ -132,11 +136,11 @@ function comparisonGuide() {
   return `<article class="guide-article container">
     <nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="guides.html">Guides</a><span>Product comparison</span></nav>
     <h1>CHICWAY Portable Sound Machine vs 5-in-1 Sleep Hub</h1>
-    <p class="guide-date">By CHICWAY &middot; Updated <time datetime="2026-10-13">October 13, 2026</time></p>
+    <p class="guide-date">By CHICWAY &middot; Updated <time datetime="${escape(page.modified)}">${new Date(page.modified + "T00:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></p>
     <p class="guide-lead">Choose the portable model when cry detection and a recorded parent voice are the features you need. Choose the 5-in-1 Sleep Hub when you want fragrance, galaxy projection, lighting and built-in sounds in one bedside device.</p>
     <div class="guide-product-row">
       ${productSummary(portable, "18 built-in sounds, AI cry detection and recordable parent voice.")}
-      ${productSummary(hub, "21 built-in sounds, fragrance, Saturn projection, night light and Bluetooth.")}
+      ${productSummary(hub, "Built-in sounds, fragrance, galaxy projection, night light and Bluetooth.")}
     </div>
     <h2>Compare the listed features</h2>
     <div class="guide-table-wrap"><table class="guide-table"><caption>CHICWAY product features</caption>
@@ -145,15 +149,15 @@ function comparisonGuide() {
     </table></div>
     <p class="guide-note">This comparison uses CHICWAY product information. A feature marked "not listed" has not been confirmed for that model. These are separate products; check the selected Amazon listing for current pricing and availability.</p>
     <h2>When to consider the portable sound machine</h2>
-    <p>The portable model lists cry detection that can start a recorded parent message or built-in lullaby. It also includes manual sound selection, a night light and switchable Bluetooth audio. These features may be useful when you want a familiar audio routine across different rooms or during travel.</p>
+    <p>The portable manual describes recorded parent messages along with lullabies after cry detection. It also describes manual sound selection, a night light and switchable Bluetooth audio. These features may be useful when you want a familiar audio routine across different rooms or during travel.</p>
     <p>Cry-triggered playback provides sound while a parent checks on the child. It is not a substitute for checking on a baby or responding to their needs.</p>
     <h2>When to consider the 5-in-1 Sleep Hub</h2>
     <p>The Sleep Hub combines five functions: fragrance, built-in sounds, a galaxy projector, a night light and a Bluetooth speaker. It is the model to explore when your priority is a bedside setup with sound, scent and illumination together.</p>
-    <p>Its on-device controls cover power, timer, Bluetooth and fragrance, and projector and night light modes. The <a href="sleep-hub.html">Sleep Hub overview</a> shows the product's control diagram and functions.</p>
+    <p>Its on-device controls cover power, timer, Bluetooth and fragrance, and projector and night light modes. The <a href="sleep-hub-controls-and-fragrance-guide.html">Sleep Hub controls and fragrance guide</a> explains the current manual's button actions and cartridge installation.</p>
     <h2>Which model uses fragrance replacement cartridges?</h2>
     <p>The <a href="fragrance-replacement-cartridges.html">fragrance replacement cartridges</a> are listed for the CHICWAY 5-in-1 Sleep Hub. Each package contains three replacement cartridges. Choose Agarwood x3, Lavender x3 or Sweet Orange x3 using the separate Amazon links on the cartridge page.</p>
     <h2>Does the Sleep Hub include AI cry detection?</h2>
-    <p>AI cry detection is listed for the portable sound machine. The Sleep Hub's supplied product information lists fragrance, 21 sounds, galaxy projection, lighting and Bluetooth; it does not list cry detection. Choose by the confirmed features of the specific model.</p>
+    <p>AI cry detection is listed for the portable sound machine. The Sleep Hub's supplied instructions list fragrance, built-in sound, galaxy projection, lighting and Bluetooth; they do not list cry detection. Choose by the confirmed features of the specific model.</p>
     <h2>Where can I buy these CHICWAY products?</h2>
     <p>Open either product's Amazon button above, or visit <a href="products.html">all CHICWAY products</a> to compare the available products and fragrance packs. Amazon displays the current seller, final price, delivery options and checkout details.</p>
     <p class="guide-note">Source: CHICWAY <a href="${portable.detailPath}">portable model information</a>, <a href="${hub.detailPath}">Sleep Hub information</a> and <a href="fragrance-replacement-cartridges.html">replacement cartridge information</a>. This page summarizes product specifications; it does not present independent product tests or customer reviews.</p>
@@ -170,11 +174,13 @@ for (const page of config.pages) {
     const guides = config.pages.filter((entry) => entry.type === "article");
     output = shell(page, `<section class="guide-article container"><h1>CHICWAY Product Guides</h1><p class="guide-lead">Compare the features of CHICWAY sound machines and the 5-in-1 Sleep Hub.</p>${guides.map((entry) => `<article class="guide-list-item"><img src="${entry.image}" width="320" height="320" alt="${escape(entry.title)}" decoding="async"><div><h2><a href="${entry.file}">${escape(entry.title)}</a></h2><p>${escape(entry.description)}</p></div></article>`).join("\n")}</section>`);
   } else if (page.type === "article") {
-    output = shell(page, page.template === "comparison" ? comparisonGuide() : await read(page.contentFile));
+    output = shell(page, page.template === "comparison" ? comparisonGuide(page) : await read(page.contentFile));
   } else {
     output = replaceBlock(await read(page.file), "HEAD", head(page));
     if (page.type === "catalog") output = replaceBlock(output, "CATALOG", `        <div class="product-grid" data-products-grid data-prerendered="true">${products.map((product) => productCard(product).trim()).join("\n")}</div>`);
   }
+  output = output.replace(/(href|src)="(shop\.(?:css|js))(?:\?v=[a-f0-9]+)?"/g,
+    (_, attribute, file) => `${attribute}="${file}?v=${assetVersions.get(file)}"`);
   await write(page.file, output);
 }
 
