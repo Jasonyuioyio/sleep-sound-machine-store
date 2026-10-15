@@ -5,7 +5,7 @@ import { loadSite, read, write, escape, pageUrl, replaceBlock } from "./geo-lib.
 const { config, products, productCard, productDetailMarkup } = await loadSite();
 const facts = JSON.parse(await read("geo/product-facts.json"));
 const assetVersions = new Map(await Promise.all(["shop.css", "shop.js"].map(async file =>
-  [file, createHash("sha256").update(await read(file)).digest("hex").slice(0, 12)]
+  [file, createHash("sha256").update((await read(file)).replace(/\r\n/g, "\n")).digest("hex").slice(0, 12)]
 )));
 const organizationId = config.origin + "/#organization";
 const websiteId = config.origin + "/#website";
