@@ -27,12 +27,13 @@
     {
       "topic": "Choosing Agarwood x3, Lavender x3 or Sweet Orange x3 cartridges",
       "intent": "compatible replacement purchase",
-      "status": "ready_to_research",
+      "status": "implemented_in_existing_guide_2026-10-19",
+      "page": "sleep-hub-controls-and-fragrance-guide.html#buy-cartridges",
       "sources": [
         "shop.js: fragrance-cartridge",
         "geo/product-facts.json"
       ],
-      "limits": "Do not invent scent strength, longevity, ingredients, health effects or compatibility with other brands."
+      "limits": "No duplicate standalone article. Keep the approved scent-to-ASIN mapping; explain same-scent three-packs and confirmed Sleep Hub compatibility without inventing strength, longevity, ingredients or health effects."
     },
     {
       "topic": "Recording parent voice on the CHICWAY portable model",

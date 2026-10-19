@@ -67,7 +67,7 @@
       "description": "Compare CHICWAY sound machines and the 5-in-1 Sleep Hub using product features, control information and Amazon buying options.",
       "image": "assets/products/sleep-hub/hero.webp",
       "type": "guides",
-      "modified": "2026-10-15"
+      "modified": "2026-10-19"
     },
     {
       "file": "portable-sound-machine-vs-sleep-hub.html",
@@ -82,12 +82,12 @@
     {
       "file": "sleep-hub-controls-and-fragrance-guide.html",
       "title": "CHICWAY Sleep Hub Controls & Fragrance Cartridge Instructions",
-      "description": "Learn CHICWAY Sleep Hub button actions, Bluetooth name, timer settings, fragrance intervals, cartridge replacement and indicator lights from the supplied user instructions.",
+      "description": "CHICWAY Sleep Hub controls, timer and Bluetooth instructions, cartridge installation, and three-pack fragrance options with scent-specific Amazon links.",
       "image": "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
       "type": "article",
       "contentFile": "geo/articles/sleep-hub-controls-and-fragrance-guide.html",
       "published": "2026-10-15",
-      "modified": "2026-10-15"
+      "modified": "2026-10-19"
     },
     {
       "file": "cart.html",
