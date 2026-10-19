@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build:geo": "node scripts/geo-build.mjs",
+    "test:geo": "node --test scripts/geo-analytics.test.mjs",
     "check:geo": "node scripts/geo-audit.mjs",
     "check:geo:live": "node --use-env-proxy scripts/geo-audit.mjs --live",
     "notify:search": "node --use-env-proxy scripts/geo-indexnow.mjs"

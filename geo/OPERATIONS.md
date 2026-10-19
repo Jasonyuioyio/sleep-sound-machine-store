@@ -10,6 +10,7 @@
 - `shop.js`：现有产品文案、价格、图片及用户提供的 Amazon 地址，是产品详情的来源。
 - `geo/product-facts.json`：内容用产品事实与边界。这些是用户提供的资料，不是独立测试结论。
 - `npm run build:geo`：生成静态产品页、目录、指南入口、页面元数据、JSON-LD、robots 与 sitemap。
+- `npm run test:geo`：验证各页仅在正式站点启用 GA4，本地预览、文件打开和其他来源禁用采集，并保留已有的统计退出设置。
 - `npm run check:geo`：校验本地 HTML、页面索引、产品信息、购买链接及发现文件。
 - `npm run check:geo:live`：检查线上可访问性与发布内容。
 - `npm run notify:search -- changed-page.html`：仅在页面发布并核实后通知 IndexNow。HTTP 200/202 不是已收录的证明。
@@ -28,6 +29,7 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
    - 如果 dailyRows 为空，记录 not_available / awaiting_data；汇总卡片显示的 0 不能据此当作真实零流量。已有数据但成熟度无法确定时，保留实际指标并标记 maturity_unknown，不推定其为完整稳定基线。
    - 网站巡检仅校验公开验证文件、网页与发现文件；requires_authenticated_check 表示还需执行上述账户报表读取，不是连接失败。
    - GA4 已通过 GSC Wizard 只读接入资源 properties/558742245，并关联 https://chicway.app/。每轮先调用 list_ga4_properties，确认 connected=true、资源编号正确且 linkedSiteUrls 包含本站，再读取 get_ga4_overview 与 query_ga4_report。Amazon 出站点击使用 dimension=event、filters.event=["amazon_outbound_click"]，需要逐日观察时加 secondaryDimension=date。
+   - 每轮 GA4 报告必须加 filters.hostName=["chicway.app"]；排查来源污染时另读 dimension=hostName，并把未过滤结果单独标明。2026-10-19 实查确认未过滤报表含 127.0.0.1 本地预览记录；具体数值仅保存在忽略提交的运营报告中。历史本地测试不能算作官网访客，也不能直接删除已采集历史。站点现在在 Google tag 与初始化之前使用 Google 支持的 ga-disable 标记，非 config.origin 来源禁用采集；该标记不会把正式站点已有的退出设置改回启用。未来线上 QA 应标记测试 UTM，保持与自然顾客访问分开。
    - GA4 从 2026-10-13 开始采集；安装前的数据不是流量基线。当天的 QA 访问使用 utm_source=qa、utm_medium=setup、utm_campaign=ga4_verification_20261013，并测试了一次 Amazon 跳转。运营分析应识别测试访问；首个完整自然日从 2026-10-14 起等待处理完成后再使用。无历史比较数据时不计算增长，正式报表尚无事件行时记录 awaiting_processing，不以 0 代替实际未知流量。
    - Bing 普通搜索报表已通过 GSC Wizard 接入。每轮先调用 list_bing_sites，确认返回本站 https://chicway.app/ 且 dataSource=bing，再读取 get_bing_feeds、get_bing_traffic_stats 和 get_bing_crawl_stats。daily 为空且日期范围为 null 时记录 awaiting_data，不把缺少可核验覆盖范围的汇总 0 当成真实零流量或完整基线；有实际记录时保留指标、日期范围和数据成熟度。AI Performance 仍需单独检查实际界面或导出结果，普通 Bing API 连接不能替代 AI 引用核验。
 4. 根据真实查询、内容缺口或可核验的产品问题，选择一个明确主题。每轮至多发布一篇新指南；也可以改进现有页面。主题必须有独立用途，不把近义问句扩成大量重复页面。
@@ -72,4 +74,5 @@ GitHub 云端巡检不依赖本机开机。当前对话中的每周 AI 运营任
 - [OpenAI：爬虫说明](https://developers.openai.com/api/docs/bots)。搜索用 OAI-SearchBot，与训练用 GPTBot 分开管理。
 - [Bing：AI Performance](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)。引用量与搜索流量、实际订单分别记录。
 - [IndexNow 协议](https://www.indexnow.org/documentation)。通知只代表接收网址，不代表已收录。
+- [Google：程序化关闭 Analytics](https://developers.google.com/tag-platform/security/guides/privacy#turn_off_google_analytics)。生产来源检查先于 Google tag 和初始化运行，以避免本地测试污染正式统计。
 - [官方定时任务说明](https://learn.chatgpt.com/docs/automations?surface=app)。本地项目定时任务需要可用的电脑与桌面应用。

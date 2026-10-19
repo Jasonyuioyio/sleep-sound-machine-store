@@ -79,6 +79,7 @@ function head(page) {
   const measurementId = config.integrations.ga4MeasurementId;
   if (measurementId) {
     if (!/^G-[A-Z0-9]+$/.test(measurementId)) throw new Error("Invalid GA4 measurement ID.");
+    meta.push(`  <script data-analytics-scope>if(window.location.origin!==${JSON.stringify(config.origin)})window['ga-disable-${measurementId}']=true;</script>`);
     meta.push(`  <script async src="https://www.googletagmanager.com/gtag/js?id=${measurementId}"></script>`);
     meta.push(`  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}');</script>`);
   }

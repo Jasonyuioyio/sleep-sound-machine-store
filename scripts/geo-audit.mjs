@@ -37,6 +37,11 @@ function inspect(page, html) {
     const expectedTag = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
     const googleTags = [...document.querySelectorAll("script[src]")].filter((script) => script.getAttribute("src") === expectedTag);
     const googleInitializers = [...document.querySelectorAll("script:not([src])")].filter((script) => script.textContent.includes("gtag('config','" + measurementId + "')"));
+    const scopeGuards = document.querySelectorAll("head script[data-analytics-scope]");
+    const expectedGuard = `if(window.location.origin!==${JSON.stringify(config.origin)})window['ga-disable-${measurementId}']=true;`;
+    const headScripts = [...document.querySelectorAll("head script")];
+    check(scopeGuards.length === 1 && scopeGuards[0].textContent.trim() === expectedGuard, prefix + ": missing or stale production-only analytics guard.");
+    check(scopeGuards.length === 1 && googleTags.length === 1 && googleInitializers.length === 1 && headScripts.indexOf(scopeGuards[0]) < headScripts.indexOf(googleTags[0]) && headScripts.indexOf(scopeGuards[0]) < headScripts.indexOf(googleInitializers[0]), prefix + ": analytics scope guard must run before the Google tag and initializer.");
     check(googleTags.length === 1, prefix + ": expected exactly one configured Google tag.");
     check(googleInitializers.length === 1, prefix + ": expected exactly one GA4 initializer.");
     check(document.querySelectorAll('script[src="assets/site-events.js"]').length === 1, prefix + ": missing or duplicate Amazon outbound event script.");
