@@ -351,6 +351,7 @@
     .trust {
       padding: 34px 0 40px;
       background: #f5f1ea;
+      scroll-margin-top: 96px;
     }
 
     .trust-grid {
@@ -431,8 +432,8 @@
 
     .panel-medal {
       position: relative;
-      background: #e8dfb7;
-      padding: 0;
+      background: #fff;
+      padding: 16px;
     }
 
     .panel-medal::after {
@@ -441,11 +442,32 @@
 
     .award-panel-image {
       width: 100%;
-      height: 100%;
-      min-height: 312px;
+      height: auto;
+      max-height: 430px;
       display: block;
-      object-fit: cover;
-      object-position: 43% center;
+      object-fit: contain;
+    }
+
+    .certificate-link {
+      display: block;
+      color: var(--primary);
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .certificate-link span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .certificate-link:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
     }
 
     .seal {
@@ -1452,19 +1474,22 @@
                 target="_blank" rel="noopener noreferrer">View the official award listing.</a>
               </p>
             </div>
-            <div class="panel-note">Recognition for the CHICWAY sound machine.</div>
+            <div class="panel-note">Portable model certificate dated October 25, 2024.</div>
           </article>
 
           <article class="panel panel-medal">
-            <img
-              class="award-panel-image"
-              src="assets/trust/moms-choice-award.webp"
-              width="900"
-              height="1125"
-              alt="Mom's Choice Awards Gold Award Winner for Chicway white noise sound machine"
-              loading="lazy"
-              decoding="async"
-            >
+            <a class="certificate-link" href="assets/trust/portable-moms-choice-gold-certificate.webp" aria-label="View the full-size portable sound machine award certificate">
+              <img
+                class="award-panel-image"
+                src="assets/trust/portable-moms-choice-gold-certificate-850.webp"
+                width="850"
+                height="1100"
+                alt="Mom's Choice Awards Gold Award certificate for the portable sound machine, dated October 25, 2024"
+                loading="lazy"
+                decoding="async"
+              >
+              <span>View full-size certificate</span>
+            </a>
           </article>
 
           <div class="panel-stack">

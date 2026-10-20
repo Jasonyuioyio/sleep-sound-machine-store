@@ -19,7 +19,7 @@
       "description": "Explore CHICWAY portable sound machines, the 5-in-1 Sleep Hub and fragrance replacement cartridges. Compare products and shop on Amazon.",
       "image": "assets/hero-nursery.webp",
       "type": "website",
-      "modified": "2026-10-15"
+      "modified": "2026-10-20"
     },
     {
       "file": "products.html",
@@ -35,7 +35,7 @@
       "description": "Explore the CHICWAY 5-in-1 Sleep Hub: fragrance cartridges, sound, galaxy projection, night light, Bluetooth and on-device controls.",
       "image": "assets/products/sleep-hub/hero.webp",
       "type": "website",
-      "modified": "2026-10-19"
+      "modified": "2026-10-20"
     },
     {
       "file": "portable-sound-machine.html",
@@ -43,7 +43,7 @@
       "title": "Portable Sound Machine with AI Cry Detection | CHICWAY",
       "description": "Explore the CHICWAY portable sound machine with AI cry detection, parent voice recording, 18 sounds, Bluetooth and a night light. Buy on Amazon.",
       "type": "product",
-      "modified": "2026-10-19"
+      "modified": "2026-10-20"
     },
     {
       "file": "galaxy-projector-sound-machine.html",
@@ -51,7 +51,7 @@
       "title": "Galaxy Projector, Fragrance & White Noise Machine | CHICWAY",
       "description": "CHICWAY 5-in-1 Sleep Hub combines fragrance, built-in sounds, galaxy projection, night light and Bluetooth. Read controls and shop on Amazon.",
       "type": "product",
-      "modified": "2026-10-19"
+      "modified": "2026-10-20"
     },
     {
       "file": "fragrance-replacement-cartridges.html",
@@ -87,7 +87,7 @@
       "type": "article",
       "contentFile": "geo/articles/sleep-hub-controls-and-fragrance-guide.html",
       "published": "2026-10-15",
-      "modified": "2026-10-19"
+      "modified": "2026-10-20"
     },
     {
       "file": "cart.html",

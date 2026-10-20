@@ -1,15 +1,17 @@
 {
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-20",
   "status": "manufacturer_manual_and_owner_confirmed",
   "sources": [
     "USER MANUAL.pdf, page 1: sounds, controls, recording and safety panels",
     "说明书--260525定稿_01.jpg: front and top panel controls",
     "说明书--260525定稿_02.jpg: cartridge installation and indicator lights",
     "https://store.momschoiceawards.com/product/15360",
+    "Owner-provided certificate (1).pdf: Gold Award Recipient, printed date October 25, 2024",
     "Owner confirmation on 2026-10-15: manuals apply to current products; B0DDX2DZW1 and B0H8RZ65QK use the same hardware",
-    "Owner-provided scent-specific Amazon URLs"
+    "Owner-provided scent-specific Amazon URLs",
+    "Owner-provided Sleep Hub operation videos: how to use 1.mp4, how to use 2.mp4, Bluetooth connection.mp4; website publication requested on October 20, 2026"
   ],
-  "limits": "Manual statements and owner-supplied product information are not independent performance tests, medical evidence, current Amazon stock or customer reviews. Use the supplied current manuals when older website copy conflicts. The award verifies Gold recognition for the portable model only; no award year is established by this source.",
+  "limits": "Manual statements and owner-supplied product information are not independent performance tests, medical evidence, current Amazon stock or customer reviews. Use the supplied current manuals when older website copy conflicts. The award verifies Gold recognition for the portable model only. The October 25, 2024 date comes from the owner-provided certificate; the online award listing does not display a year.",
   "manualEvidence": [
     {
       "file": "USER MANUAL.pdf",
@@ -103,7 +105,15 @@
     "sourceAsin": "B0DDX2DZW1",
     "currentAsin": "B0H8RZ65QK",
     "ownerConfirmedSameHardwareOn": "2026-10-15",
-    "year": null,
+    "year": 2024,
+    "certificate": {
+      "sourceFile": "certificate (1).pdf",
+      "sourceSha256": "2da9f377b9af972e7978cf69896bec72528e1501e1ef2a00de490f9f601ec86d",
+      "printedDate": "2024-10-25",
+      "image": "assets/trust/portable-moms-choice-gold-certificate.webp",
+      "previewImage": "assets/trust/portable-moms-choice-gold-certificate-850.webp",
+      "receivedOn": "2026-10-20"
+    },
     "appliesTo": "soothe-portable"
   },
   "videoEvidence": {
@@ -124,7 +134,49 @@
         "shows": "Sleep Hub front controls in a handheld close-up"
       }
     ],
-    "limitations": "Clips illustrate product appearance and control location; written operating sequences come from the manuals, not inferred button actions in the clips"
+    "userOperationDemos": [
+      {
+        "sourceFile": "how to use 1.mp4",
+        "sourceSha256": "7efa2779017e39a1a3fc974207a537753fe80abae4dd2cab8b346c98ed240737",
+        "publicFile": "assets/videos/sleep-hub-buttons-demo-1.mp4",
+        "poster": "assets/videos/sleep-hub-buttons-demo-1-poster.jpg",
+        "durationSeconds": 123.88,
+        "width": 544,
+        "height": 960,
+        "timeline": "Full source duration",
+        "videoProcessing": "H.264 stream copied without re-encoding",
+        "audioPreservedBitForBit": true,
+        "shows": "Sleep Hub front and top controls, fragrance and lighting in use"
+      },
+      {
+        "sourceFile": "how to use 2.mp4",
+        "sourceSha256": "d4df6b5cee6c756868549a68de36f290bb96928ef9576d1ed0570016cc9302a9",
+        "publicFile": "assets/videos/sleep-hub-buttons-demo-2.mp4",
+        "poster": "assets/videos/sleep-hub-buttons-demo-2-poster.jpg",
+        "durationSeconds": 189.87,
+        "width": 544,
+        "height": 960,
+        "timeline": "Full source duration",
+        "videoProcessing": "H.264 stream copied without re-encoding",
+        "audioPreservedBitForBit": true,
+        "shows": "Sleep Hub projection, lighting and fragrance in a dark room"
+      },
+      {
+        "sourceFile": "Bluetooth connection.mp4",
+        "sourceSha256": "c2b7c26a6c5e89d04602ba9181c05b46c622cfec16958a18c6bfcd19f4808b7b",
+        "publicFile": "assets/videos/sleep-hub-bluetooth-demo.mp4",
+        "poster": "assets/videos/sleep-hub-bluetooth-demo-poster.jpg",
+        "durationSeconds": 89.07,
+        "width": 720,
+        "height": 1280,
+        "timeline": "Full source duration",
+        "videoProcessing": "HEVC converted to H.264 with no crop or scaling",
+        "audioPreservedBitForBit": true,
+        "shows": "Sleep Hub with phone audio over Bluetooth; pairing instructions remain in written manual steps"
+      }
+    ],
+    "operationDemoReview": "Metadata and nine sampled frames per supplied demo; full video/audio decoding passed. Original AAC audio packets were preserved and verified by matching extracted audio hashes. No transcript or frame-by-frame review is claimed.",
+    "limitations": "Clips illustrate product appearance and controls; written operating sequences come from the manuals, not inferred button actions in the clips. Videos are not evidence of quantified response times, battery runtime, scent lifespan or medical benefits."
   },
   "needsVerification": [
     "Measured cry response time and range",

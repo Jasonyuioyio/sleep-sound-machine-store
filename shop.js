@@ -49,7 +49,15 @@ const PRODUCTS = [
     ],
     "award": {
       "label": "Mom's Choice Awards Gold Award",
-      "url": "https://store.momschoiceawards.com/product/15360"
+      "url": "https://store.momschoiceawards.com/product/15360",
+      "certificate": {
+        "image": "assets/trust/portable-moms-choice-gold-certificate-850.webp",
+        "fullImage": "assets/trust/portable-moms-choice-gold-certificate.webp",
+        "width": 850,
+        "height": 1100,
+        "date": "2024-10-25",
+        "dateLabel": "October 25, 2024"
+      }
     },
     "video": {
       "src": "assets/videos/portable-controls-closeup.mp4",
@@ -137,6 +145,10 @@ const PRODUCTS = [
     "guideLink": {
       "href": "sleep-hub-controls-and-fragrance-guide.html",
       "label": "Read the button, indicator and fragrance replacement guide"
+    },
+    "demoLink": {
+      "href": "sleep-hub.html#operation-videos",
+      "label": "Watch the button controls and Bluetooth demonstration videos"
     },
     "sourceNote": "Mode names and controls follow the CHICWAY 5-in-1 user instructions, reviewed October 15, 2026."
   },
@@ -329,6 +341,7 @@ const productDetailMarkup = (product) => {
         <a href="#overview">Best for</a>
         <a href="#specifications">Specifications</a>
         <a href="#features">Features</a>
+        ${product.award?.certificate ? `<a href="#award">Award certificate</a>` : ""}
         ${instructionsId ? `<a href="#${instructionsId}">How to use</a>` : ""}
       </nav>
       <section class="product-instructions" id="overview">
@@ -349,14 +362,25 @@ const productDetailMarkup = (product) => {
             ? `<li>${feature}</li>`
             : `<li><strong>${feature.title}</strong><span>${feature.body}</span></li>`).join("")}
         </ul>
-        ${product.award ? `<p class="product-source"><a href="${product.award.url}" target="_blank" rel="noopener noreferrer">View the ${product.award.label} record</a></p>` : ""}
       </section>
+      ${product.award?.certificate ? `<section class="product-instructions" id="award">
+        <h2>${product.award.label}</h2>
+        <p>Award certificate for the portable sound machine, dated <time datetime="${product.award.certificate.date}">${product.award.certificate.dateLabel}</time>.</p>
+        <figure class="award-certificate">
+          <a href="${product.award.certificate.fullImage}" aria-label="View the full-size portable sound machine award certificate">
+            <img src="${product.award.certificate.image}" width="${product.award.certificate.width}" height="${product.award.certificate.height}" alt="Mom's Choice Awards Gold Award certificate for the portable sound machine, dated ${product.award.certificate.dateLabel}" loading="lazy" decoding="async">
+          </a>
+          <figcaption><a href="${product.award.certificate.fullImage}">View full-size certificate</a></figcaption>
+        </figure>
+        <p class="product-source"><a href="${product.award.url}" target="_blank" rel="noopener noreferrer">View the official ${product.award.label} record</a></p>
+      </section>` : ""}
       ${(product.manualSections || []).map(section => `<section class="product-instructions" ${section.id ? `id="${section.id}"` : ""}>
         <h2>${section.title}</h2>
         ${(section.paragraphs || []).map(text => `<p>${text}</p>`).join("")}
         ${section.steps ? `<ol>${section.steps.map(step => `<li>${step}</li>`).join("")}</ol>` : ""}
         ${section.note ? `<p>${section.note}</p>` : ""}
         ${section.id === instructionsId && product.guideLink ? `<p class="product-source"><a href="${product.guideLink.href}">${product.guideLink.label}</a></p>` : ""}
+        ${section.id === instructionsId && product.demoLink ? `<p class="product-source"><a href="${product.demoLink.href}">${product.demoLink.label}</a></p>` : ""}
         ${section.id === "setup" && product.video ? `<figure class="instruction-video">
           <video controls muted playsinline preload="none" width="544" height="960" poster="${product.video.poster}" aria-label="${product.name} controls close-up" aria-describedby="${product.id}-video-caption">
             <source src="${product.video.src}" type="video/mp4">
