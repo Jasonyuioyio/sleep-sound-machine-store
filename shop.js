@@ -11,6 +11,15 @@ const PRODUCTS = [
     "buyUrl": "https://www.amazon.com/CHICWAY-Portable-Sound-Machine-Detection/dp/B0H8RZ65QK",
     "short": "18 built-in sounds, parent voice recording, cry-triggered playback, a night light and Bluetooth audio.",
     "details": "A portable sound machine with 18 listed sounds, recordable parent messages and on-device controls. Mom's Choice Awards Gold Award recipient.",
+    "bestFor": "For parents who want a portable sound routine with built-in sounds, a recorded parent message and optional cry-triggered playback.",
+    "specifications": [
+      ["Built-in sounds", "18 sounds; see the full sound list below"],
+      ["Voice recording", "Record a parent message with the microphone button"],
+      ["Cry detection", "Double-press AUTO; white indicator when enabled"],
+      ["Bluetooth audio", "Double-tap the Bluetooth/audio control"],
+      ["Night light", "Short-press the light control"],
+      ["Child lock", "Only power on/off remains operable in the locked position"]
+    ],
     "tags": [],
     "features": [
       {
@@ -80,6 +89,15 @@ const PRODUCTS = [
     "buyUrl": "https://www.amazon.com/CHICWAY-Galaxy-Projector-Fragrance-Machine/dp/B0H8CFM745",
     "short": "Fragrance cartridges, built-in sounds, galaxy projection, night light and Bluetooth audio.",
     "details": "Five functions in one Sleep Hub: fragrance diffuser, white noise machine, galaxy projector, RGB LED night light and Bluetooth speaker.",
+    "bestFor": "For people who want built-in sound, fragrance, galaxy projection, a night light and Bluetooth audio together in one bedside or desktop device.",
+    "specifications": [
+      ["Functions", "Sound, fragrance, galaxy projection, night light and Bluetooth audio"],
+      ["Off timer", "30 minutes, 1 hour, 2 hours or cancellation"],
+      ["Fragrance settings", "30-second interval, 50-second interval or off"],
+      ["Bluetooth device name", "5-in-1 Sleep Hub"],
+      ["Projection mode labels", "Stars, Nebula Cloud, or Stars + Nebula Cloud in the manual"],
+      ["Lighting", "Warm-light brightness, breathing light and RGB running light"]
+    ],
     "tags": [],
     "features": [
       {
@@ -126,7 +144,7 @@ const PRODUCTS = [
     "id": "fragrance-cartridge",
     "detailPath": "fragrance-replacement-cartridges.html",
     "name": "Fragrance Replacement Cartridge",
-    "detailName": "Fragrance Replacement Cartridge",
+    "detailName": "CHICWAY Sleep Hub Fragrance Replacement Cartridges, 3-Pack",
     "price": 19.99,
     "image": "assets/products/sleep-hub/fragrance-replacement-cartridge.webp",
     "buyUrl": "https://www.amazon.com/dp/B0HJNSJY4C",
@@ -147,6 +165,14 @@ const PRODUCTS = [
     ],
     "short": "A fragrance replacement cartridge designed for the Chicway 5-in-1 Sleep Hub.",
     "details": "A dedicated fragrance replacement cartridge for the Chicway 5-in-1 Sleep Hub. 1 package with 3 replacement cartridges.",
+    "bestFor": "For CHICWAY 5-in-1 Sleep Hub owners who need fragrance refills. Choose a separate three-cartridge pack in your preferred scent.",
+    "specifications": [
+      ["Compatible device", "CHICWAY 5-in-1 Sleep Hub"],
+      ["Pack contents", "Three cartridges of one selected scent"],
+      ["Scent options", "Agarwood x3, Lavender x3 or Sweet Orange x3"],
+      ["Contact orientation", "Metal contacts face down"],
+      ["Installation alignment", "Align both side tabs with the internal slots"]
+    ],
     "tags": [],
     "features": [
       {
@@ -269,6 +295,7 @@ const renderProducts = () => {
 
 const productDetailMarkup = (product) => {
   const detailName = product.detailName || product.name;
+  const instructionsId = product.manualSections?.[0]?.id;
   return `
     <div class="detail-media">
       <img src="${product.detailImage || product.image}" alt="${product.name}" decoding="async" fetchpriority="high">
@@ -298,14 +325,38 @@ const productDetailMarkup = (product) => {
               : ""}
           </div>`
         : ""}
-      <ul class="feature-list">
-        ${product.features.map((feature) => typeof feature === "string"
-          ? `<li>${feature}</li>`
-          : `<li><strong>${feature.title}</strong><span>${feature.body}</span></li>`).join("")}
-      </ul>
-      ${product.award ? `<p class="product-source"><a href="${product.award.url}" target="_blank" rel="noopener noreferrer">View the ${product.award.label} record</a></p>` : ""}
+      <nav class="product-jump-links" aria-label="Product information">
+        <a href="#overview">Best for</a>
+        <a href="#specifications">Specifications</a>
+        <a href="#features">Features</a>
+        ${instructionsId ? `<a href="#${instructionsId}">How to use</a>` : ""}
+      </nav>
+      <section class="product-instructions" id="overview">
+        <h2>Who is this for?</h2>
+        <p>${product.bestFor}</p>
+        ${product.id !== "fragrance-cartridge" ? `<p class="product-source"><a href="portable-sound-machine-vs-sleep-hub.html">Compare the portable sound machine and Sleep Hub</a></p>` : ""}
+      </section>
+      <section class="product-instructions" id="specifications">
+        <h2>Specifications at a glance</h2>
+        <dl class="product-specifications">
+          ${product.specifications.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}
+        </dl>
+      </section>
+      <section class="product-instructions" id="features">
+        <h2>${product.id === "soothe-portable" ? "Features and sound list" : "Product features"}</h2>
+        <ul class="feature-list">
+          ${product.features.map((feature) => typeof feature === "string"
+            ? `<li>${feature}</li>`
+            : `<li><strong>${feature.title}</strong><span>${feature.body}</span></li>`).join("")}
+        </ul>
+        ${product.award ? `<p class="product-source"><a href="${product.award.url}" target="_blank" rel="noopener noreferrer">View the ${product.award.label} record</a></p>` : ""}
+      </section>
       ${(product.manualSections || []).map(section => `<section class="product-instructions" ${section.id ? `id="${section.id}"` : ""}>
         <h2>${section.title}</h2>
+        ${(section.paragraphs || []).map(text => `<p>${text}</p>`).join("")}
+        ${section.steps ? `<ol>${section.steps.map(step => `<li>${step}</li>`).join("")}</ol>` : ""}
+        ${section.note ? `<p>${section.note}</p>` : ""}
+        ${section.id === instructionsId && product.guideLink ? `<p class="product-source"><a href="${product.guideLink.href}">${product.guideLink.label}</a></p>` : ""}
         ${section.id === "setup" && product.video ? `<figure class="instruction-video">
           <video controls muted playsinline preload="none" width="544" height="960" poster="${product.video.poster}" aria-label="${product.name} controls close-up" aria-describedby="${product.id}-video-caption">
             <source src="${product.video.src}" type="video/mp4">
@@ -313,11 +364,7 @@ const productDetailMarkup = (product) => {
           </video>
           <figcaption id="${product.id}-video-caption">${product.video.caption}</figcaption>
         </figure>` : ""}
-        ${(section.paragraphs || []).map(text => `<p>${text}</p>`).join("")}
-        ${section.steps ? `<ol>${section.steps.map(step => `<li>${step}</li>`).join("")}</ol>` : ""}
-        ${section.note ? `<p>${section.note}</p>` : ""}
       </section>`).join("")}
-      ${product.guideLink ? `<p class="product-source"><a href="${product.guideLink.href}">${product.guideLink.label}</a></p>` : ""}
       ${product.sourceNote ? `<p class="product-source">${product.sourceNote}</p>` : ""}
 
     </div>
