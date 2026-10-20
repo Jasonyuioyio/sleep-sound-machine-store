@@ -1067,6 +1067,7 @@
       width: min(100%, 620px);
       max-height: calc(100vh - 32px);
       overflow: auto;
+      overscroll-behavior: contain;
       border-radius: 26px;
       padding: 28px 34px 24px;
       background: rgba(255, 252, 247, 0.96);
@@ -1083,8 +1084,8 @@
       position: absolute;
       top: 18px;
       right: 18px;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       border: 0;
       border-radius: 50%;
       background: #f3e9de;
@@ -1255,6 +1256,18 @@
         display: none;
       }
 
+      .nav-links a,
+      .nav-links span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+
+      main section[id],
+      #contact {
+        scroll-margin-top: 140px;
+      }
+
       .hero {
         padding-top: 24px;
       }
@@ -1332,7 +1345,7 @@
       }
 
       .pill-btn {
-        min-height: 38px;
+        min-height: 44px;
         padding: 0 14px;
         font-size: 0.86rem;
       }
@@ -1389,9 +1402,16 @@
 
       .lead-modal__dialog {
         max-height: calc(100vh - 28px);
+        max-height: calc(100dvh - 28px);
         overflow: auto;
         padding: 28px 20px 22px;
         border-radius: 22px;
+      }
+
+      .lead-form input,
+      .lead-form textarea {
+        min-height: 44px;
+        font-size: 16px;
       }
 
       .footer-lead__dialog {

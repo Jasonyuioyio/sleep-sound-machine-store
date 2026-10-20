@@ -1578,6 +1578,13 @@ button {
     overscroll-behavior-x: contain;
   }
 
+  .nav-links a,
+  .nav-links span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
   .nav-links::-webkit-scrollbar {
     display: none;
   }
@@ -1638,7 +1645,7 @@ button {
   }
 
   .topbar .pill-btn {
-    min-height: 38px;
+    min-height: 44px;
     padding: 0 14px;
     font-size: 0.86rem;
   }

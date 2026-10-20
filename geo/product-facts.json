@@ -170,7 +170,9 @@
         "width": 720,
         "height": 1280,
         "timeline": "Full source duration",
-        "videoProcessing": "HEVC converted to H.264 with no crop or scaling",
+        "videoProcessing": "HEVC converted to H.264, libx264 slow CRF24, with no crop or scaling; original AAC copied. Mobile optimization on October 20, 2026 reduced the web file from 15020820 to 9339627 bytes; full-frame SSIM against the original was 0.993898.",
+        "publicSha256": "7f26c57402f9da5b2f256e975678525a6062be578854b8374fcaf77374457030",
+        "publicBytes": 9339627,
         "audioPreservedBitForBit": true,
         "shows": "Sleep Hub with phone audio over Bluetooth; pairing instructions remain in written manual steps"
       }
