@@ -1732,7 +1732,7 @@
               <p class="footer-lead__eyebrow">Order Support</p>
               <h2>Tell us about your order.</h2>
               <p class="footer-lead__intro">
-                Share your details so our care team can match your order and support you faster.
+                CHICWAY offers free returns or exchanges within 30 days. Share your details so our care team can match your order and support you.
               </p>
               <div class="footer-lead__fineprint">
                 <p><a href="order-id-help.html">How to find your Order ID?</a></p>
@@ -1813,7 +1813,7 @@
         <p class="lead-modal__eyebrow">Order Support</p>
         <h2 id="lead-modal-title">Tell us about your order.</h2>
         <p class="lead-modal__intro">
-          Share your details so our care team can match your order and support you faster.
+          CHICWAY offers free returns or exchanges within 30 days. Share your details so our care team can match your order and support you.
         </p>
         <form class="lead-form" id="lead-form" action="https://formspree.io/f/meenrnro" method="POST" novalidate data-lead-form>
           <input type="hidden" name="_subject" value="New Chicway order support lead">
@@ -1926,7 +1926,11 @@
     };
 
     window.addEventListener("DOMContentLoaded", () => {
-      openLeadModal();
+      if (window.location.hash === "#lead-modal") {
+        openLeadModalManually();
+      } else {
+        openLeadModal();
+      }
     });
 
     document.querySelectorAll("[data-open-lead-modal]").forEach((trigger) => {

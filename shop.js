@@ -1,5 +1,11 @@
 const CHICWAY_CART_KEY = "chicwayCart";
 
+const CUSTOMER_SUPPORT = {
+  returns: "CHICWAY offers free returns or exchanges within 30 days.",
+  contact: "Select Contact Us in the top navigation and complete the support form to contact CHICWAY.",
+  href: "index.html#lead-modal"
+};
+
 const PRODUCTS = [
   {
     "id": "soothe-portable",
@@ -18,7 +24,9 @@ const PRODUCTS = [
       ["Cry detection", "Double-press AUTO; white indicator when enabled"],
       ["Bluetooth audio", "Double-tap the Bluetooth/audio control"],
       ["Night light", "Short-press the light control"],
-      ["Child lock", "Only power on/off remains operable in the locked position"]
+      ["Child lock", "Only power on/off remains operable in the locked position"],
+      ["Charging", "Standard USB-C cable; about 2 hours to fully charge. Fast charging is not required."],
+      ["Battery life", "Up to 5 days when playing only built-in white noise or lullabies, with the night light and Bluetooth off."]
     ],
     "tags": [],
     "features": [
@@ -76,6 +84,14 @@ const PRODUCTS = [
         "note": "The manual describes recorded messages along with lullabies after cry detection. It does not specify whether they mix, alternate or form selectable playback modes. Cry-triggered sound is not a baby monitor or a substitute for responding to a child."
       },
       {
+        "id": "charging",
+        "title": "Charging and battery life",
+        "paragraphs": [
+          "Use a standard USB-C cable. CHICWAY states that a full charge takes about 2 hours; fast charging is not required.",
+          "CHICWAY states up to 5 days of battery life when playing only built-in white noise or lullabies, with the night light off and Bluetooth off. This maximum applies to those settings; it is not a runtime claim for Bluetooth or night-light use."
+        ]
+      },
+      {
         "id": "care",
         "title": "Before use",
         "paragraphs": [
@@ -84,7 +100,7 @@ const PRODUCTS = [
         ]
       }
     ],
-    "sourceNote": "Controls and sound names follow the CHICWAY user manual, reviewed October 15, 2026."
+    "sourceNote": "Controls and sound names follow the CHICWAY user manual, reviewed October 15, 2026. Charging, battery-life conditions, returns and support information were confirmed by CHICWAY on October 27, 2026; these are brand-provided specifications, not independent test results."
   },
   {
     "id": "sleep-hub",
@@ -104,7 +120,9 @@ const PRODUCTS = [
       ["Fragrance settings", "30-second interval, 50-second interval or off"],
       ["Bluetooth device name", "5-in-1 Sleep Hub"],
       ["Projection mode labels", "Stars, Nebula Cloud, or Stars + Nebula Cloud in the manual"],
-      ["Lighting", "Warm-light brightness, breathing light and RGB running light"]
+      ["Lighting", "Warm-light brightness, breathing light and RGB running light"],
+      ["Battery capacity", "5,000 mAh"],
+      ["Charging", "Standard USB-C cable; about 6–8 hours with a standard, non-fast-charging power adapter."]
     ],
     "tags": [],
     "features": [
@@ -140,6 +158,22 @@ const PRODUCTS = [
         "paragraphs": [
           "The same button can perform different actions: short-press Previous/Next to change volume, or hold it to change the song. The top button uses a short press for lighting and a hold for projection."
         ]
+      },
+      {
+        "id": "charging",
+        "title": "Charging the 5-in-1 Sleep Hub",
+        "paragraphs": [
+          "The Sleep Hub has a 5,000 mAh battery and uses a standard USB-C cable. CHICWAY states that a full charge takes about 6–8 hours when powered by a standard, non-fast-charging adapter.",
+          "The charging indicator is solid red while charging and solid green when fully charged, as described in the manual."
+        ]
+      },
+      {
+        "id": "fragrance-care",
+        "title": "Fragrance ingredients and use precautions",
+        "paragraphs": [
+          "CHICWAY describes the fragrance ingredients as pure plant extracts.",
+          "Keep the fragrance function off around infants. Adults with fragrance allergies or respiratory conditions should not use the fragrance function."
+        ]
       }
     ],
     "guideLink": {
@@ -150,7 +184,7 @@ const PRODUCTS = [
       "href": "sleep-hub.html#operation-videos",
       "label": "Watch the button controls and Bluetooth demonstration videos"
     },
-    "sourceNote": "Mode names and controls follow the CHICWAY 5-in-1 user instructions, reviewed October 15, 2026."
+    "sourceNote": "Mode names and controls follow the CHICWAY 5-in-1 user instructions, reviewed October 15, 2026. Charging, battery capacity, fragrance information, precautions, returns and support were confirmed by CHICWAY on October 27, 2026; these are brand-provided specifications."
   },
   {
     "id": "fragrance-cartridge",
@@ -183,7 +217,8 @@ const PRODUCTS = [
       ["Pack contents", "Three cartridges of one selected scent"],
       ["Scent options", "Agarwood x3, Lavender x3 or Sweet Orange x3"],
       ["Contact orientation", "Metal contacts face down"],
-      ["Installation alignment", "Align both side tabs with the internal slots"]
+      ["Installation alignment", "Align both side tabs with the internal slots"],
+      ["Fragrance ingredients", "Pure plant extracts, as described by CHICWAY"]
     ],
     "tags": [],
     "features": [
@@ -210,13 +245,21 @@ const PRODUCTS = [
           "Position the new cartridge with its metal contacts facing downward.",
           "Slide it into place, aligning the tabs on both sides with the slots inside the diffuser."
         ]
+      },
+      {
+        "id": "fragrance-care",
+        "title": "Fragrance use precautions",
+        "paragraphs": [
+          "CHICWAY describes the fragrance ingredients as pure plant extracts.",
+          "Keep the Sleep Hub fragrance function off around infants. Adults with fragrance allergies or respiratory conditions should not use the fragrance function."
+        ]
       }
     ],
     "guideLink": {
       "href": "sleep-hub-controls-and-fragrance-guide.html#replacement",
       "label": "View the complete Sleep Hub controls and replacement guide"
     },
-    "sourceNote": "Pack options use CHICWAY product information. Installation follows the CHICWAY Sleep Hub user instructions."
+    "sourceNote": "Pack options use CHICWAY product information. Installation follows the CHICWAY Sleep Hub user instructions. Plant-extract ingredients, use precautions, returns and support were confirmed by CHICWAY on October 27, 2026."
   }
 ];
 
@@ -343,6 +386,9 @@ const productDetailMarkup = (product) => {
         <a href="#features">Features</a>
         ${product.award?.certificate ? `<a href="#award">Award certificate</a>` : ""}
         ${instructionsId ? `<a href="#${instructionsId}">How to use</a>` : ""}
+        ${product.manualSections?.some(section => section.id === "charging") ? `<a href="#charging">Charging &amp; battery</a>` : ""}
+        ${product.manualSections?.some(section => section.id === "fragrance-care") ? `<a href="#fragrance-care">Fragrance precautions</a>` : ""}
+        <a href="#support">Returns &amp; support</a>
       </nav>
       <section class="product-instructions" id="overview">
         <h2>Who is this for?</h2>
@@ -389,6 +435,12 @@ const productDetailMarkup = (product) => {
           <figcaption id="${product.id}-video-caption">${product.video.caption}</figcaption>
         </figure>` : ""}
       </section>`).join("")}
+      <section class="product-instructions" id="support">
+        <h2>Returns and customer support</h2>
+        <p>${CUSTOMER_SUPPORT.returns}</p>
+        <p>${CUSTOMER_SUPPORT.contact}</p>
+        <a class="secondary-link" href="${CUSTOMER_SUPPORT.href}">Contact Us</a>
+      </section>
       ${product.sourceNote ? `<p class="product-source">${product.sourceNote}</p>` : ""}
 
     </div>

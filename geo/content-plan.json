@@ -48,11 +48,18 @@
     {
       "topic": "CHICWAY rechargeable battery and charging questions",
       "intent": "pre-purchase specification",
-      "status": "needs_instruction_verification",
+      "status": "implemented_on_existing_pages_2026-10-27",
       "sources": [
-        "shop.js"
+        "Owner confirmation on 2026-10-27",
+        "geo/product-facts.json: ownerConfirmations"
       ],
-      "limits": "Current manual does not specify charge time or runtime. Obtain charger specifications and test conditions before publishing numerical claims."
+      "limits": "Keep the portable up-to-five-day claim with all stated mode conditions. Do not convert days to continuous hours or invent volume, daily listening time, charger voltage/current, or Sleep Hub runtime.",
+      "pages": [
+        "portable-sound-machine.html#charging",
+        "galaxy-projector-sound-machine.html#charging",
+        "sleep-hub.html#charging-care",
+        "portable-sound-machine-vs-sleep-hub.html"
+      ]
     }
   ]
 }

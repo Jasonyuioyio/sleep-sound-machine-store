@@ -157,6 +157,7 @@ function comparisonGuide(page) {
     <p>Its on-device controls cover power, timer, Bluetooth and fragrance, and projector and night light modes. The <a href="sleep-hub-controls-and-fragrance-guide.html">Sleep Hub controls and fragrance guide</a> explains the current manual's button actions and cartridge installation.</p>
     <h2>Which model uses fragrance replacement cartridges?</h2>
     <p>The <a href="fragrance-replacement-cartridges.html">fragrance replacement cartridges</a> are listed for the CHICWAY 5-in-1 Sleep Hub. Each package contains three replacement cartridges. Choose Agarwood x3, Lavender x3 or Sweet Orange x3 using the separate Amazon links on the cartridge page.</p>
+    <p>CHICWAY describes the fragrance ingredients as pure plant extracts. <strong>Keep the fragrance function off around infants.</strong> Adults with fragrance allergies or respiratory conditions should not use the fragrance function. See the <a href="sleep-hub-controls-and-fragrance-guide.html#fragrance-care">fragrance use precautions</a>.</p>
     <h2>Does the Sleep Hub include AI cry detection?</h2>
     <p>AI cry detection is listed for the portable sound machine. The Sleep Hub's supplied instructions list fragrance, built-in sound, galaxy projection, lighting and Bluetooth; they do not list cry detection. Choose by the confirmed features of the specific model.</p>
     <h2>Where can I buy these CHICWAY products?</h2>
@@ -180,6 +181,7 @@ for (const page of config.pages) {
     output = replaceBlock(await read(page.file), "HEAD", head(page));
     if (page.type === "catalog") output = replaceBlock(output, "CATALOG", `        <div class="product-grid" data-products-grid data-prerendered="true">${products.map((product) => productCard(product).trim()).join("\n")}</div>`);
   }
+  output = output.replaceAll('href="index.html#contact"', 'href="index.html#lead-modal"');
   output = output.replace(/(href|src)="(shop\.(?:css|js))(?:\?v=[a-f0-9]+)?"/g,
     (_, attribute, file) => `${attribute}="${file}?v=${assetVersions.get(file)}"`);
   await write(page.file, output);

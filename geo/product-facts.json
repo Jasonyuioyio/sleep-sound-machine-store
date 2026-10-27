@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-20",
+  "reviewedOn": "2026-10-27",
   "status": "manufacturer_manual_and_owner_confirmed",
   "sources": [
     "USER MANUAL.pdf, page 1: sounds, controls, recording and safety panels",
@@ -9,7 +9,8 @@
     "Owner-provided certificate (1).pdf: Gold Award Recipient, printed date October 25, 2024",
     "Owner confirmation on 2026-10-15: manuals apply to current products; B0DDX2DZW1 and B0H8RZ65QK use the same hardware",
     "Owner-provided scent-specific Amazon URLs",
-    "Owner-provided Sleep Hub operation videos: how to use 1.mp4, how to use 2.mp4, Bluetooth connection.mp4; website publication requested on October 20, 2026"
+    "Owner-provided Sleep Hub operation videos: how to use 1.mp4, how to use 2.mp4, Bluetooth connection.mp4; website publication requested on October 20, 2026",
+    "Direct owner confirmation on October 27, 2026: USB-C charging and charging times, Sleep Hub 5,000 mAh battery, conditional portable battery life, plant-extract fragrance and use precautions, 30-day free returns or exchanges, and Contact Us support form"
   ],
   "limits": "Manual statements and owner-supplied product information are not independent performance tests, medical evidence, current Amazon stock or customer reviews. Use the supplied current manuals when older website copy conflicts. The award verifies Gold recognition for the portable model only. The October 25, 2024 date comes from the owner-provided certificate; the online award listing does not display a year.",
   "manualEvidence": [
@@ -67,6 +68,16 @@
       "feature": "Off timer",
       "portable": "Hold the off-timer control; durations not specified in the supplied manual",
       "hub": "30 minutes, 1 hour, 2 hours or cancellation"
+    },
+    {
+      "feature": "USB-C charging",
+      "portable": "About 2 hours with a standard USB-C cable; fast charging is not required",
+      "hub": "5,000 mAh battery; about 6–8 hours with a standard USB-C cable and non-fast-charging adapter"
+    },
+    {
+      "feature": "Battery life",
+      "portable": "Up to 5 days when playing only built-in white noise or lullabies, with the night light and Bluetooth off",
+      "hub": "Battery runtime has not been confirmed by CHICWAY"
     }
   ],
   "portableSoundNames": [
@@ -122,14 +133,20 @@
       {
         "sourceFile": "a7695f21ac5a7ac1fbda89d5365a1bd2.mp4",
         "publicFile": "assets/videos/portable-controls-closeup.mp4",
-        "sourceRangeSeconds": [0, 28],
+        "sourceRangeSeconds": [
+          0,
+          28
+        ],
         "audioRemoved": true,
         "shows": "Portable product controls and light in a handheld close-up"
       },
       {
         "sourceFile": "1486791791.mp4",
         "publicFile": "assets/videos/sleep-hub-controls-closeup.mp4",
-        "sourceRangeSeconds": [0, 28],
+        "sourceRangeSeconds": [
+          0,
+          28
+        ],
         "audioRemoved": true,
         "shows": "Sleep Hub front controls in a handheld close-up"
       }
@@ -182,11 +199,79 @@
   },
   "needsVerification": [
     "Measured cry response time and range",
-    "Charging input, full-charge time and tested battery runtime",
+    "Rated charging voltage/current for both models; portable battery capacity; Sleep Hub battery runtime",
+    "Portable up-to-five-day runtime test volume and daily listening hours; no continuous 120-hour claim is supported",
     "Sleep Hub sound count, memory behavior and exact lighting-level count",
     "Portable timer-duration selection and exact cry-playback sequence",
-    "Fragrance ingredients, lifespan and mist-on duration",
-    "Current complete warranty, return and privacy terms",
+    "Detailed fragrance ingredient list, cartridge lifespan and mist-on duration",
+    "Separate warranty duration, detailed return eligibility/start date/shipping terms, and complete privacy terms",
     "Design-origin and FSC claims on retired promotional banners"
+  ],
+  "ownerConfirmations": [
+    {
+      "confirmedOn": "2026-10-27",
+      "source": "Direct brand-owner statement in this conversation",
+      "evidenceType": "owner_provided_specification_not_independent_test",
+      "portable": {
+        "chargingConnector": "USB-C",
+        "cable": "standard USB-C cable",
+        "fastChargingRequired": false,
+        "fullChargeHours": 2,
+        "runtimeClaim": {
+          "maximumDays": 5,
+          "conditions": [
+            "Only built-in white noise or lullabies playing",
+            "Night light off",
+            "Bluetooth off"
+          ],
+          "continuousRuntimeHours": null,
+          "testVolume": null,
+          "dailyListeningHours": null
+        },
+        "ratedChargingVoltage": null,
+        "ratedChargingCurrent": null
+      },
+      "sleepHub": {
+        "chargingConnector": "USB-C",
+        "cable": "standard USB-C cable",
+        "batteryCapacityMah": 5000,
+        "fullChargeHoursRange": [
+          6,
+          8
+        ],
+        "chargingCondition": "Powered by a standard, non-fast-charging adapter",
+        "runtime": null,
+        "ratedChargingVoltage": null,
+        "ratedChargingCurrent": null
+      },
+      "fragrance": {
+        "ingredientOrigin": "Pure plant extracts",
+        "fullIngredientList": null,
+        "precautions": [
+          "Keep fragrance off around infants",
+          "Adults with fragrance allergies or respiratory conditions should not use the fragrance function"
+        ]
+      },
+      "returns": {
+        "windowDays": 30,
+        "freeReturns": true,
+        "freeExchanges": true,
+        "windowStartEvent": null,
+        "detailedEligibility": null,
+        "returnShippingTerms": null,
+        "separateWarrantyDuration": null
+      },
+      "contact": {
+        "method": "Contact Us in the top navigation opens a support form; submit the completed form to contact CHICWAY",
+        "homepageForm": "index.html#lead-modal"
+      },
+      "originalOwnerStatement": {
+        "charging": "portable sound machine款使用普通的Type-C充电线，无需快充，2小时便可充满电；5-in-1款使用普通Type-C充电线，在普通慢充充电头供电的情况下，5000毫安的电池需要6到8小时充满电。",
+        "runtime": "portable sound machine款在只播放内置白噪音或摇篮曲且不开夜灯、不开蓝牙模式的情况下，电池续航最高可达5天。",
+        "fragrance": "香薰为纯植物提取成分。婴儿不建议打开香薰功能，成人对香薰过敏或有呼吸道相关疾病的不建议打开香薰功能。",
+        "returns": "30天免费退货或换货",
+        "support": "点击网页顶部的菜单栏中的Contact Us，在弹出的表单栏中填写信息便可以联系到我们。"
+      }
+    }
   ]
 }
