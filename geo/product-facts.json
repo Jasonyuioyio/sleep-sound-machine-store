@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-27",
+  "reviewedOn": "2026-11-23",
   "status": "manufacturer_manual_and_owner_confirmed",
   "sources": [
     "USER MANUAL.pdf, page 1: sounds, controls, recording and safety panels",
@@ -57,7 +57,7 @@
     {
       "feature": "Lighting",
       "portable": "Night light; short-press light control",
-      "hub": "Warm-light brightness, breathing light and RGB running light"
+      "hub": "6 warm-light brightness levels, breathing light and 2 RGB levels"
     },
     {
       "feature": "Bluetooth audio",
@@ -201,13 +201,19 @@
     "Measured cry response time and range",
     "Rated charging voltage/current for both models; portable battery capacity; Sleep Hub battery runtime",
     "Portable up-to-five-day runtime test volume and daily listening hours; no continuous 120-hour claim is supported",
-    "Sleep Hub sound count, memory behavior and exact lighting-level count",
+    "Sleep Hub sound count and memory behavior",
     "Portable timer-duration selection and exact cry-playback sequence",
     "Detailed fragrance ingredient list, cartridge lifespan and mist-on duration",
     "Separate warranty duration, detailed return eligibility/start date/shipping terms, and complete privacy terms",
     "Design-origin and FSC claims on retired promotional banners"
   ],
   "ownerConfirmations": [
+    {
+      "confirmedOn": "2026-11-23",
+      "source": "Direct brand-owner confirmation for the currently sold 5-in-1 Sleep Hub",
+      "evidenceType": "owner_provided_specification_not_independent_test",
+      "sleepHub": { "warmLightBrightnessLevels": 6, "rgbLevels": 2 }
+    },
     {
       "confirmedOn": "2026-10-27",
       "source": "Direct brand-owner statement in this conversation",

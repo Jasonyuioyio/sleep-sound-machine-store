@@ -120,7 +120,7 @@ const PRODUCTS = [
       ["Fragrance settings", "30-second interval, 50-second interval or off"],
       ["Bluetooth device name", "5-in-1 Sleep Hub"],
       ["Projection mode labels", "Stars, Nebula Cloud, or Stars + Nebula Cloud in the manual"],
-      ["Lighting", "Warm-light brightness, breathing light and RGB running light"],
+      ["Lighting", "6 warm-light brightness levels, breathing light and 2 RGB levels"],
       ["Battery capacity", "5,000 mAh"],
       ["Charging", "Standard USB-C cable; about 6–8 hours with a standard, non-fast-charging power adapter."]
     ],
@@ -184,7 +184,7 @@ const PRODUCTS = [
       "href": "sleep-hub.html#operation-videos",
       "label": "Watch the button controls and Bluetooth demonstration videos"
     },
-    "sourceNote": "Mode names and controls follow the CHICWAY 5-in-1 user instructions, reviewed October 15, 2026. Charging, battery capacity, fragrance information, precautions, returns and support were confirmed by CHICWAY on October 27, 2026; these are brand-provided specifications."
+    "sourceNote": "Mode names and controls follow the CHICWAY 5-in-1 user instructions, reviewed October 15, 2026. Charging, battery capacity, fragrance information, precautions, returns and support were confirmed by CHICWAY on October 27, 2026; CHICWAY confirmed the lighting levels on November 23, 2026. These are brand-provided specifications."
   },
   {
     "id": "fragrance-cartridge",
